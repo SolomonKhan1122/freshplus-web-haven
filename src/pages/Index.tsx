@@ -1,4 +1,4 @@
-import { Phone, MessageSquare, ArrowRight } from "lucide-react";
+import { Phone, MessageSquare, ArrowRight, Star, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation";
 
@@ -8,24 +8,57 @@ const Index = () => {
       title: "Residential Cleaning",
       description: "Professional home cleaning services tailored to your needs",
       image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80",
+      path: "/services/residential",
     },
     {
       title: "Commercial Cleaning",
       description: "Keep your workplace pristine with our commercial cleaning solutions",
       image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&q=80",
+      path: "/services/commercial",
     },
     {
       title: "Deep Cleaning",
       description: "Thorough deep cleaning services for a spotless environment",
       image: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&q=80",
+      path: "/services/deep-cleaning",
+    },
+  ];
+
+  const reviews = [
+    {
+      name: "Sarah Thompson",
+      rating: 5,
+      text: "Exceptional service! The team was professional, thorough, and left my home spotless.",
+    },
+    {
+      name: "Michael Chen",
+      rating: 5,
+      text: "Best commercial cleaning service in Melbourne. Highly recommended!",
+    },
+    {
+      name: "Emma Wilson",
+      rating: 5,
+      text: "Reliable, efficient, and great attention to detail. Will use again!",
     },
   ];
 
   const features = [
-    "Professional & Reliable Team",
-    "Eco-Friendly Products",
-    "Flexible Scheduling",
-    "100% Satisfaction Guarantee",
+    {
+      title: "Professional & Reliable Team",
+      description: "Experienced, vetted, and trained cleaning professionals",
+    },
+    {
+      title: "Eco-Friendly Products",
+      description: "Safe for your family, pets, and the environment",
+    },
+    {
+      title: "Flexible Scheduling",
+      description: "Book cleanings at your convenience",
+    },
+    {
+      title: "100% Satisfaction Guarantee",
+      description: "Your satisfaction is our top priority",
+    },
   ];
 
   return (
@@ -39,8 +72,8 @@ const Index = () => {
             <h1 className="text-4xl sm:text-5xl font-bold text-primary mb-6">
               Professional Cleaning Services in Melbourne
             </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Experience the difference with our premium cleaning services
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              Experience the difference with Melbourne's most trusted cleaning service. Professional, reliable, and tailored to your needs.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
@@ -49,12 +82,12 @@ const Index = () => {
               >
                 Get a Quote
               </Link>
-              <a
-                href="tel:+61400000000"
+              <Link
+                to="/book"
                 className="bg-white text-primary px-8 py-3 rounded-md border border-primary hover:bg-primary-light transition-colors"
               >
-                Call Us Now
-              </a>
+                Book Now
+              </Link>
             </div>
           </div>
         </div>
@@ -67,9 +100,10 @@ const Index = () => {
             Our Services
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
+            {services.map((service) => (
+              <Link
+                key={service.title}
+                to={service.path}
                 className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
                 <img
@@ -82,14 +116,11 @@ const Index = () => {
                     {service.title}
                   </h3>
                   <p className="text-gray-600 mb-4">{service.description}</p>
-                  <Link
-                    to={`/services/${service.title.toLowerCase().replace(" ", "-")}`}
-                    className="text-primary hover:text-primary-dark flex items-center gap-2"
-                  >
+                  <span className="text-primary hover:text-primary-dark flex items-center gap-2">
                     Learn More <ArrowRight size={16} />
-                  </Link>
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -102,12 +133,44 @@ const Index = () => {
             Why Choose Us
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
+            {features.map((feature) => (
               <div
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-md text-center"
+                key={feature.title}
+                className="bg-white p-6 rounded-lg shadow-md"
               >
-                <p className="text-lg font-semibold text-primary">{feature}</p>
+                <CheckCircle className="text-primary mb-4 h-8 w-8" />
+                <h3 className="text-lg font-semibold text-primary mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-primary text-center mb-12">
+            What Our Customers Say
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {reviews.map((review) => (
+              <div
+                key={review.name}
+                className="bg-white p-6 rounded-lg shadow-md"
+              >
+                <div className="flex items-center mb-4">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="h-5 w-5 text-yellow-400 fill-current"
+                    />
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-4">{review.text}</p>
+                <p className="font-semibold text-primary">{review.name}</p>
               </div>
             ))}
           </div>
