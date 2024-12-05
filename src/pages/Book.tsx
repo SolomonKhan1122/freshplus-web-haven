@@ -8,6 +8,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import Navigation from "@/components/Navigation";
+import { CalendarIcon, Clock } from "lucide-react";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -15,7 +20,9 @@ const formSchema = z.object({
   phone: z.string().min(10, "Phone number must be at least 10 digits"),
   service: z.string().min(1, "Please select a service"),
   address: z.string().min(5, "Address must be at least 5 characters"),
-  date: z.string().min(1, "Please select a date"),
+  date: z.date({
+    required_error: "Please select a date",
+  }),
   time: z.string().min(1, "Please select a time"),
   specialInstructions: z.string().optional(),
 });
@@ -29,7 +36,6 @@ const Book = () => {
       phone: "",
       service: "",
       address: "",
-      date: "",
       time: "",
       specialInstructions: "",
     },
@@ -41,11 +47,14 @@ const Book = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-primary-light to-white">
       <Navigation />
       <div className="max-w-4xl mx-auto pt-24 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-primary text-center mb-8">Book Now</h1>
-        <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
+        <div className="text-center mb-8 animate-fade-up">
+          <h1 className="text-3xl font-bold text-primary mb-4">Book Now</h1>
+          <p className="text-gray-600">Schedule your cleaning service at your preferred date and time.</p>
+        </div>
+        <div className="bg-white shadow-lg rounded-lg p-6 mb-8 animate-fade-up">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
@@ -69,7 +78,7 @@ const Book = () => {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="john@example.com" {...field} />
+                        <Input placeholder="john@example.com" type="email" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -82,7 +91,7 @@ const Book = () => {
                     <FormItem>
                       <FormLabel>Phone Number</FormLabel>
                       <FormControl>
-                        <Input placeholder="0400 000 000" {...field} />
+                        <Input placeholder="0400 000 000" type="tel" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -129,11 +138,39 @@ const Book = () => {
                   control={form.control}
                   name="date"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Preferred Date</FormLabel>
-                      <FormControl>
-                        <Input type="date" {...field} />
-                      </FormControl>
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Service Date</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-full pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            disabled={(date) =>
+                              date < new Date() || date < new Date("1900-01-01")
+                            }
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
                       <FormMessage />
                     </FormItem>
                   )}
