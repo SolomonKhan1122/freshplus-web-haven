@@ -9,8 +9,8 @@ import Book from "./pages/Book";
 import Services from "./pages/Services";
 import { useState } from "react";
 
-const App = () => {
-  const [queryClient] = useState(() => new QueryClient());
+function App() {
+  const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -30,6 +30,6 @@ const App = () => {
       </TooltipProvider>
     </QueryClientProvider>
   );
-};
+}
 
 export default App;
