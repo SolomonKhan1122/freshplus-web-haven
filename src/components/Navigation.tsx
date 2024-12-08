@@ -5,7 +5,6 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
@@ -45,12 +44,12 @@ const Navigation = () => {
                     Services
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid w-[400px] gap-3 p-4">
+                    <div className="grid w-[400px] gap-3 p-4 bg-primary">
                       {services.map((service) => (
                         <Link
                           key={service.path}
                           to={service.path}
-                          className="block p-2 hover:bg-gray-100 rounded-md"
+                          className="block p-2 hover:bg-primary-dark rounded-md text-white"
                         >
                           {service.name}
                         </Link>
@@ -90,10 +89,10 @@ const Navigation = () => {
       {/* Mobile Navigation */}
       {isOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-primary">
             <Link
               to="/"
-              className="block px-3 py-2 text-gray-600 hover:text-primary"
+              className="block px-3 py-2 text-white hover:bg-primary-dark rounded-md"
               onClick={() => setIsOpen(false)}
             >
               Home
@@ -102,7 +101,7 @@ const Navigation = () => {
               <Link
                 key={service.path}
                 to={service.path}
-                className="block px-3 py-2 text-gray-600 hover:text-primary"
+                className="block px-3 py-2 text-white hover:bg-primary-dark rounded-md"
                 onClick={() => setIsOpen(false)}
               >
                 {service.name}
@@ -110,21 +109,21 @@ const Navigation = () => {
             ))}
             <Link
               to="/about"
-              className="block px-3 py-2 text-gray-600 hover:text-primary"
+              className="block px-3 py-2 text-white hover:bg-primary-dark rounded-md"
               onClick={() => setIsOpen(false)}
             >
               About
             </Link>
             <Link
               to="/contact"
-              className="block px-3 py-2 text-gray-600 hover:text-primary"
+              className="block px-3 py-2 text-white hover:bg-primary-dark rounded-md"
               onClick={() => setIsOpen(false)}
             >
               Contact
             </Link>
             <Link
               to="/quote"
-              className="block px-3 py-2 text-white bg-primary rounded-md"
+              className="block px-3 py-2 text-white bg-primary-dark rounded-md"
               onClick={() => setIsOpen(false)}
             >
               Get Quote
