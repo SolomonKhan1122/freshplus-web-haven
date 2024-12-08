@@ -1,15 +1,25 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Services", path: "/services" },
-    { name: "About", path: "/about" },
-    { name: "Contact", path: "/contact" },
+  const services = [
+    { name: "Residential Cleaning", path: "/services/residential" },
+    { name: "Commercial Cleaning", path: "/services/commercial" },
+    { name: "Deep Cleaning", path: "/services/deep-cleaning" },
+    { name: "Window Cleaning", path: "/services/window" },
+    { name: "Carpet Cleaning", path: "/services/carpet" },
+    { name: "End of Lease Cleaning", path: "/services/end-of-lease" },
   ];
 
   return (
@@ -24,15 +34,39 @@ const Navigation = () => {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className="text-gray-600 hover:text-primary transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
+            <Link to="/" className="text-gray-600 hover:text-primary transition-colors">
+              Home
+            </Link>
+            
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-gray-600 hover:text-primary transition-colors">
+                    Services
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid w-[400px] gap-3 p-4">
+                      {services.map((service) => (
+                        <Link
+                          key={service.path}
+                          to={service.path}
+                          className="block p-2 hover:bg-gray-100 rounded-md"
+                        >
+                          {service.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+
+            <Link to="/about" className="text-gray-600 hover:text-primary transition-colors">
+              About
+            </Link>
+            <Link to="/contact" className="text-gray-600 hover:text-primary transition-colors">
+              Contact
+            </Link>
             <Link
               to="/quote"
               className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
@@ -57,16 +91,37 @@ const Navigation = () => {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navItems.map((item) => (
+            <Link
+              to="/"
+              className="block px-3 py-2 text-gray-600 hover:text-primary"
+              onClick={() => setIsOpen(false)}
+            >
+              Home
+            </Link>
+            {services.map((service) => (
               <Link
-                key={item.name}
-                to={item.path}
+                key={service.path}
+                to={service.path}
                 className="block px-3 py-2 text-gray-600 hover:text-primary"
                 onClick={() => setIsOpen(false)}
               >
-                {item.name}
+                {service.name}
               </Link>
             ))}
+            <Link
+              to="/about"
+              className="block px-3 py-2 text-gray-600 hover:text-primary"
+              onClick={() => setIsOpen(false)}
+            >
+              About
+            </Link>
+            <Link
+              to="/contact"
+              className="block px-3 py-2 text-gray-600 hover:text-primary"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact
+            </Link>
             <Link
               to="/quote"
               className="block px-3 py-2 text-white bg-primary rounded-md"

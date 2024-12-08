@@ -34,8 +34,9 @@ const Quote = () => {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    console.log("Form submitted:", values);
     toast.success("Quote request submitted successfully!");
+    form.reset();
   };
 
   return (

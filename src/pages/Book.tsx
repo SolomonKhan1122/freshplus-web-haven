@@ -39,14 +39,16 @@ const Book = () => {
       phone: "",
       service: "",
       address: "",
+      date: undefined,
       time: "",
       specialInstructions: "",
     },
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    console.log("Form submitted:", values);
     toast.success("Booking submitted successfully!");
+    form.reset();
   };
 
   return (
