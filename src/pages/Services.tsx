@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { useParams, Link } from "react-router-dom";
 import { Phone, MessageSquare } from "lucide-react";
 
@@ -83,6 +84,7 @@ const Services = () => {
         <div className="pt-24 px-4">
           <h1 className="text-3xl font-bold text-primary text-center">Service not found</h1>
         </div>
+        <Footer />
       </div>
     );
   }
@@ -129,6 +131,7 @@ const Services = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

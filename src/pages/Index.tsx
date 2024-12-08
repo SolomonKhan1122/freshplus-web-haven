@@ -4,6 +4,7 @@ import ServicesSection from "../components/home/ServicesSection";
 import WhyChooseUsSection from "../components/home/WhyChooseUsSection";
 import ReviewsSection from "../components/home/ReviewsSection";
 import GetInTouchSection from "../components/home/GetInTouchSection";
+import Footer from "../components/Footer";
 
 const Index = () => {
   return (
@@ -14,6 +15,7 @@ const Index = () => {
       <WhyChooseUsSection />
       <ReviewsSection />
       <GetInTouchSection />
+      <Footer />
     </div>
   );
 };

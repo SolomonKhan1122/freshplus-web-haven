@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Quote from "./pages/Quote";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 
 function App() {
   const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ function App() {
             <Route path="/services/:service" element={<Services />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
