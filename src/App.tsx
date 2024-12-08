@@ -7,26 +7,29 @@ import Index from "./pages/Index";
 import Quote from "./pages/Quote";
 import Book from "./pages/Book";
 import Services from "./pages/Services";
+import { useState } from "react";
 
-const queryClient = new QueryClient();
+const App = () => {
+  const [queryClient] = useState(() => new QueryClient());
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/services/:service" element={<Services />} />
-          <Route path="/quote" element={<Quote />} />
-          <Route path="/book" element={<Book />} />
-          <Route path="/about" element={<Index />} />
-          <Route path="/contact" element={<Index />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/services/:service" element={<Services />} />
+            <Route path="/quote" element={<Quote />} />
+            <Route path="/book" element={<Book />} />
+            <Route path="/about" element={<Index />} />
+            <Route path="/contact" element={<Index />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
