@@ -1,6 +1,7 @@
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Control } from "react-hook-form";
+import { FormSection } from "./FormSection";
 
 interface ContactFieldsProps {
   control: Control<any>;
