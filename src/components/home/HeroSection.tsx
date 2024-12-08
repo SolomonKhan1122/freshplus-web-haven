@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { MessageSquare } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -18,12 +19,12 @@ const HeroSection = () => {
             >
               Get a Quote
             </Link>
-            <Link
-              to="/book"
-              className="bg-white text-primary px-8 py-3 rounded-md border border-primary hover:bg-primary-light transition-colors"
+            <a
+              href="sms:+61400000000?body=Hi, I'm interested in your cleaning services."
+              className="flex items-center justify-center gap-2 bg-white text-primary px-8 py-3 rounded-md border border-primary hover:bg-primary-light transition-colors"
             >
-              Book Now
-            </Link>
+              <MessageSquare size={20} /> Text Us
+            </a>
           </div>
         </div>
       </div>
