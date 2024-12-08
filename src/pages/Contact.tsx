@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import { Phone, Mail, MessageSquare, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   return (
