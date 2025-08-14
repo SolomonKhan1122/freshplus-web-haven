@@ -9,10 +9,17 @@ const resendApiKey = import.meta.env.VITE_RESEND_API_KEY ||
 const resend = new Resend(resendApiKey);
 
 // Check if API key is properly configured
-if (!resendApiKey || resendApiKey === 're_7DgQPRKA_67RPCHA53xPAuAbkZGSqsVrW') {
-  console.warn('⚠️ Resend API key is using fallback value. Please configure VITE_RESEND_API_KEY or RESEND_API_KEY environment variable.');
+console.log('🔧 Email Service Configuration:');
+console.log('- Resend API Key configured:', resendApiKey ? '✅ Yes' : '❌ No');
+console.log('- Admin Email:', ADMIN_EMAIL);
+console.log('- Environment:', import.meta.env.MODE || 'development');
+
+if (!resendApiKey) {
+  console.error('❌ CRITICAL: No Resend API key found. Emails will not work.');
+} else if (resendApiKey === 're_7DgQPRKA_67RPCHA53xPAuAbkZGSqsVrW') {
+  console.log('🔄 Using fallback API key - this should work for testing');
 } else {
-  console.log('✅ Resend API key configured successfully');
+  console.log('✅ Using custom API key');
 }
 
 // Admin email - receives all booking and quote notifications
@@ -1011,55 +1018,69 @@ export const generateAdminQuoteNotification = (quote: QuoteData) => {
 
 // Send booking confirmation email to customer and admin notification
 export const sendBookingEmails = async (booking: BookingData) => {
+  console.log('📧 Attempting to send booking emails for:', booking.name, '- Service:', getServiceDisplayName(booking.service));
+  
   try {
     // Send confirmation email to customer
+    console.log('📤 Sending customer confirmation email to:', booking.email);
     const customerEmail = await resend.emails.send({
-      from: 'FreshPlus <noreply@resend.dev>',
+      from: 'FreshPlus <onboarding@resend.dev>',
       to: [booking.email],
       subject: `✅ Booking Confirmed - FreshPlus Professional Cleaning Service`,
       html: generateBookingConfirmationEmail(booking),
     });
+    console.log('✅ Customer email sent successfully:', customerEmail.data?.id);
 
     // Send notification email to admin
+    console.log('📤 Sending admin notification email to:', ADMIN_EMAIL);
     const adminEmail = await resend.emails.send({
-      from: 'FreshPlus System <system@resend.dev>',
+      from: 'FreshPlus System <onboarding@resend.dev>',
       to: [ADMIN_EMAIL],
-      subject: `🚨 New Booking Alert - ${booking.name} - ${booking.service}`,
+      subject: `🚨 New Booking Alert - ${booking.name} - ${getServiceDisplayName(booking.service)}`,
       html: generateAdminBookingNotification(booking),
     });
+    console.log('✅ Admin email sent successfully:', adminEmail.data?.id);
 
-    console.log('Booking emails sent successfully:', { customerEmail, adminEmail });
+    console.log('🎉 All booking emails sent successfully!');
     return { success: true, customerEmail, adminEmail };
   } catch (error) {
-    console.error('Error sending booking emails:', error);
-    return { success: false, error };
+    console.error('❌ Error sending booking emails:', error);
+    console.error('📋 Booking data:', JSON.stringify(booking, null, 2));
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
   }
 };
 
 // Send quote confirmation email to customer and admin notification
 export const sendQuoteEmails = async (quote: QuoteData) => {
+  console.log('📧 Attempting to send quote emails for:', quote.name, '- Services:', quote.services.map(service => getServiceDisplayName(service)).join(', '));
+  
   try {
     // Send confirmation email to customer
+    console.log('📤 Sending customer quote confirmation to:', quote.email);
     const customerEmail = await resend.emails.send({
-      from: 'FreshPlus <noreply@resend.dev>',
+      from: 'FreshPlus <onboarding@resend.dev>',
       to: [quote.email],
       subject: `📋 Quote Request Received - FreshPlus Professional Cleaning Service`,
       html: generateQuoteConfirmationEmail(quote),
     });
+    console.log('✅ Customer quote email sent successfully:', customerEmail.data?.id);
 
     // Send notification email to admin
+    console.log('📤 Sending admin quote notification to:', ADMIN_EMAIL);
     const adminEmail = await resend.emails.send({
-      from: 'FreshPlus System <system@resend.dev>',
+      from: 'FreshPlus System <onboarding@resend.dev>',
       to: [ADMIN_EMAIL],
-      subject: `💰 New Quote Request - ${quote.name} - ${quote.services.join(', ')}`,
+      subject: `💰 New Quote Request - ${quote.name} - ${quote.services.map(service => getServiceDisplayName(service)).join(', ')}`,
       html: generateAdminQuoteNotification(quote),
     });
+    console.log('✅ Admin quote email sent successfully:', adminEmail.data?.id);
 
-    console.log('Quote emails sent successfully:', { customerEmail, adminEmail });
+    console.log('🎉 All quote emails sent successfully!');
     return { success: true, customerEmail, adminEmail };
   } catch (error) {
-    console.error('Error sending quote emails:', error);
-    return { success: false, error };
+    console.error('❌ Error sending quote emails:', error);
+    console.error('📋 Quote data:', JSON.stringify(quote, null, 2));
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
   }
 };
 

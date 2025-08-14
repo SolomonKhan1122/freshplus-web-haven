@@ -117,6 +117,7 @@ const Quote = () => {
       
       // Send confirmation emails
       if (data && data[0]) {
+        console.log("📧 Sending confirmation emails...");
         const emailResult = await sendQuoteEmails({
           id: data[0].id,
           name: data[0].name,
@@ -132,13 +133,20 @@ const Quote = () => {
         });
         
         if (emailResult.success) {
-          console.log("Confirmation emails sent successfully");
+          console.log("✅ Confirmation emails sent successfully to customer and admin");
+          toast.success("Quote request submitted successfully! Confirmation emails have been sent to you and our team.", {
+            duration: 6000,
+          });
         } else {
-          console.error("Failed to send confirmation emails:", emailResult.error);
+          console.error("❌ Failed to send confirmation emails:", emailResult.error);
+          toast.warning("Quote submitted successfully, but there was an issue sending confirmation emails. We'll contact you soon!", {
+            duration: 6000,
+          });
         }
+      } else {
+        toast.success("Quote request submitted successfully! We'll get back to you soon.");
       }
       
-      toast.success("Quote request submitted successfully! A FreshPlus representative will get in touch with you to confirm your booking within the day! Check your email for confirmation details.");
       form.reset();
       
     } catch (error) {

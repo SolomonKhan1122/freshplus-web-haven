@@ -87,6 +87,7 @@ const Book = () => {
       
       // Send confirmation emails
       if (data && data[0]) {
+        console.log("📧 Sending booking confirmation emails...");
         const emailResult = await sendBookingEmails({
           id: data[0].id,
           name: data[0].name,
@@ -100,13 +101,20 @@ const Book = () => {
         });
         
         if (emailResult.success) {
-          console.log("Confirmation emails sent successfully");
+          console.log("✅ Booking confirmation emails sent successfully to customer and admin");
+          toast.success("Booking confirmed! Confirmation emails have been sent to you and our team. We'll be in touch soon!", {
+            duration: 6000,
+          });
         } else {
-          console.error("Failed to send confirmation emails:", emailResult.error);
+          console.error("❌ Failed to send confirmation emails:", emailResult.error);
+          toast.warning("Booking submitted successfully, but there was an issue sending confirmation emails. We'll contact you to confirm!", {
+            duration: 6000,
+          });
         }
+      } else {
+        toast.success("Booking submitted successfully! We'll contact you to confirm details.");
       }
       
-      toast.success("Booking submitted successfully! We'll contact you soon to confirm your appointment. Check your email for confirmation details.");
       form.reset();
       
     } catch (error) {
