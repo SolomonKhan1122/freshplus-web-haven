@@ -31,9 +31,9 @@ The following tables have been created in your Supabase database:
 
 ## Security
 
-- Row Level Security (RLS) is enabled on both tables
-- Anonymous users can insert data (for form submissions)
-- Only authenticated users can read/update data
+- Row Level Security (RLS) is **DISABLED** on both tables for unrestricted form submissions
+- All users (anonymous and authenticated) can insert, read, and update data
+- This allows the quote and booking forms to work without authentication requirements
 
 ## Troubleshooting
 
