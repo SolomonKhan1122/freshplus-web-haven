@@ -1,7 +1,18 @@
 import { Resend } from 'resend';
 
-// Initialize Resend with API key
-const resend = new Resend('re_7DgQPRKA_67RPCHA53xPAuAbkZGSqsVrW');
+// Initialize Resend with API key from environment variable
+// Try both VITE_RESEND_API_KEY (for local dev) and RESEND_API_KEY (for Vercel)
+const resendApiKey = import.meta.env.VITE_RESEND_API_KEY || 
+                     import.meta.env.RESEND_API_KEY || 
+                     're_7DgQPRKA_67RPCHA53xPAuAbkZGSqsVrW';
+const resend = new Resend(resendApiKey);
+
+// Check if API key is properly configured
+if (!resendApiKey || resendApiKey === 're_7DgQPRKA_67RPCHA53xPAuAbkZGSqsVrW') {
+  console.warn('⚠️ Resend API key is using fallback value. Please configure VITE_RESEND_API_KEY or RESEND_API_KEY environment variable.');
+} else {
+  console.log('✅ Resend API key configured successfully');
+}
 
 // Admin email - receives all booking and quote notifications
 const ADMIN_EMAIL = 'infofreshplusclean@gmail.com';
