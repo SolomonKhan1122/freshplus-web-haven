@@ -1,6 +1,9 @@
 import { Resend } from 'resend';
 import { getServiceDisplayName } from './serviceMapping';
 
+// Admin email - receives all booking and quote notifications
+const ADMIN_EMAIL = 'infofreshplusclean@gmail.com';
+
 // Initialize Resend with API key from environment variable
 // Try both VITE_RESEND_API_KEY (for local dev) and RESEND_API_KEY (for Vercel)
 const resendApiKey = import.meta.env.VITE_RESEND_API_KEY || 
@@ -21,9 +24,6 @@ if (!resendApiKey) {
 } else {
   console.log('✅ Using custom API key');
 }
-
-// Admin email - receives all booking and quote notifications
-const ADMIN_EMAIL = 'infofreshplusclean@gmail.com';
 
 export interface BookingData {
   id: string;
