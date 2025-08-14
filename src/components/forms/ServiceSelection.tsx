@@ -22,12 +22,12 @@ export const ServiceSelection = ({ control }: ServiceSelectionProps) => (
               </SelectTrigger>
             </FormControl>
             <SelectContent>
+              <SelectItem value="end-of-lease">End of Lease Cleaning</SelectItem>
               <SelectItem value="residential">Residential Cleaning</SelectItem>
               <SelectItem value="commercial">Commercial Cleaning</SelectItem>
               <SelectItem value="deep-cleaning">Deep Cleaning</SelectItem>
               <SelectItem value="window">Window Cleaning</SelectItem>
               <SelectItem value="carpet">Carpet Cleaning</SelectItem>
-              <SelectItem value="end-of-lease">End of Lease Cleaning</SelectItem>
             </SelectContent>
           </Select>
           <FormMessage />

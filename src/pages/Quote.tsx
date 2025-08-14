@@ -57,6 +57,7 @@ const Quote = () => {
   });
 
   const availableServices = [
+    "End of Lease Cleaning",
     "Carpet Dry Cleaning",
     "In-Home Rug Cleaning",
     "Upholstery Cleaning",

@@ -279,7 +279,7 @@ export const generateBookingConfirmationEmail = (booking: BookingData) => {
                     <h3>Need to Make Changes?</h3>
                     <p>Contact us anytime - we're here to help!</p>
                     <a href="tel:+61403971720" class="contact-button">📞 Call +61 403 971 720</a>
-                    <a href="mailto:info@freshplus.com.au" class="contact-button">✉️ Email Us</a>
+                    <a href="mailto:info@resend.dev" class="contact-button">✉️ Email Us</a>
                 </div>
             </div>
             
@@ -546,7 +546,7 @@ export const generateQuoteConfirmationEmail = (quote: QuoteData) => {
                     <h3>Questions? We're Here to Help!</h3>
                     <p>Contact us anytime - we're here to help!</p>
                     <a href="tel:+61403971720" class="contact-button">📞 Call +61 403 971 720</a>
-                    <a href="mailto:info@freshplus.com.au" class="contact-button">✉️ Email Us</a>
+                    <a href="mailto:info@resend.dev" class="contact-button">✉️ Email Us</a>
                 </div>
             </div>
             
@@ -1013,7 +1013,7 @@ export const sendBookingEmails = async (booking: BookingData) => {
   try {
     // Send confirmation email to customer
     const customerEmail = await resend.emails.send({
-      from: 'FreshPlus <noreply@freshplus.com.au>',
+      from: 'FreshPlus <noreply@resend.dev>',
       to: [booking.email],
       subject: `✅ Booking Confirmed - FreshPlus Professional Cleaning Service`,
       html: generateBookingConfirmationEmail(booking),
@@ -1021,7 +1021,7 @@ export const sendBookingEmails = async (booking: BookingData) => {
 
     // Send notification email to admin
     const adminEmail = await resend.emails.send({
-      from: 'FreshPlus System <system@freshplus.com.au>',
+      from: 'FreshPlus System <system@resend.dev>',
       to: [ADMIN_EMAIL],
       subject: `🚨 New Booking Alert - ${booking.name} - ${booking.service}`,
       html: generateAdminBookingNotification(booking),
@@ -1040,7 +1040,7 @@ export const sendQuoteEmails = async (quote: QuoteData) => {
   try {
     // Send confirmation email to customer
     const customerEmail = await resend.emails.send({
-      from: 'FreshPlus <noreply@freshplus.com.au>',
+      from: 'FreshPlus <noreply@resend.dev>',
       to: [quote.email],
       subject: `📋 Quote Request Received - FreshPlus Professional Cleaning Service`,
       html: generateQuoteConfirmationEmail(quote),
@@ -1048,7 +1048,7 @@ export const sendQuoteEmails = async (quote: QuoteData) => {
 
     // Send notification email to admin
     const adminEmail = await resend.emails.send({
-      from: 'FreshPlus System <system@freshplus.com.au>',
+      from: 'FreshPlus System <system@resend.dev>',
       to: [ADMIN_EMAIL],
       subject: `💰 New Quote Request - ${quote.name} - ${quote.services.join(', ')}`,
       html: generateAdminQuoteNotification(quote),
