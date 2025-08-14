@@ -14,6 +14,8 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
+import { supabase } from "@/lib/supabase";
+import { useState } from "react";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -33,6 +35,8 @@ const formSchema = z.object({
 });
 
 const Quote = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -66,10 +70,47 @@ const Quote = () => {
     "Deck Restore",
   ];
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("Form submitted:", values);
-    toast.success("Booking submitted successfully! A FreshPlus representative will get in touch with you to confirm your booking within the day!");
-    form.reset();
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Prepare data for Supabase
+      const quoteData = {
+        name: values.name,
+        address: values.address,
+        city: values.city,
+        postcode: values.postcode,
+        phone1: values.phone1,
+        phone2: values.phone2 || null,
+        email: values.email,
+        services: values.services,
+        preferred_date: values.preferredDate ? values.preferredDate.toISOString().split('T')[0] : null,
+        job_description: values.jobDescription || null,
+        terms_accepted: values.termsAccepted,
+      };
+
+      // Insert into Supabase
+      const { data, error } = await supabase
+        .from('quotes')
+        .insert([quoteData])
+        .select();
+
+      if (error) {
+        console.error('Supabase error:', error);
+        toast.error("Failed to submit quote request. Please try again.");
+        return;
+      }
+
+      console.log("Quote submitted successfully:", data);
+      toast.success("Quote request submitted successfully! A FreshPlus representative will get in touch with you to confirm your booking within the day!");
+      form.reset();
+      
+    } catch (error) {
+      console.error('Error submitting quote:', error);
+      toast.error("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -407,9 +448,9 @@ const Quote = () => {
                 <Button 
                   type="submit" 
                   className="w-full bg-gradient-to-r from-accent to-accent-dark hover:from-accent-dark hover:to-accent text-black font-extrabold py-6 text-2xl rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 border-2 border-accent-dark"
-                  disabled={!form.watch("termsAccepted")}
+                  disabled={!form.watch("termsAccepted") || isSubmitting}
                 >
-                  🎯 BOOK ONLINE NOW
+                  {isSubmitting ? "SUBMITTING..." : "🎯 BOOK ONLINE NOW"}
                 </Button>
               </div>
             </form>

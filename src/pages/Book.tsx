@@ -16,6 +16,8 @@ import { ContactFields } from "@/components/forms/ContactFields";
 import { ServiceSelection } from "@/components/forms/ServiceSelection";
 import { AddressField } from "@/components/forms/AddressField";
 import { FormSection } from "@/components/forms/FormSection";
+import { supabase } from "@/lib/supabase";
+import { useState } from "react";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -31,6 +33,8 @@ const formSchema = z.object({
 });
 
 const Book = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,10 +49,44 @@ const Book = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("Form submitted:", values);
-    toast.success("Booking submitted successfully!");
-    form.reset();
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Prepare data for Supabase
+      const bookingData = {
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        service: values.service,
+        address: values.address,
+        service_date: values.date.toISOString().split('T')[0], // Convert to YYYY-MM-DD format
+        service_time: values.time,
+        special_instructions: values.specialInstructions || null,
+      };
+
+      // Insert into Supabase
+      const { data, error } = await supabase
+        .from('bookings')
+        .insert([bookingData])
+        .select();
+
+      if (error) {
+        console.error('Supabase error:', error);
+        toast.error("Failed to submit booking. Please try again.");
+        return;
+      }
+
+      console.log("Booking submitted successfully:", data);
+      toast.success("Booking submitted successfully! We'll contact you soon to confirm your appointment.");
+      form.reset();
+      
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+      toast.error("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -151,7 +189,13 @@ const Book = () => {
                   )}
                 />
               </FormSection>
-              <Button type="submit" className="w-full">Confirm Booking</Button>
+              <Button 
+                type="submit" 
+                className="w-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Submitting..." : "Confirm Booking"}
+              </Button>
             </form>
           </Form>
         </div>
