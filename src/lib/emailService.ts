@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { getServiceDisplayName } from './serviceMapping';
 
 // Initialize Resend with API key from environment variable
 // Try both VITE_RESEND_API_KEY (for local dev) and RESEND_API_KEY (for Vercel)
@@ -234,7 +235,7 @@ export const generateBookingConfirmationEmail = (booking: BookingData) => {
                     <h3 style="color: #1e3a8a; margin-top: 0; margin-bottom: 20px; font-size: 20px;">📋 Booking Details</h3>
                     <div class="detail-row">
                         <span class="detail-label">🏠 Service:</span>
-                        <span class="detail-value">${booking.service}</span>
+                        <span class="detail-value">${getServiceDisplayName(booking.service)}</span>
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">📍 Address:</span>
@@ -512,7 +513,7 @@ export const generateQuoteConfirmationEmail = (quote: QuoteData) => {
                     <div class="detail-row">
                         <span class="detail-label">🏠 Services:</span>
                         <div class="services-list">
-                            ${quote.services.map(service => `<span class="service-item">${service}</span>`).join('')}
+                            ${quote.services.map(service => `<span class="service-item">${getServiceDisplayName(service)}</span>`).join('')}
                         </div>
                     </div>
                     <div class="detail-row">
@@ -723,7 +724,7 @@ export const generateAdminBookingNotification = (booking: BookingData) => {
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Service:</span>
-                        <span class="detail-value"><strong>${booking.service}</strong></span>
+                        <span class="detail-value"><strong>${getServiceDisplayName(booking.service)}</strong></span>
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Date:</span>
@@ -951,7 +952,7 @@ export const generateAdminQuoteNotification = (quote: QuoteData) => {
                     <div class="detail-row">
                         <span class="detail-label">Services Requested:</span>
                         <div class="services-list">
-                            ${quote.services.map(service => `<span class="service-item">${service}</span>`).join('')}
+                            ${quote.services.map(service => `<span class="service-item">${getServiceDisplayName(service)}</span>`).join('')}
                         </div>
                     </div>
                     <div class="detail-row">

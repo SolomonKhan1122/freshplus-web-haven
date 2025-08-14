@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { supabase } from "@/lib/supabase";
 import { sendQuoteEmails } from "@/lib/emailService";
+import { getServiceDisplayName } from "@/lib/serviceMapping";
 import { useState } from "react";
 
 const formSchema = z.object({
@@ -57,19 +58,19 @@ const Quote = () => {
   });
 
   const availableServices = [
-    "End of Lease Cleaning",
-    "Carpet Dry Cleaning",
-    "In-Home Rug Cleaning",
-    "Upholstery Cleaning",
-    "Deluxe Rug Wash",
-    "Mattress Cleaning",
-    "Mould Cleaning",
-    "Tile & Grout Cleaning",
-    "Air Conditioner Cleaning",
-    "Timber Floor Cleaning",
-    "Pest Control Treatment",
-    "Vinyl Floor Cleaning",
-    "Deck Restore",
+    "end-of-lease",
+    "carpet-dry",
+    "rug-cleaning", 
+    "upholstery",
+    "deluxe-rug",
+    "mattress",
+    "mould",
+    "tile-grout",
+    "air-conditioner",
+    "timber-floor",
+    "pest-control",
+    "vinyl-floor",
+    "deck-restore",
   ];
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -345,7 +346,7 @@ const Quote = () => {
                                   />
                                 </FormControl>
                                 <FormLabel className="text-primary font-semibold cursor-pointer hover:text-secondary transition-colors">
-                                  {service}
+                                  {getServiceDisplayName(service)}
                                 </FormLabel>
                               </FormItem>
                             )}

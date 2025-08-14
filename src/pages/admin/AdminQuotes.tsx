@@ -32,6 +32,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
+import { getServiceDisplayName } from '@/lib/serviceMapping';
 
 interface Quote {
   id: string;
@@ -175,7 +176,7 @@ const AdminQuotes = () => {
 
 Thank you for your interest in FreshPlus Cleaning services.
 
-Services requested: ${quote.services.join(', ')}
+Services requested: ${quote.services.map(service => getServiceDisplayName(service)).join(', ')}
 ${quote.quote_amount ? `Quote Amount: $${quote.quote_amount}` : ''}
 
 We look forward to serving you!
@@ -343,7 +344,7 @@ Email: infofreshplusclean@gmail.com`;
                         <div className="space-y-1">
                           {quote.services.slice(0, 2).map((service, index) => (
                             <Badge key={index} variant="outline" className="text-xs">
-                              {service}
+                              {getServiceDisplayName(service)}
                             </Badge>
                           ))}
                           {quote.services.length > 2 && (
@@ -436,7 +437,7 @@ Email: infofreshplusclean@gmail.com`;
                                     <div className="mt-2 flex flex-wrap gap-2">
                                       {selectedQuote.services.map((service, index) => (
                                         <Badge key={index} variant="secondary">
-                                          {service}
+                                          {getServiceDisplayName(service)}
                                         </Badge>
                                       ))}
                                     </div>

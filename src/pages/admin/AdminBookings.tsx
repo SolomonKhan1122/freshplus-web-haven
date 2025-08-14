@@ -32,6 +32,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
+import { getServiceDisplayName } from '@/lib/serviceMapping';
 
 interface Booking {
   id: string;
@@ -316,7 +317,7 @@ const AdminBookings = () => {
                       </TableCell>
                       <TableCell>
                         <div>
-                          <p className="font-medium">{booking.service}</p>
+                          <p className="font-medium">{getServiceDisplayName(booking.service)}</p>
                           <p className="text-sm text-gray-500 max-w-xs truncate">{booking.address}</p>
                         </div>
                       </TableCell>
@@ -369,7 +370,7 @@ const AdminBookings = () => {
                                     </div>
                                     <div>
                                       <label className="text-sm font-medium text-gray-700">Service</label>
-                                      <p className="text-gray-900">{selectedBooking.service}</p>
+                                      <p className="text-gray-900">{getServiceDisplayName(selectedBooking.service)}</p>
                                     </div>
                                     <div className="col-span-2">
                                       <label className="text-sm font-medium text-gray-700">Address</label>
