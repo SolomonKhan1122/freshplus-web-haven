@@ -74,6 +74,8 @@ const Quote = () => {
     setIsSubmitting(true);
     
     try {
+      console.log('Form values received:', values);
+      
       // Prepare data for Supabase
       const quoteData = {
         name: values.name,
@@ -89,6 +91,8 @@ const Quote = () => {
         terms_accepted: values.termsAccepted,
       };
 
+      console.log('Prepared quote data for Supabase:', quoteData);
+
       // Insert into Supabase
       const { data, error } = await supabase
         .from('quotes')
@@ -96,8 +100,13 @@ const Quote = () => {
         .select();
 
       if (error) {
-        console.error('Supabase error:', error);
-        toast.error("Failed to submit quote request. Please try again.");
+        console.error('Supabase error details:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        });
+        toast.error(`Failed to submit quote request: ${error.message}. Please try again.`);
         return;
       }
 

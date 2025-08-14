@@ -72,8 +72,13 @@ const Book = () => {
         .select();
 
       if (error) {
-        console.error('Supabase error:', error);
-        toast.error("Failed to submit booking. Please try again.");
+        console.error('Supabase error details:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        });
+        toast.error(`Failed to submit booking: ${error.message}. Please try again.`);
         return;
       }
 
