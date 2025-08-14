@@ -25,6 +25,9 @@ export type Database = {
           service_date: string
           service_time: string
           special_instructions: string | null
+          status: string
+          admin_notes: string | null
+          assigned_to: string | null
           created_at: string
           updated_at: string
         }
@@ -38,6 +41,9 @@ export type Database = {
           service_date: string
           service_time: string
           special_instructions?: string | null
+          status?: string
+          admin_notes?: string | null
+          assigned_to?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -51,6 +57,9 @@ export type Database = {
           service_date?: string
           service_time?: string
           special_instructions?: string | null
+          status?: string
+          admin_notes?: string | null
+          assigned_to?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -69,6 +78,10 @@ export type Database = {
           preferred_date: string | null
           job_description: string | null
           terms_accepted: boolean
+          status: string
+          admin_notes: string | null
+          quote_amount: number | null
+          assigned_to: string | null
           created_at: string
           updated_at: string
         }
@@ -85,6 +98,10 @@ export type Database = {
           preferred_date?: string | null
           job_description?: string | null
           terms_accepted: boolean
+          status?: string
+          admin_notes?: string | null
+          quote_amount?: number | null
+          assigned_to?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -101,6 +118,89 @@ export type Database = {
           preferred_date?: string | null
           job_description?: string | null
           terms_accepted?: boolean
+          status?: string
+          admin_notes?: string | null
+          quote_amount?: number | null
+          assigned_to?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      admin_users: {
+        Row: {
+          id: string
+          email: string
+          password_hash: string
+          full_name: string
+          role: string
+          is_active: boolean
+          last_login: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          email: string
+          password_hash: string
+          full_name: string
+          role?: string
+          is_active?: boolean
+          last_login?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          email?: string
+          password_hash?: string
+          full_name?: string
+          role?: string
+          is_active?: boolean
+          last_login?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      contact_messages: {
+        Row: {
+          id: string
+          name: string
+          email: string
+          phone: string | null
+          subject: string | null
+          message: string
+          status: string
+          admin_notes: string | null
+          replied_by: string | null
+          reply_sent_at: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          email: string
+          phone?: string | null
+          subject?: string | null
+          message: string
+          status?: string
+          admin_notes?: string | null
+          replied_by?: string | null
+          reply_sent_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          email?: string
+          phone?: string | null
+          subject?: string | null
+          message?: string
+          status?: string
+          admin_notes?: string | null
+          replied_by?: string | null
+          reply_sent_at?: string | null
           created_at?: string
           updated_at?: string
         }

@@ -111,27 +111,38 @@ const HeroSection = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] bg-gradient-to-r from-primary-dark to-primary">
-        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+      <section className="relative min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] overflow-hidden">
+        {/* Background Image with Blur and Shadow */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105 filter blur-sm"
+          style={{
+            backgroundImage: `url('/Home_Hero.webp')`,
+            filter: 'blur(2px) brightness(0.7)',
+          }}
+        ></div>
+        {/* Additional overlay for better text readability */}
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        {/* Shadow overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30"></div>
         <div className="relative container mx-auto px-4 py-8 sm:py-12 md:py-16 lg:py-20 flex items-center justify-center min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px]">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
-              <span className="block">FreshPlus</span>
-              <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-accent mt-2">Professional Home Services</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight drop-shadow-2xl">
+              <span className="block text-shadow-xl" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)' }}>FreshPlus</span>
+              <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-accent mt-2 font-extrabold" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)' }}>Professional Home Services</span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-white mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-white mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed font-semibold" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}>
               Enhance your home with Melbourne's most trusted cleaning service!
             </p>
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/quote">
-                <Button className="bg-accent hover:bg-accent-dark text-black font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg w-full sm:w-auto">
+                <Button className="bg-accent hover:bg-accent-dark text-black font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg w-full sm:w-auto shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                   BOOK ONLINE NOW
                 </Button>
               </Link>
               <a href="tel:+61403971720">
-                <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary bg-transparent px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg w-full sm:w-auto">
+                <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary bg-transparent px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg w-full sm:w-auto shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                   <Phone className="w-4 h-4 mr-2" />
                   CALL +61 403 971 720
                 </Button>
@@ -139,17 +150,17 @@ const HeroSection = () => {
             </div>
             
             {/* Trust indicators */}
-            <div className="mt-8 sm:mt-12 flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-white/80 text-sm">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-accent rounded-full"></span>
+            <div className="mt-8 sm:mt-12 flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-white text-sm font-medium">
+              <div className="flex items-center gap-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
+                <span className="w-3 h-3 bg-accent rounded-full shadow-lg animate-pulse"></span>
                 <span>5-Star Rated</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-accent rounded-full"></span>
+              <div className="flex items-center gap-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
+                <span className="w-3 h-3 bg-accent rounded-full shadow-lg animate-pulse"></span>
                 <span>Fully Insured</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-accent rounded-full"></span>
+              <div className="flex items-center gap-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
+                <span className="w-3 h-3 bg-accent rounded-full shadow-lg animate-pulse"></span>
                 <span>Eco-Friendly</span>
               </div>
             </div>

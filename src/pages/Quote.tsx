@@ -15,6 +15,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { supabase } from "@/lib/supabase";
+import { sendQuoteEmails } from "@/lib/emailService";
 import { useState } from "react";
 
 const formSchema = z.object({
@@ -111,7 +112,31 @@ const Quote = () => {
       }
 
       console.log("Quote submitted successfully:", data);
-      toast.success("Quote request submitted successfully! A FreshPlus representative will get in touch with you to confirm your booking within the day!");
+      
+      // Send confirmation emails
+      if (data && data[0]) {
+        const emailResult = await sendQuoteEmails({
+          id: data[0].id,
+          name: data[0].name,
+          address: data[0].address,
+          city: data[0].city,
+          postcode: data[0].postcode,
+          phone1: data[0].phone1,
+          phone2: data[0].phone2,
+          email: data[0].email,
+          services: data[0].services,
+          preferred_date: data[0].preferred_date,
+          job_description: data[0].job_description,
+        });
+        
+        if (emailResult.success) {
+          console.log("Confirmation emails sent successfully");
+        } else {
+          console.error("Failed to send confirmation emails:", emailResult.error);
+        }
+      }
+      
+      toast.success("Quote request submitted successfully! A FreshPlus representative will get in touch with you to confirm your booking within the day! Check your email for confirmation details.");
       form.reset();
       
     } catch (error) {

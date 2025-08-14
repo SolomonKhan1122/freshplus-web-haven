@@ -17,6 +17,7 @@ import { ServiceSelection } from "@/components/forms/ServiceSelection";
 import { AddressField } from "@/components/forms/AddressField";
 import { FormSection } from "@/components/forms/FormSection";
 import { supabase } from "@/lib/supabase";
+import { sendBookingEmails } from "@/lib/emailService";
 import { useState } from "react";
 
 const formSchema = z.object({
@@ -83,7 +84,29 @@ const Book = () => {
       }
 
       console.log("Booking submitted successfully:", data);
-      toast.success("Booking submitted successfully! We'll contact you soon to confirm your appointment.");
+      
+      // Send confirmation emails
+      if (data && data[0]) {
+        const emailResult = await sendBookingEmails({
+          id: data[0].id,
+          name: data[0].name,
+          email: data[0].email,
+          phone: data[0].phone,
+          service: data[0].service,
+          address: data[0].address,
+          service_date: data[0].service_date,
+          service_time: data[0].service_time,
+          special_instructions: data[0].special_instructions,
+        });
+        
+        if (emailResult.success) {
+          console.log("Confirmation emails sent successfully");
+        } else {
+          console.error("Failed to send confirmation emails:", emailResult.error);
+        }
+      }
+      
+      toast.success("Booking submitted successfully! We'll contact you soon to confirm your appointment. Check your email for confirmation details.");
       form.reset();
       
     } catch (error) {

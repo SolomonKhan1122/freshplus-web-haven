@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Quote from "./pages/Quote";
+import Book from "./pages/Book";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
@@ -12,6 +13,12 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import LicensedInsured from "./pages/LicensedInsured";
 import EndOfLeaseCleaning from "./pages/EndOfLeaseCleaning";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminBookings from "./pages/admin/AdminBookings";
+import AdminQuotes from "./pages/admin/AdminQuotes";
+import AdminContacts from "./pages/admin/AdminContacts";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const queryClient = new QueryClient();
@@ -23,15 +30,43 @@ function App() {
         <Sonner />
         <BrowserRouter>
           <Routes>
+            {/* Public Routes */}
             <Route path="/" element={<Index />} />
             <Route path="/services/:service" element={<Services />} />
             <Route path="/services/end-of-lease" element={<EndOfLeaseCleaning />} />
             <Route path="/quote" element={<Quote />} />
+            <Route path="/book" element={<Book />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/licensed-insured" element={<LicensedInsured />} />
+            
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/bookings" element={
+              <ProtectedRoute>
+                <AdminBookings />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/quotes" element={
+              <ProtectedRoute>
+                <AdminQuotes />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/contacts" element={
+              <ProtectedRoute>
+                <AdminContacts />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+            
+            {/* Fallback */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>

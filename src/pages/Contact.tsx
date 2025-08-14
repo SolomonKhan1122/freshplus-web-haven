@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import ContactForm from "@/components/ContactForm";
 import { Phone, Mail, MessageSquare, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -60,6 +61,11 @@ const Contact = () => {
               <p className="text-primary/80 font-semibold mb-2">Melbourne, VIC</p>
               <p className="text-secondary text-sm">All suburbs covered</p>
             </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="mb-12">
+            <ContactForm />
           </div>
 
           <div className="text-center bg-gradient-to-r from-primary to-secondary text-white p-8 rounded-2xl">
