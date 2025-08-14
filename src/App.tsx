@@ -11,6 +11,7 @@ import About from "./pages/About";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import LicensedInsured from "./pages/LicensedInsured";
+import EndOfLeaseCleaning from "./pages/EndOfLeaseCleaning";
 
 function App() {
   const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services/:service" element={<Services />} />
+            <Route path="/services/end-of-lease" element={<EndOfLeaseCleaning />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
