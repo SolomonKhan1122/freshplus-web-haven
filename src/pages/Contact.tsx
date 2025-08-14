@@ -17,26 +17,26 @@ const Contact = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             <a
-              href="tel:13 27 13"
+              href="tel:+61403971720"
               className="group bg-gradient-to-br from-primary-light to-secondary-light p-8 rounded-2xl hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-transparent hover:border-accent"
             >
               <div className="bg-accent w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Phone size={32} className="text-white" />
               </div>
               <h2 className="text-2xl font-bold text-primary mb-3">Call Now</h2>
-              <p className="text-primary/80 text-lg font-semibold mb-2">13 27 13</p>
+              <p className="text-primary/80 text-lg font-semibold mb-2">+61 403 971 720</p>
               <p className="text-secondary text-sm">Immediate assistance available</p>
             </a>
 
             <a
-              href="sms:13 27 13"
+              href="sms:+61403971720"
               className="group bg-gradient-to-br from-secondary-light to-accent-light p-8 rounded-2xl hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-transparent hover:border-secondary"
             >
               <div className="bg-secondary w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <MessageSquare size={32} className="text-white" />
               </div>
               <h2 className="text-2xl font-bold text-primary mb-3">Text Us</h2>
-              <p className="text-primary/80 text-lg font-semibold mb-2">13 27 13</p>
+              <p className="text-primary/80 text-lg font-semibold mb-2">+61 403 971 720</p>
               <p className="text-secondary text-sm">Quick response guaranteed</p>
             </a>
 

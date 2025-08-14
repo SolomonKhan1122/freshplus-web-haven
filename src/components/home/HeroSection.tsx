@@ -35,7 +35,7 @@ const HeroSection = () => {
               className="border-2 border-primary text-primary hover:bg-primary-light bg-transparent text-sm xl:text-base px-3 xl:px-4"
             >
               <Phone className="w-4 h-4 mr-2" />
-              CALL 13 27 13
+              CALL +61 403 971 720
             </Button>
             <Link to="/quote">
               <Button className="bg-accent hover:bg-accent-dark text-black font-semibold text-sm xl:text-base px-3 xl:px-4">BOOK NOW</Button>
@@ -44,7 +44,7 @@ const HeroSection = () => {
           
           {/* Mobile CTA */}
           <div className="lg:hidden flex items-center gap-2 flex-shrink-0">
-            <a href="tel:1327113">
+            <a href="tel:+61403971720">
               <Button size="sm" variant="outline" className="border-2 border-primary text-primary hover:bg-primary-light bg-transparent px-2">
                 <Phone className="w-4 h-4" />
               </Button>
@@ -130,10 +130,10 @@ const HeroSection = () => {
                   BOOK ONLINE NOW
                 </Button>
               </Link>
-              <a href="tel:1327113">
+              <a href="tel:+61403971720">
                 <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary bg-transparent px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg w-full sm:w-auto">
                   <Phone className="w-4 h-4 mr-2" />
-                  CALL 13 27 13
+                  CALL +61 403 971 720
                 </Button>
               </a>
             </div>

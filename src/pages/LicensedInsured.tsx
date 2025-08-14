@@ -232,11 +232,11 @@ const LicensedInsured = () => {
               
               <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
                 <a 
-                  href="tel:132713" 
+                  href="tel:+61403971720" 
                   className="flex items-center gap-3 bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary-dark transition-colors"
                 >
                   <Phone className="h-5 w-5" />
-                  <span className="font-semibold">Call 13 27 13</span>
+                  <span className="font-semibold">Call +61 403 971 720</span>
                 </a>
                 <a 
                   href="mailto:info@freshpluscleaning.com.au" 

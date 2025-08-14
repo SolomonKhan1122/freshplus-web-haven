@@ -140,7 +140,7 @@ const PrivacyPolicy = () => {
                 </p>
                 <div className="space-y-2 text-gray-700">
                   <p><strong>Email:</strong> <a href="mailto:info@freshpluscleaning.com.au" className="text-primary hover:text-secondary">info@freshpluscleaning.com.au</a></p>
-                  <p><strong>Phone:</strong> <a href="tel:132713" className="text-primary hover:text-secondary">13 27 13</a></p>
+                  <p><strong>Phone:</strong> <a href="tel:+61403971720" className="text-primary hover:text-secondary">+61 403 971 720</a></p>
                   <p><strong>Address:</strong> Melbourne, Victoria, Australia</p>
                 </div>
                 <p className="text-sm text-gray-600 mt-4">

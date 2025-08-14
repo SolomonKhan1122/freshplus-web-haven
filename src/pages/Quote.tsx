@@ -92,7 +92,7 @@ const Quote = () => {
               <p className="text-primary-light font-medium">
                 <span className="font-bold text-accent">Office Hours:</span> 8:00 AM to 5:00 PM daily
                 <br />
-                <span className="font-bold text-accent">For urgent bookings, call:</span> 13 27 13
+                <span className="font-bold text-accent">For urgent bookings, call:</span> +61 403 971 720
               </p>
             </div>
           </div>

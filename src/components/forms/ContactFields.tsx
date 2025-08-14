@@ -43,7 +43,7 @@ export const ContactFields = ({ control }: ContactFieldsProps) => (
           <FormItem>
             <FormLabel>Phone Number</FormLabel>
             <FormControl>
-              <Input placeholder="0400 000 000" type="tel" {...field} />
+              <Input placeholder="+61 403 971 720" type="tel" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

@@ -151,13 +151,13 @@ const Services = () => {
               </Link>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <a
-                  href="tel:1327113"
+                  href="tel:+61403971720"
                   className="flex items-center justify-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl hover:bg-white/30 transition-all duration-300 border border-white/30 text-sm sm:text-base"
                 >
-                  <Phone size={18} className="sm:w-5 sm:h-5" /> Call 13 27 13
+                  <Phone size={18} className="sm:w-5 sm:h-5" /> Call +61 403 971 720
                 </a>
                 <a
-                  href={`sms:1327113?body=Hi, I'm interested in FreshPlus ${currentService.title.toLowerCase()} service.`}
+                  href={`sms:+61403971720?body=Hi, I'm interested in FreshPlus ${currentService.title.toLowerCase()} service.`}
                   className="flex items-center justify-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl hover:bg-white/30 transition-all duration-300 border border-white/30 text-sm sm:text-base"
                 >
                   <MessageSquare size={18} className="sm:w-5 sm:h-5" /> Text Us

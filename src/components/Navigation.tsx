@@ -38,7 +38,7 @@ const Navigation = () => {
               className="border-2 border-primary text-primary hover:bg-primary-light bg-transparent text-sm xl:text-base px-3 xl:px-4"
             >
               <Phone className="w-4 h-4 mr-2" />
-              CALL 13 27 13
+              CALL +61 403 971 720
             </Button>
             <Link to="/quote">
               <Button className="bg-accent hover:bg-accent-dark text-black font-semibold text-sm xl:text-base px-3 xl:px-4">BOOK NOW</Button>
@@ -47,7 +47,7 @@ const Navigation = () => {
           
           {/* Mobile CTA and menu button */}
           <div className="lg:hidden flex items-center gap-2 flex-shrink-0">
-            <a href="tel:1327113" className="hidden sm:block">
+            <a href="tel:+61403971720" className="hidden sm:block">
               <Button size="sm" variant="outline" className="border-2 border-primary text-primary hover:bg-primary-light bg-transparent px-2">
                 <Phone className="w-4 h-4" />
               </Button>
@@ -181,12 +181,12 @@ const Navigation = () => {
                 Get Free Quote
               </Link>
               <a
-                href="tel:1327113"
+                href="tel:+61403971720"
                 className="block px-3 py-3 text-center border-2 border-white text-white hover:bg-white hover:text-primary bg-transparent rounded-lg transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 <Phone className="w-4 h-4 mr-2 inline" />
-                Call 13 27 13
+                Call +61 403 971 720
               </a>
             </div>
           </div>

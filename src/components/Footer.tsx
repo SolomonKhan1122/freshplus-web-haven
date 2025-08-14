@@ -109,12 +109,12 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-6">Contact Info</h3>
             <ul className="space-y-4">
               <li>
-                <a href="tel:13 27 13" className="flex items-center gap-3 text-primary-light hover:text-accent transition-colors group">
+                <a href="tel:+61403971720" className="flex items-center gap-3 text-primary-light hover:text-accent transition-colors group">
                   <div className="bg-accent p-2 rounded-lg group-hover:scale-110 transition-transform">
                     <Phone size={16} className="text-white" />
                   </div>
                   <div>
-                    <div className="font-semibold">13 27 13</div>
+                    <div className="font-semibold">+61 403 971 720</div>
                     <div className="text-sm text-primary-light/80">Call now</div>
                   </div>
                 </a>
