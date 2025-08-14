@@ -1,0 +1,5 @@
+# Handle client-side routing
+/*    /index.html   200
+
+# Admin routes specifically
+/admin/*    /index.html   200

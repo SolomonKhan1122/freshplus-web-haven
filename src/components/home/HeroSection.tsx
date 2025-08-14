@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Phone, ChevronDown } from "lucide-react";
+import heroImage from "/Home_Hero.webp";
+import logoImage from "/logo.webp";
 
 const HeroSection = () => {
   const services = [
@@ -20,7 +22,7 @@ const HeroSection = () => {
           <div className="flex items-center flex-1 min-w-0">
             <Link to="/" className="flex items-center flex-1 min-w-0">
               <img 
-                src="/logo.webp" 
+                src={logoImage} 
                 alt="FreshPlus Professional Home Services" 
                 className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto flex-shrink-0"
               />
@@ -116,7 +118,7 @@ const HeroSection = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105 filter blur-sm"
           style={{
-            backgroundImage: `url('/Home_Hero.webp')`,
+            backgroundImage: `url(${heroImage})`,
             filter: 'blur(2px) brightness(0.7)',
           }}
         ></div>

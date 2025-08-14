@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoImage from "/logo.webp";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +24,7 @@ const Navigation = () => {
           <div className="flex items-center flex-1 min-w-0">
             <Link to="/" className="flex items-center flex-1 min-w-0">
               <img 
-                src="/logo.webp" 
+                src={logoImage} 
                 alt="FreshPlus Professional Home Services" 
                 className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto flex-shrink-0"
               />
