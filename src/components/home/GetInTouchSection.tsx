@@ -41,14 +41,14 @@ const GetInTouchSection = () => {
           </a>
           
           <a
-            href="mailto:info@freshplus.com.au"
+            href="mailto:infofreshplusclean@gmail.com"
             className="group bg-white/10 backdrop-blur-sm p-6 sm:p-8 rounded-2xl hover:bg-white/20 transition-all duration-300 transform hover:scale-105 border border-white/20"
           >
             <div className="bg-accent w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
               <Mail className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
             </div>
             <h3 className="text-lg sm:text-xl font-bold mb-2">Email Us</h3>
-            <p className="text-primary-light text-xs sm:text-sm">info@freshplus.com.au</p>
+            <p className="text-primary-light text-xs sm:text-sm">infofreshplusclean@gmail.com</p>
             <p className="text-xs sm:text-sm text-primary-light mt-2">Detailed inquiries</p>
           </a>
           

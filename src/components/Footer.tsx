@@ -120,12 +120,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="mailto:info@freshpluscleaning.com.au" className="flex items-center gap-3 text-primary-light hover:text-accent transition-colors group">
+                <a href="mailto:infofreshplusclean@gmail.com" className="flex items-center gap-3 text-primary-light hover:text-accent transition-colors group">
                   <div className="bg-secondary p-2 rounded-lg group-hover:scale-110 transition-transform">
                     <Mail size={16} className="text-white" />
                   </div>
                   <div>
-                    <div className="font-semibold">info@freshpluscleaning.com.au</div>
+                    <div className="font-semibold">infofreshplusclean@gmail.com</div>
                     <div className="text-sm text-primary-light/80">Email us</div>
                   </div>
                 </a>

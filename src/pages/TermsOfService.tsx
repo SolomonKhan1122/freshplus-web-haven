@@ -181,7 +181,7 @@ const TermsOfService = () => {
                   If you have any questions about these Terms of Service, please don't hesitate to contact us:
                 </p>
                 <div className="space-y-2 text-gray-700">
-                  <p><strong>Email:</strong> <a href="mailto:info@freshpluscleaning.com.au" className="text-primary hover:text-secondary">info@freshpluscleaning.com.au</a></p>
+                  <p><strong>Email:</strong> <a href="mailto:infofreshplusclean@gmail.com" className="text-primary hover:text-secondary">infofreshplusclean@gmail.com</a></p>
                   <p><strong>Phone:</strong> <a href="tel:+61403971720" className="text-primary hover:text-secondary">+61 403 971 720</a></p>
                   <p><strong>Service Areas:</strong> All Melbourne suburbs</p>
                 </div>

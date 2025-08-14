@@ -41,14 +41,14 @@ const Contact = () => {
             </a>
 
             <a
-              href="mailto:info@freshplus.com.au"
+              href="mailto:infofreshplusclean@gmail.com"
               className="group bg-gradient-to-br from-accent-light to-primary-light p-8 rounded-2xl hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-transparent hover:border-primary"
             >
               <div className="bg-primary w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Mail size={32} className="text-white" />
               </div>
               <h2 className="text-2xl font-bold text-primary mb-3">Email Us</h2>
-              <p className="text-primary/80 font-semibold mb-2">info@freshplus.com.au</p>
+              <p className="text-primary/80 font-semibold mb-2">infofreshplusclean@gmail.com</p>
               <p className="text-secondary text-sm">Detailed inquiries welcome</p>
             </a>
 

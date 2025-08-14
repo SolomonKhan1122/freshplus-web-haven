@@ -239,7 +239,7 @@ const LicensedInsured = () => {
                   <span className="font-semibold">Call +61 403 971 720</span>
                 </a>
                 <a 
-                  href="mailto:info@freshpluscleaning.com.au" 
+                  href="mailto:infofreshplusclean@gmail.com" 
                   className="flex items-center gap-3 bg-secondary text-white px-8 py-4 rounded-lg hover:bg-secondary-dark transition-colors"
                 >
                   <Mail className="h-5 w-5" />
