@@ -34,6 +34,12 @@ const ServicesSection = () => {
       path: "/services/window",
     },
     {
+      title: "Tile & Grout Cleaning",
+      description: "Restore your tiles and grout to pristine condition",
+      icon: "🧱",
+      path: "/services/tile-grout",
+    },
+    {
       title: "End of Lease",
       description: "Comprehensive cleaning to ensure your bond return",
       icon: "🔑",

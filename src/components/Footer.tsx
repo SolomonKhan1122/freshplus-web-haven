@@ -73,9 +73,15 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/services/tile-grout" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
+                  <span className="w-2 h-2 bg-accent rounded-full"></span>
+                  Tile & Grout Cleaning
+                </Link>
+              </li>
+              <li>
                 <Link to="/services/end-of-lease" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
                   <span className="w-2 h-2 bg-accent rounded-full"></span>
-                  End of Lease
+                  End of Lease Cleaning
                 </Link>
               </li>
             </ul>

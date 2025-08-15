@@ -59,9 +59,10 @@ const Navigation = () => {
             </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-600 hover:text-blue-600 p-2"
+              className="text-primary hover:text-accent p-3 bg-white border-2 border-primary rounded-lg shadow-md transition-all duration-200 hover:shadow-lg"
+              aria-label="Toggle mobile menu"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
@@ -114,6 +115,12 @@ const Navigation = () => {
             <div className="flex items-center justify-center space-x-4 text-xs font-medium">
               <Link to="/contact" className="hover:text-accent transition-colors">CONTACT</Link>
               <Link to="/about" className="hover:text-accent transition-colors">ABOUT US</Link>
+              <button 
+                onClick={() => setIsOpen(!isOpen)}
+                className="hover:text-accent transition-colors border border-primary px-2 py-1 rounded text-primary"
+              >
+                SERVICES ☰
+              </button>
             </div>
           </div>
         </div>
