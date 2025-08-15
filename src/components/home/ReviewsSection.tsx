@@ -36,6 +36,9 @@ const ReviewsSection = () => {
     <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-primary-light">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 sm:mb-16">
+          <div className="inline-block bg-accent/10 px-6 py-2 rounded-full mb-4">
+            <span className="text-accent font-bold text-lg">⭐ 4.9/5 Rating</span>
+          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
             What Our Customers Say
           </h2>

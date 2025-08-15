@@ -208,7 +208,7 @@ const HeroSection = () => {
               <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-accent mt-2 font-extrabold" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)' }}>Professional Home Services</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-white mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed font-semibold" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}>
-              Enhance your home with Melbourne's most trusted cleaning service!
+              Transform your space with Melbourne's most trusted cleaning professionals - serving homes and businesses for over 12 years!
             </p>
             
             {/* CTA Buttons */}

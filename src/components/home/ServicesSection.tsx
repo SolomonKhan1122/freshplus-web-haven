@@ -55,9 +55,14 @@ const ServicesSection = () => {
             Our Professional Services
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-primary/80 max-w-3xl mx-auto px-4">
-            Comprehensive cleaning solutions for homes and businesses across Melbourne. 
-            Quality service you can trust.
+            From residential homes to commercial spaces, we deliver exceptional cleaning solutions 
+            tailored to your specific needs. Professional, reliable, and guaranteed results.
           </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm font-semibold">
+            <span className="bg-accent/20 text-primary px-4 py-2 rounded-full">✓ Licensed & Insured</span>
+            <span className="bg-secondary/20 text-primary px-4 py-2 rounded-full">✓ Eco-Friendly Products</span>
+            <span className="bg-primary/20 text-primary px-4 py-2 rounded-full">✓ Same Day Service</span>
+          </div>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
