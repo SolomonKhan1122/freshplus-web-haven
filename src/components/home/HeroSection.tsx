@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Phone, ChevronDown } from "lucide-react";
+import { Phone, ChevronDown, Menu, X } from "lucide-react";
 import heroImage from "/Home_Hero.webp";
 import logoImage from "/logo.webp";
 
 const HeroSection = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const services = [
     { name: "Residential Cleaning", path: "/services/residential" },
     { name: "Commercial Cleaning", path: "/services/commercial" },
@@ -45,16 +47,23 @@ const HeroSection = () => {
             </Link>
           </div>
           
-          {/* Mobile CTA */}
+          {/* Mobile CTA and menu button */}
           <div className="lg:hidden flex items-center gap-2 flex-shrink-0">
-            <a href="tel:+61403971720">
+            <a href="tel:+61403971720" className="hidden sm:block">
               <Button size="sm" variant="outline" className="border-2 border-primary text-primary hover:bg-primary-light bg-transparent px-2">
                 <Phone className="w-4 h-4" />
               </Button>
             </a>
-            <Link to="/quote">
+            <Link to="/quote" className="hidden sm:block">
               <Button size="sm" className="bg-accent hover:bg-accent-dark text-black font-semibold px-3">BOOK</Button>
             </Link>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-primary hover:text-accent p-3 bg-white border-2 border-primary rounded-lg shadow-md transition-all duration-200 hover:shadow-lg"
+              aria-label="Toggle mobile menu"
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </div>
         </div>
       </header>
@@ -106,10 +115,77 @@ const HeroSection = () => {
             <div className="flex items-center justify-center space-x-4 text-xs font-medium">
               <Link to="/contact" className="hover:text-accent transition-colors">CONTACT</Link>
               <Link to="/about" className="hover:text-accent transition-colors">ABOUT US</Link>
+              <button 
+                onClick={() => setIsOpen(!isOpen)}
+                className="hover:text-accent transition-colors border border-primary px-2 py-1 rounded text-primary"
+              >
+                SERVICES ☰
+              </button>
             </div>
           </div>
         </div>
       </nav>
+
+      {/* Mobile Navigation Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-primary text-white border-t border-primary-light">
+          <div className="px-4 py-4 space-y-3">
+            <Link
+              to="/"
+              className="block px-3 py-3 text-white hover:bg-primary-dark rounded-lg transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Home
+            </Link>
+            
+            <div className="px-3 py-2">
+              <div className="text-accent font-semibold text-sm mb-2">Our Services:</div>
+              <div className="space-y-1">
+                {services.map((service) => (
+                  <Link
+                    key={service.path}
+                    to={service.path}
+                    className="block px-4 py-2 text-white hover:bg-primary-dark rounded-md text-sm transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {service.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            
+            <Link
+              to="/about"
+              className="block px-3 py-3 text-white hover:bg-primary-dark rounded-lg transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              About Us
+            </Link>
+            
+            <Link
+              to="/contact"
+              className="block px-3 py-3 text-white hover:bg-primary-dark rounded-lg transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact Us
+            </Link>
+            
+            <div className="pt-3 border-t border-primary-light">
+              <a href="tel:+61403971720" className="block">
+                <Button className="w-full bg-accent hover:bg-accent-dark text-black font-semibold mb-3">
+                  <Phone className="w-4 h-4 mr-2" />
+                  Call +61 403 971 720
+                </Button>
+              </a>
+              <Link to="/quote" className="block">
+                <Button variant="outline" className="w-full border-2 border-white text-white hover:bg-white hover:text-primary">
+                  Get Free Quote
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="relative min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] overflow-hidden">
