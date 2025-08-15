@@ -25,19 +25,11 @@ interface Quote {
 const QuotesList = () => {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [loading, setLoading] = useState(true);
-  const [password, setPassword] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // Remove password protection
 
-  const ADMIN_PASSWORD = "freshplus2024"; // Simple password protection
-
-  const authenticate = () => {
-    if (password === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
-      loadQuotes();
-    } else {
-      alert("Incorrect password");
-    }
-  };
+  useEffect(() => {
+    loadQuotes();
+  }, []);
 
   const loadQuotes = async () => {
     try {
@@ -81,74 +73,112 @@ Email: infofreshplusclean@gmail.com
 ---
 Quote ID: ${quote.id}`;
 
-    const emailContent = `To: ${quote.email}
+    // Simple approach - just show the email content directly
+    const emailWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes');
+    
+    if (emailWindow) {
+      emailWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Email Reply to ${quote.name}</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
+            .header { background: #1e40af; color: white; padding: 20px; margin: -20px -20px 20px -20px; }
+            .email-content { background: #f9f9f9; padding: 20px; border: 1px solid #ddd; margin: 20px 0; }
+            .buttons { margin: 20px 0; }
+            button { background: #1e40af; color: white; padding: 10px 20px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; }
+            button:hover { background: #1e3a8a; }
+            .copy-button { background: #059669; }
+            .copy-button:hover { background: #047857; }
+            textarea { width: 100%; height: 400px; font-family: Arial, sans-serif; padding: 10px; border: 1px solid #ddd; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>Email Reply to Customer</h1>
+            <p>Customer: ${quote.name} (${quote.email})</p>
+          </div>
+          
+          <div class="buttons">
+            <button onclick="openGmail()">Open in Gmail</button>
+            <button onclick="openOutlook()">Open in Outlook</button>
+            <button onclick="copyToClipboard()" class="copy-button">Copy Email Content</button>
+            <button onclick="window.print()">Print</button>
+          </div>
+          
+          <h2>Email Content (Copy and paste into your email client):</h2>
+          
+          <div class="email-content">
+            <p><strong>To:</strong> ${quote.email}</p>
+            <p><strong>Subject:</strong> ${subject}</p>
+          </div>
+          
+          <textarea id="emailBody" readonly>${body}</textarea>
+          
+          <div class="buttons">
+            <button onclick="selectAll()">Select All Text</button>
+            <button onclick="copyToClipboard()" class="copy-button">Copy to Clipboard</button>
+          </div>
+          
+          <script>
+            function openGmail() {
+              const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + 
+                encodeURIComponent('${quote.email}') + '&su=' + 
+                encodeURIComponent('${subject}') + '&body=' + 
+                encodeURIComponent(\`${body.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`);
+              window.open(gmailUrl, '_blank');
+            }
+            
+            function openOutlook() {
+              const outlookUrl = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + 
+                encodeURIComponent('${quote.email}') + '&subject=' + 
+                encodeURIComponent('${subject}') + '&body=' + 
+                encodeURIComponent(\`${body.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`);
+              window.open(outlookUrl, '_blank');
+            }
+            
+            function copyToClipboard() {
+              const fullEmail = \`To: ${quote.email}
 Subject: ${subject}
 
-${body}`;
+${body.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`;
+              
+              navigator.clipboard.writeText(fullEmail).then(function() {
+                alert('Email content copied to clipboard!\\n\\nYou can now paste it into any email client.');
+              }).catch(function() {
+                // Fallback for older browsers
+                const textarea = document.getElementById('emailBody');
+                textarea.select();
+                document.execCommand('copy');
+                alert('Email content copied to clipboard!');
+              });
+            }
+            
+            function selectAll() {
+              const textarea = document.getElementById('emailBody');
+              textarea.select();
+              textarea.setSelectionRange(0, 99999); // For mobile devices
+            }
+          </script>
+        </body>
+        </html>
+      `);
+      emailWindow.document.close();
+    } else {
+      // If popup is blocked, show alert with email content
+      alert(\`Reply to: \${quote.email}
 
-    // Try multiple methods to open email
-    const mailtoUrl = `mailto:${quote.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    try {
-      // Method 1: Try mailto link
-      window.location.href = mailtoUrl;
-      
-      // Method 2: Copy to clipboard as backup
-      navigator.clipboard.writeText(emailContent).then(() => {
-        console.log('Email content copied to clipboard as backup');
-      }).catch(() => {
-        console.log('Clipboard copy failed');
-      });
-      
-    } catch (error) {
-      // Method 3: Fallback - copy to clipboard and alert user
-      navigator.clipboard.writeText(emailContent).then(() => {
-        alert(`Email content copied to clipboard!\n\nPlease paste this into your email client:\n\nTo: ${quote.email}\nSubject: ${subject}`);
-      }).catch(() => {
-        // Method 4: Final fallback - show the content
-        const emailWindow = window.open('', '_blank');
-        if (emailWindow) {
-          emailWindow.document.write(`
-            <html>
-              <head><title>Email Content</title></head>
-              <body style="font-family: Arial, sans-serif; padding: 20px;">
-                <h2>Copy this email content:</h2>
-                <p><strong>To:</strong> ${quote.email}</p>
-                <p><strong>Subject:</strong> ${subject}</p>
-                <hr>
-                <pre style="white-space: pre-wrap;">${body}</pre>
-                <hr>
-                <button onclick="navigator.clipboard.writeText('${emailContent.replace(/'/g, "\\'")}')">Copy All</button>
-              </body>
-            </html>
-          `);
-        }
-      });
+Subject: \${subject}
+
+Message:
+\${body}
+
+Copy this content and paste it into your email client.\`);
     }
   };
 
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-primary-light to-white flex items-center justify-center">
-        <div className="bg-white p-8 rounded-xl shadow-lg border border-accent/10 max-w-md w-full">
-          <h1 className="text-3xl font-bold text-primary mb-6 text-center">Admin Access</h1>
-          <div className="space-y-4">
-            <input
-              type="password"
-              placeholder="Enter admin password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && authenticate()}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-            <Button onClick={authenticate} className="w-full">
-              Access Quotes
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // No authentication needed - direct admin access
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-light to-white">
