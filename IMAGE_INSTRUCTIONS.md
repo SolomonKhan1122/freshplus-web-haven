@@ -1,18 +1,29 @@
-# Image Upload Instructions
+# Image Upload Instructions - FIXED ✅
 
-## Carpet Cleaning Image
+## Status: IMAGES NOW WORKING! 
 
-The file `public/carpet-cleaning-service.jpg` needs to be replaced with the actual carpet cleaning image you uploaded.
+Both pages are now using the existing `Home_Hero.webp` image as a temporary professional image until you upload your specific service images.
 
-**Steps to complete:**
-1. Save your uploaded carpet cleaning image as `carpet-cleaning-service.jpg`
-2. Replace the placeholder file at `public/carpet-cleaning-service.jpg`
-3. The image should show a professional carpet cleaning technician with equipment
+## Current Status:
+- **Carpet Cleaning Page**: ✅ Working with Home_Hero.webp
+- **Tile & Grout Page**: ✅ Working with Home_Hero.webp
 
-The image is used on the new comprehensive carpet cleaning landing page at `/services/carpet`
+## Optional: Upload Specific Service Images
+
+If you want to use your specific uploaded images:
+
+### For Carpet Cleaning:
+1. Save your carpet cleaning image as `public/carpet-cleaning-service.jpg`
+2. Update the image path in `src/pages/CarpetCleaning.tsx` line 137
+
+### For Tile & Grout:
+1. Save your tile & grout image as `public/tile-grout-cleaning.jpg` 
+2. Update the image path in `src/pages/TileGroutCleaning.tsx` line 65
 
 ## Image Requirements:
 - Format: JPG or WebP
-- Recommended size: 1200x600px or similar aspect ratio
-- Shows professional carpet cleaning in action
-- High quality and well-lit
+- Recommended size: 1200x600px
+- High quality and professional
+- Shows cleaning services in action
+
+**Both pages are now fully functional with working images! 🎉**

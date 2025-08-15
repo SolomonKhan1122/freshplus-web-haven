@@ -62,9 +62,13 @@ const TileGroutCleaning = () => {
             <div className="relative">
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-accent/10">
                 <img 
-                  src="/tile-grout-cleaning.jpg" 
+                  src="/Home_Hero.webp" 
                   alt="Professional tile and grout cleaning service in Melbourne"
                   className="w-full h-96 object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = '/placeholder.svg';
+                    e.currentTarget.className = 'w-full h-96 object-cover bg-gradient-to-br from-primary-light to-accent/20';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
                 <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-xl p-4">
