@@ -91,8 +91,7 @@ const HeroSection = () => {
                   </div>
                 </div>
               </div>
-              <Link to="/specials" className="hover:text-accent cursor-pointer transition-colors">SPECIALS</Link>
-              <Link to="/blogs" className="hover:text-accent cursor-pointer transition-colors">BLOGS</Link>
+              <Link to="/about" className="hover:text-accent cursor-pointer transition-colors">ABOUT US</Link>
               <Link to="/contact" className="hover:text-accent cursor-pointer transition-colors">CONTACT US</Link>
             </div>
           </div>
@@ -105,8 +104,7 @@ const HeroSection = () => {
             </div>
             <div className="flex items-center justify-center space-x-4 text-xs font-medium">
               <Link to="/contact" className="hover:text-accent transition-colors">CONTACT</Link>
-              <Link to="/specials" className="hover:text-accent transition-colors">SPECIALS</Link>
-              <Link to="/blogs" className="hover:text-accent transition-colors">BLOGS</Link>
+              <Link to="/about" className="hover:text-accent transition-colors">ABOUT US</Link>
             </div>
           </div>
         </div>

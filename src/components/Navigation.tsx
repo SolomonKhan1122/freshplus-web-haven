@@ -99,8 +99,7 @@ const Navigation = () => {
                   </div>
                 </div>
               </div>
-              <Link to="/specials" className="hover:text-accent cursor-pointer transition-colors">SPECIALS</Link>
-              <Link to="/blogs" className="hover:text-accent cursor-pointer transition-colors">BLOGS</Link>
+              <Link to="/about" className="hover:text-accent cursor-pointer transition-colors">ABOUT US</Link>
               <Link to="/contact" className="hover:text-accent cursor-pointer transition-colors">CONTACT US</Link>
             </div>
           </div>
@@ -113,8 +112,7 @@ const Navigation = () => {
             </div>
             <div className="flex items-center justify-center space-x-4 text-xs font-medium">
               <Link to="/contact" className="hover:text-accent transition-colors">CONTACT</Link>
-              <Link to="/specials" className="hover:text-accent transition-colors">SPECIALS</Link>
-              <Link to="/blogs" className="hover:text-accent transition-colors">BLOGS</Link>
+              <Link to="/about" className="hover:text-accent transition-colors">ABOUT US</Link>
             </div>
           </div>
         </div>
@@ -149,19 +147,11 @@ const Navigation = () => {
             </div>
             
             <Link
-              to="/specials"
+              to="/about"
               className="block px-3 py-3 text-white hover:bg-primary-dark rounded-lg transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              Specials
-            </Link>
-            
-            <Link
-              to="/blogs"
-              className="block px-3 py-3 text-white hover:bg-primary-dark rounded-lg transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              Blogs
+              About Us
             </Link>
             
             <Link
