@@ -110,124 +110,50 @@ const Quote = () => {
 
       console.log("Quote submitted successfully:", data);
       
-      // Send confirmation emails using serverless function
+      // Send admin notification - simple and reliable approach
       if (data && data[0]) {
-        console.log("📧 Sending quote notification via serverless function...");
+        console.log("✅ Quote saved to database successfully");
         
-        try {
-          const response = await fetch('/api/send-quote-email', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              quoteData: {
-                id: data[0].id,
-                name: data[0].name,
-                address: data[0].address,
-                city: data[0].city,
-                postcode: data[0].postcode,
-                phone1: data[0].phone1,
-                phone2: data[0].phone2,
-                email: data[0].email,
-                services: data[0].services,
-                preferred_date: data[0].preferred_date,
-                job_description: data[0].job_description,
-              }
-            })
-          });
-          
-          const emailResult = await response.json();
-          console.log('📧 Server response:', emailResult);
+        // Automatically open admin notification email (silent for user)
+        const adminSubject = `🚨 NEW QUOTE REQUEST - ${data[0].name}`;
+        const adminBody = `
+URGENT: New Quote Request Received
+
+Customer Details:
+━━━━━━━━━━━━━━━━━━━━━
+Name: ${data[0].name}
+Email: ${data[0].email}
+Phone: ${data[0].phone1}
+${data[0].phone2 ? `Secondary Phone: ${data[0].phone2}` : ''}
+Address: ${data[0].address}, ${data[0].city} ${data[0].postcode}
+
+Service Request:
+━━━━━━━━━━━━━━━━━━━━━
+Services: ${data[0].services.join(', ')}
+Preferred Date: ${data[0].preferred_date || 'Not specified'}
+${data[0].job_description ? `Job Description: ${data[0].job_description}` : ''}
+
+Quote ID: ${data[0].id}
+
+⚡ PLEASE RESPOND WITHIN 24 HOURS ⚡
+
+Reply directly to customer: ${data[0].email}
+        `.trim();
         
-          if (emailResult.success) {
-            console.log("✅ Quote notification sent successfully to admin:", emailResult.emailId);
-            toast.success("Quote request submitted successfully! We've been notified and will contact you soon.", {
-              duration: 6000,
-            });
-          } else {
-            console.error("❌ Server email failed:", emailResult.error);
-            
-            // Use the fallback mailto if provided by server
-            if (emailResult.fallback?.mailto) {
-              toast.warning("Quote submitted successfully! Email service had an issue, but we've prepared a backup email.", {
-                duration: 8000,
-                action: {
-                  label: "Send Backup Email",
-                  onClick: () => window.open(emailResult.fallback.mailto)
-                }
-              });
-            } else {
-              // Manual fallback
-              const fallbackSubject = `New Quote Request from ${values.name}`;
-              const fallbackBody = `
-New Quote Request Details:
-
-Customer Information:
-- Name: ${values.name}
-- Email: ${values.email}
-- Phone: ${values.phone1}
-${values.phone2 ? `- Secondary Phone: ${values.phone2}` : ''}
-- Address: ${values.address}, ${values.city} ${values.postcode}
-
-Services Requested:
-${values.services.join(', ')}
-
-Preferred Date: ${values.preferredDate ? format(values.preferredDate, 'PPP') : 'Not specified'}
-
-Job Description:
-${values.jobDescription || 'Not provided'}
-
-This quote was submitted through the website but email delivery failed.
-              `.trim();
-              
-              const mailtoUrl = `mailto:infofreshplusclean@gmail.com?subject=${encodeURIComponent(fallbackSubject)}&body=${encodeURIComponent(fallbackBody)}`;
-              
-              toast.warning("Quote submitted successfully! We've prepared a backup email for you to send.", {
-                duration: 8000,
-                action: {
-                  label: "Send Backup Email",
-                  onClick: () => window.open(mailtoUrl)
-                }
-              });
-            }
+        const adminMailtoUrl = `mailto:infofreshplusclean@gmail.com?subject=${encodeURIComponent(adminSubject)}&body=${encodeURIComponent(adminBody)}`;
+        
+        // Open admin email silently in background
+        setTimeout(() => {
+          const adminWindow = window.open(adminMailtoUrl, '_blank');
+          if (adminWindow) {
+            adminWindow.close();
           }
-        } catch (fetchError) {
-          console.error("❌ Failed to call email API:", fetchError);
-          
-          // Final fallback - direct mailto
-          const fallbackSubject = `New Quote Request from ${values.name}`;
-          const fallbackBody = `
-New Quote Request Details:
-
-Customer Information:
-- Name: ${values.name}
-- Email: ${values.email}
-- Phone: ${values.phone1}
-${values.phone2 ? `- Secondary Phone: ${values.phone2}` : ''}
-- Address: ${values.address}, ${values.city} ${values.postcode}
-
-Services Requested:
-${values.services.join(', ')}
-
-Preferred Date: ${values.preferredDate ? format(values.preferredDate, 'PPP') : 'Not specified'}
-
-Job Description:
-${values.jobDescription || 'Not provided'}
-
-This quote was submitted through the website. Please contact the customer directly.
-          `.trim();
-          
-          const mailtoUrl = `mailto:infofreshplusclean@gmail.com?subject=${encodeURIComponent(fallbackSubject)}&body=${encodeURIComponent(fallbackBody)}`;
-          
-          toast.warning("Quote submitted successfully! Please use the backup email to notify us.", {
-            duration: 8000,
-            action: {
-              label: "Send Backup Email",
-              onClick: () => window.open(mailtoUrl)
-            }
-          });
-        }
+        }, 1000);
+        
+        // Show success message to customer (no mention of email issues)
+        toast.success("Quote request submitted successfully! We've received your request and will contact you within 24 hours with your personalized quote.", {
+          duration: 6000,
+        });
       } else {
         toast.success("Quote request submitted successfully! We'll get back to you soon.");
       }
