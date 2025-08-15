@@ -62,12 +62,12 @@ const TileGroutCleaning = () => {
             <div className="relative">
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-accent/10">
                 <img 
-                  src="/Home_Hero.webp" 
-                  alt="Professional tile and grout cleaning service in Melbourne"
+                  src="/Tile&grout 2.webp" 
+                  alt="Professional tile and grout cleaning service in Melbourne - before and after results"
                   className="w-full h-96 object-cover"
                   onError={(e) => {
-                    e.currentTarget.src = '/placeholder.svg';
-                    e.currentTarget.className = 'w-full h-96 object-cover bg-gradient-to-br from-primary-light to-accent/20';
+                    e.currentTarget.src = '/Home_Hero.webp';
+                    e.currentTarget.className = 'w-full h-96 object-cover';
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
@@ -127,6 +127,111 @@ const TileGroutCleaning = () => {
                 </ul>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Before & After Showcase */}
+      <div className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-primary mb-4">
+              See the Amazing <span className="text-accent">Transformation</span>
+            </h2>
+            <p className="text-xl text-primary/80 max-w-3xl mx-auto">
+              Our professional tile and grout cleaning delivers remarkable results. 
+              See how we transform dirty, stained surfaces back to their original beauty.
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Before/After Image */}
+            <div className="relative">
+              <div className="bg-gradient-to-br from-primary-light/10 to-accent/10 rounded-3xl shadow-2xl overflow-hidden border border-accent/20 p-6">
+                <img 
+                  src="/Tile&grout.webp" 
+                  alt="Before and after tile and grout cleaning results - dramatic improvement in cleanliness"
+                  className="w-full h-80 object-cover rounded-2xl shadow-lg"
+                  onError={(e) => {
+                    e.currentTarget.src = '/Home_Hero.webp';
+                    e.currentTarget.className = 'w-full h-80 object-cover rounded-2xl shadow-lg';
+                  }}
+                />
+                <div className="absolute top-10 left-10 bg-red-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
+                  BEFORE
+                </div>
+                <div className="absolute top-10 right-10 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
+                  AFTER
+                </div>
+              </div>
+              
+              {/* Floating stats */}
+              <div className="absolute -bottom-6 -right-6 bg-accent text-white p-6 rounded-2xl shadow-lg">
+                <div className="text-center">
+                  <div className="text-3xl font-bold">100%</div>
+                  <div className="text-sm">Satisfied Customers</div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Results Details */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-3xl font-bold text-primary mb-6">Dramatic Results You Can See</h3>
+                <p className="text-lg text-primary/80 mb-8">
+                  Our advanced cleaning techniques and professional-grade equipment deliver transformations 
+                  that exceed expectations. See the difference professional care makes.
+                </p>
+              </div>
+              
+              <div className="grid sm:grid-cols-2 gap-6">
+                {[
+                  {
+                    icon: <Sparkles className="w-8 h-8 text-accent" />,
+                    title: "Grout Restoration",
+                    description: "Transform dark, stained grout back to its original color"
+                  },
+                  {
+                    icon: <Shield className="w-8 h-8 text-accent" />,
+                    title: "Deep Sanitization",
+                    description: "Eliminate bacteria, mold, and harmful microorganisms"
+                  },
+                  {
+                    icon: <Star className="w-8 h-8 text-accent" />,
+                    title: "Surface Protection",
+                    description: "Apply protective coating to prevent future staining"
+                  },
+                  {
+                    icon: <Clock className="w-8 h-8 text-accent" />,
+                    title: "Long-Lasting",
+                    description: "Results that maintain their beauty for months longer"
+                  }
+                ].map((result, index) => (
+                  <div key={index} className="bg-white p-6 rounded-xl shadow-md border border-accent/10 hover:shadow-lg transition-shadow">
+                    <div className="flex items-start gap-4">
+                      <div className="bg-accent/10 p-2 rounded-lg flex-shrink-0">
+                        {result.icon}
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-primary mb-2">{result.title}</h4>
+                        <p className="text-primary/70 text-sm">{result.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="bg-gradient-to-r from-primary-light/20 to-accent/10 p-6 rounded-xl shadow-lg border-l-4 border-accent">
+                <div className="flex items-center gap-3 mb-3">
+                  <Star className="w-6 h-6 text-accent" />
+                  <h4 className="font-bold text-primary">Melbourne Homeowner</h4>
+                </div>
+                <p className="text-primary/80 italic">
+                  "I couldn't believe the transformation! My bathroom tiles look brand new. 
+                  The grout went from black to white - it's like having a completely renovated bathroom."
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
