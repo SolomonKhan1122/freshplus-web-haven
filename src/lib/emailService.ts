@@ -4,25 +4,30 @@ import { getServiceDisplayName } from './serviceMapping';
 // Admin email - receives all booking and quote notifications
 const ADMIN_EMAIL = 'infofreshplusclean@gmail.com';
 
+// Business email for customer communications
+const BUSINESS_EMAIL = 'info@freshpluscleaning.com.au';
+
 // Initialize Resend with API key from environment variable
-// Try both VITE_RESEND_API_KEY (for local dev) and RESEND_API_KEY (for Vercel)
+// Updated API key for production use
 const resendApiKey = import.meta.env.VITE_RESEND_API_KEY || 
                      import.meta.env.RESEND_API_KEY || 
-                     're_7DgQPRKA_67RPCHA53xPAuAbkZGSqsVrW';
+                     're_2kXVnpuG_A4VZQyHV33D3bz7Gr4mySFx1';
 const resend = new Resend(resendApiKey);
 
 // Check if API key is properly configured
 console.log('🔧 Email Service Configuration:');
 console.log('- Resend API Key configured:', resendApiKey ? '✅ Yes' : '❌ No');
+console.log('- API Key preview:', resendApiKey ? resendApiKey.substring(0, 8) + '...' : 'None');
 console.log('- Admin Email:', ADMIN_EMAIL);
+console.log('- Business Email:', BUSINESS_EMAIL);
 console.log('- Environment:', import.meta.env.MODE || 'development');
 
 if (!resendApiKey) {
   console.error('❌ CRITICAL: No Resend API key found. Emails will not work.');
-} else if (resendApiKey === 're_7DgQPRKA_67RPCHA53xPAuAbkZGSqsVrW') {
-  console.log('🔄 Using fallback API key - this should work for testing');
+} else if (resendApiKey === 're_2kXVnpuG_A4VZQyHV33D3bz7Gr4mySFx1') {
+  console.log('✅ Using updated production API key');
 } else {
-  console.log('✅ Using custom API key');
+  console.log('✅ Using custom API key from environment variables');
 }
 
 export interface BookingData {
@@ -287,7 +292,7 @@ export const generateBookingConfirmationEmail = (booking: BookingData) => {
                     <h3>Need to Make Changes?</h3>
                     <p>Contact us anytime - we're here to help!</p>
                     <a href="tel:+61403971720" class="contact-button">📞 Call +61 403 971 720</a>
-                    <a href="mailto:info@resend.dev" class="contact-button">✉️ Email Us</a>
+                    <a href="mailto:info@freshpluscleaning.com.au" class="contact-button">✉️ Email Us</a>
                 </div>
             </div>
             
@@ -554,7 +559,7 @@ export const generateQuoteConfirmationEmail = (quote: QuoteData) => {
                     <h3>Questions? We're Here to Help!</h3>
                     <p>Contact us anytime - we're here to help!</p>
                     <a href="tel:+61403971720" class="contact-button">📞 Call +61 403 971 720</a>
-                    <a href="mailto:info@resend.dev" class="contact-button">✉️ Email Us</a>
+                    <a href="mailto:info@freshpluscleaning.com.au" class="contact-button">✉️ Email Us</a>
                 </div>
             </div>
             
@@ -1024,7 +1029,8 @@ export const sendBookingEmails = async (booking: BookingData) => {
     // Send confirmation email to customer
     console.log('📤 Sending customer confirmation email to:', booking.email);
     const customerEmail = await resend.emails.send({
-      from: 'FreshPlus <onboarding@resend.dev>',
+      from: 'FreshPlus Professional Services <bookings@resend.dev>',
+      replyTo: BUSINESS_EMAIL,
       to: [booking.email],
       subject: `✅ Booking Confirmed - FreshPlus Professional Cleaning Service`,
       html: generateBookingConfirmationEmail(booking),
@@ -1034,7 +1040,8 @@ export const sendBookingEmails = async (booking: BookingData) => {
     // Send notification email to admin
     console.log('📤 Sending admin notification email to:', ADMIN_EMAIL);
     const adminEmail = await resend.emails.send({
-      from: 'FreshPlus System <onboarding@resend.dev>',
+      from: 'FreshPlus System <alerts@resend.dev>',
+      replyTo: booking.email,
       to: [ADMIN_EMAIL],
       subject: `🚨 New Booking Alert - ${booking.name} - ${getServiceDisplayName(booking.service)}`,
       html: generateAdminBookingNotification(booking),
@@ -1046,7 +1053,16 @@ export const sendBookingEmails = async (booking: BookingData) => {
   } catch (error) {
     console.error('❌ Error sending booking emails:', error);
     console.error('📋 Booking data:', JSON.stringify(booking, null, 2));
-    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
+    console.error('🔧 API Key being used:', resendApiKey ? resendApiKey.substring(0, 8) + '...' : 'None');
+    
+    // Detailed error information
+    if (error instanceof Error) {
+      console.error('Error name:', error.name);
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
+    
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error', details: error };
   }
 };
 
@@ -1058,7 +1074,8 @@ export const sendQuoteEmails = async (quote: QuoteData) => {
     // Send confirmation email to customer
     console.log('📤 Sending customer quote confirmation to:', quote.email);
     const customerEmail = await resend.emails.send({
-      from: 'FreshPlus <onboarding@resend.dev>',
+      from: 'FreshPlus Professional Services <quotes@resend.dev>',
+      replyTo: BUSINESS_EMAIL,
       to: [quote.email],
       subject: `📋 Quote Request Received - FreshPlus Professional Cleaning Service`,
       html: generateQuoteConfirmationEmail(quote),
@@ -1068,7 +1085,8 @@ export const sendQuoteEmails = async (quote: QuoteData) => {
     // Send notification email to admin
     console.log('📤 Sending admin quote notification to:', ADMIN_EMAIL);
     const adminEmail = await resend.emails.send({
-      from: 'FreshPlus System <onboarding@resend.dev>',
+      from: 'FreshPlus System <alerts@resend.dev>',
+      replyTo: quote.email,
       to: [ADMIN_EMAIL],
       subject: `💰 New Quote Request - ${quote.name} - ${quote.services.map(service => getServiceDisplayName(service)).join(', ')}`,
       html: generateAdminQuoteNotification(quote),
@@ -1080,7 +1098,16 @@ export const sendQuoteEmails = async (quote: QuoteData) => {
   } catch (error) {
     console.error('❌ Error sending quote emails:', error);
     console.error('📋 Quote data:', JSON.stringify(quote, null, 2));
-    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
+    console.error('🔧 API Key being used:', resendApiKey ? resendApiKey.substring(0, 8) + '...' : 'None');
+    
+    // Detailed error information
+    if (error instanceof Error) {
+      console.error('Error name:', error.name);
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
+    
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error', details: error };
   }
 };
 
