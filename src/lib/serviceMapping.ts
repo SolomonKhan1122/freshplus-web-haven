@@ -71,6 +71,21 @@ export const SERVICES: Record<string, ServiceInfo> = {
     value: 'tile-grout',
     displayName: 'Tile & Grout Cleaning',
     shortName: 'Tile & Grout'
+  },
+  'office-cleaning': {
+    value: 'office-cleaning',
+    displayName: 'Office Cleaning',
+    shortName: 'Office'
+  },
+  'warehouse-cleaning': {
+    value: 'warehouse-cleaning',
+    displayName: 'Warehouse Cleaning',
+    shortName: 'Warehouse'
+  },
+  'construction-clean': {
+    value: 'construction-clean',
+    displayName: 'Construction Clean',
+    shortName: 'Construction'
   }
 };
 
@@ -85,7 +100,10 @@ export const getServiceDisplayName = (serviceValue: string): string => {
     'Deluxe Rug Wash': 'deluxe-rug',
     'Mattress Cleaning': 'mattress',
     'Mould Cleaning': 'mould',
-    'Tile & Grout Cleaning': 'tile-grout'
+    'Tile & Grout Cleaning': 'tile-grout',
+    'Office Cleaning': 'office-cleaning',
+    'Warehouse Cleaning': 'warehouse-cleaning',
+    'Construction Clean': 'construction-clean'
   };
 
   // Check if it's a legacy full name
@@ -113,7 +131,10 @@ export const getServiceShortName = (serviceValue: string): string => {
     'Deluxe Rug Wash': 'deluxe-rug',
     'Mattress Cleaning': 'mattress',
     'Mould Cleaning': 'mould',
-    'Tile & Grout Cleaning': 'tile-grout'
+    'Tile & Grout Cleaning': 'tile-grout',
+    'Office Cleaning': 'office-cleaning',
+    'Warehouse Cleaning': 'warehouse-cleaning',
+    'Construction Clean': 'construction-clean'
   };
 
   const mappedValue = legacyMappings[serviceValue];
@@ -150,6 +171,9 @@ export const getAllQuoteServices = (): ServiceInfo[] => {
     SERVICES['deluxe-rug'],
     SERVICES['mattress'],
     SERVICES['mould'],
-    SERVICES['tile-grout']
+    SERVICES['tile-grout'],
+    SERVICES['office-cleaning'],
+    SERVICES['warehouse-cleaning'],
+    SERVICES['construction-clean']
   ];
 };
