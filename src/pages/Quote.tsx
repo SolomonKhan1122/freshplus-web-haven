@@ -110,33 +110,92 @@ const Quote = () => {
 
       console.log("Quote submitted successfully:", data);
       
-      // Send confirmation emails
+      // Send confirmation emails using serverless function
       if (data && data[0]) {
-        console.log("📧 Sending confirmation emails...");
-        const emailResult = await sendQuoteEmails({
-          id: data[0].id,
-          name: data[0].name,
-          address: data[0].address,
-          city: data[0].city,
-          postcode: data[0].postcode,
-          phone1: data[0].phone1,
-          phone2: data[0].phone2,
-          email: data[0].email,
-          services: data[0].services,
-          preferred_date: data[0].preferred_date,
-          job_description: data[0].job_description,
-        });
+        console.log("📧 Sending quote notification via serverless function...");
         
-        if (emailResult.success) {
-          console.log("✅ Confirmation emails sent successfully to customer and admin");
-          toast.success("Quote request submitted successfully! Confirmation emails have been sent to you and our team.", {
-            duration: 6000,
+        try {
+          const response = await fetch('/api/send-quote-email', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              quoteData: {
+                id: data[0].id,
+                name: data[0].name,
+                address: data[0].address,
+                city: data[0].city,
+                postcode: data[0].postcode,
+                phone1: data[0].phone1,
+                phone2: data[0].phone2,
+                email: data[0].email,
+                services: data[0].services,
+                preferred_date: data[0].preferred_date,
+                job_description: data[0].job_description,
+              }
+            })
           });
-        } else {
-          console.error("❌ Failed to send confirmation emails:", emailResult.error);
-          console.error("📧 Email error details:", emailResult);
           
-          // Fallback: Create a mailto link with the quote details
+          const emailResult = await response.json();
+          console.log('📧 Server response:', emailResult);
+        
+          if (emailResult.success) {
+            console.log("✅ Quote notification sent successfully to admin:", emailResult.emailId);
+            toast.success("Quote request submitted successfully! We've been notified and will contact you soon.", {
+              duration: 6000,
+            });
+          } else {
+            console.error("❌ Server email failed:", emailResult.error);
+            
+            // Use the fallback mailto if provided by server
+            if (emailResult.fallback?.mailto) {
+              toast.warning("Quote submitted successfully! Email service had an issue, but we've prepared a backup email.", {
+                duration: 8000,
+                action: {
+                  label: "Send Backup Email",
+                  onClick: () => window.open(emailResult.fallback.mailto)
+                }
+              });
+            } else {
+              // Manual fallback
+              const fallbackSubject = `New Quote Request from ${values.name}`;
+              const fallbackBody = `
+New Quote Request Details:
+
+Customer Information:
+- Name: ${values.name}
+- Email: ${values.email}
+- Phone: ${values.phone1}
+${values.phone2 ? `- Secondary Phone: ${values.phone2}` : ''}
+- Address: ${values.address}, ${values.city} ${values.postcode}
+
+Services Requested:
+${values.services.join(', ')}
+
+Preferred Date: ${values.preferredDate ? format(values.preferredDate, 'PPP') : 'Not specified'}
+
+Job Description:
+${values.jobDescription || 'Not provided'}
+
+This quote was submitted through the website but email delivery failed.
+              `.trim();
+              
+              const mailtoUrl = `mailto:infofreshplusclean@gmail.com?subject=${encodeURIComponent(fallbackSubject)}&body=${encodeURIComponent(fallbackBody)}`;
+              
+              toast.warning("Quote submitted successfully! We've prepared a backup email for you to send.", {
+                duration: 8000,
+                action: {
+                  label: "Send Backup Email",
+                  onClick: () => window.open(mailtoUrl)
+                }
+              });
+            }
+          }
+        } catch (fetchError) {
+          console.error("❌ Failed to call email API:", fetchError);
+          
+          // Final fallback - direct mailto
           const fallbackSubject = `New Quote Request from ${values.name}`;
           const fallbackBody = `
 New Quote Request Details:
@@ -156,12 +215,12 @@ Preferred Date: ${values.preferredDate ? format(values.preferredDate, 'PPP') : '
 Job Description:
 ${values.jobDescription || 'Not provided'}
 
-This quote was submitted through the website but email delivery failed.
+This quote was submitted through the website. Please contact the customer directly.
           `.trim();
           
           const mailtoUrl = `mailto:infofreshplusclean@gmail.com?subject=${encodeURIComponent(fallbackSubject)}&body=${encodeURIComponent(fallbackBody)}`;
           
-          toast.warning("Quote submitted successfully! Email delivery had an issue, but we've prepared a backup email for you to send.", {
+          toast.warning("Quote submitted successfully! Please use the backup email to notify us.", {
             duration: 8000,
             action: {
               label: "Send Backup Email",
