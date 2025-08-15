@@ -292,7 +292,7 @@ export const generateBookingConfirmationEmail = (booking: BookingData) => {
                     <h3>Need to Make Changes?</h3>
                     <p>Contact us anytime - we're here to help!</p>
                     <a href="tel:+61403971720" class="contact-button">📞 Call +61 403 971 720</a>
-                    <a href="mailto:info@freshpluscleaning.com.au" class="contact-button">✉️ Email Us</a>
+                    <a href="mailto:infofreshplusclean@gmail.com" class="contact-button">✉️ Email Us</a>
                 </div>
             </div>
             
@@ -559,7 +559,7 @@ export const generateQuoteConfirmationEmail = (quote: QuoteData) => {
                     <h3>Questions? We're Here to Help!</h3>
                     <p>Contact us anytime - we're here to help!</p>
                     <a href="tel:+61403971720" class="contact-button">📞 Call +61 403 971 720</a>
-                    <a href="mailto:info@freshpluscleaning.com.au" class="contact-button">✉️ Email Us</a>
+                    <a href="mailto:infofreshplusclean@gmail.com" class="contact-button">✉️ Email Us</a>
                 </div>
             </div>
             
@@ -1030,7 +1030,7 @@ export const sendBookingEmails = async (booking: BookingData) => {
     console.log('📤 Sending customer confirmation email to:', booking.email);
     const customerEmail = await resend.emails.send({
       from: 'FreshPlus Professional Services <bookings@resend.dev>',
-      replyTo: BUSINESS_EMAIL,
+      replyTo: ADMIN_EMAIL,
       to: [booking.email],
       subject: `✅ Booking Confirmed - FreshPlus Professional Cleaning Service`,
       html: generateBookingConfirmationEmail(booking),
@@ -1075,7 +1075,7 @@ export const sendQuoteEmails = async (quote: QuoteData) => {
     console.log('📤 Sending customer quote confirmation to:', quote.email);
     const customerEmail = await resend.emails.send({
       from: 'FreshPlus Professional Services <quotes@resend.dev>',
-      replyTo: BUSINESS_EMAIL,
+      replyTo: ADMIN_EMAIL,
       to: [quote.email],
       subject: `📋 Quote Request Received - FreshPlus Professional Cleaning Service`,
       html: generateQuoteConfirmationEmail(quote),
