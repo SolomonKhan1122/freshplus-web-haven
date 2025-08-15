@@ -68,15 +68,63 @@ Thank you for your quote request! Here are the details we received:
 
 Services: ${quote.services.join(', ')}
 Address: ${quote.address}, ${quote.city} ${quote.postcode}
+${quote.preferred_date ? `Preferred Date: ${new Date(quote.preferred_date).toLocaleDateString('en-AU')}` : ''}
+${quote.job_description ? `Special Requirements: ${quote.job_description}` : ''}
 
-We'll prepare a personalized quote for you and get back to you soon.
+We'll prepare a personalized quote for you and get back to you within 24 hours.
 
 Best regards,
-FreshPlus Team
-Phone: +61 403 971 720`;
+FreshPlus Professional Cleaning Services
+Phone: +61 403 971 720
+Email: infofreshplusclean@gmail.com
 
+---
+Quote ID: ${quote.id}`;
+
+    const emailContent = `To: ${quote.email}
+Subject: ${subject}
+
+${body}`;
+
+    // Try multiple methods to open email
     const mailtoUrl = `mailto:${quote.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.open(mailtoUrl);
+    
+    try {
+      // Method 1: Try mailto link
+      window.location.href = mailtoUrl;
+      
+      // Method 2: Copy to clipboard as backup
+      navigator.clipboard.writeText(emailContent).then(() => {
+        console.log('Email content copied to clipboard as backup');
+      }).catch(() => {
+        console.log('Clipboard copy failed');
+      });
+      
+    } catch (error) {
+      // Method 3: Fallback - copy to clipboard and alert user
+      navigator.clipboard.writeText(emailContent).then(() => {
+        alert(`Email content copied to clipboard!\n\nPlease paste this into your email client:\n\nTo: ${quote.email}\nSubject: ${subject}`);
+      }).catch(() => {
+        // Method 4: Final fallback - show the content
+        const emailWindow = window.open('', '_blank');
+        if (emailWindow) {
+          emailWindow.document.write(`
+            <html>
+              <head><title>Email Content</title></head>
+              <body style="font-family: Arial, sans-serif; padding: 20px;">
+                <h2>Copy this email content:</h2>
+                <p><strong>To:</strong> ${quote.email}</p>
+                <p><strong>Subject:</strong> ${subject}</p>
+                <hr>
+                <pre style="white-space: pre-wrap;">${body}</pre>
+                <hr>
+                <button onclick="navigator.clipboard.writeText('${emailContent.replace(/'/g, "\\'")}')">Copy All</button>
+              </body>
+            </html>
+          `);
+        }
+      });
+    }
   };
 
   if (!isAuthenticated) {
