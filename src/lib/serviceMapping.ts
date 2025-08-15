@@ -71,31 +71,6 @@ export const SERVICES: Record<string, ServiceInfo> = {
     value: 'tile-grout',
     displayName: 'Tile & Grout Cleaning',
     shortName: 'Tile & Grout'
-  },
-  'air-conditioner': {
-    value: 'air-conditioner',
-    displayName: 'Air Conditioner Cleaning',
-    shortName: 'Air Conditioner'
-  },
-  'timber-floor': {
-    value: 'timber-floor',
-    displayName: 'Timber Floor Cleaning',
-    shortName: 'Timber Floor'
-  },
-  'pest-control': {
-    value: 'pest-control',
-    displayName: 'Pest Control Treatment',
-    shortName: 'Pest Control'
-  },
-  'vinyl-floor': {
-    value: 'vinyl-floor',
-    displayName: 'Vinyl Floor Cleaning',
-    shortName: 'Vinyl Floor'
-  },
-  'deck-restore': {
-    value: 'deck-restore',
-    displayName: 'Deck Restore',
-    shortName: 'Deck Restore'
   }
 };
 
@@ -110,12 +85,7 @@ export const getServiceDisplayName = (serviceValue: string): string => {
     'Deluxe Rug Wash': 'deluxe-rug',
     'Mattress Cleaning': 'mattress',
     'Mould Cleaning': 'mould',
-    'Tile & Grout Cleaning': 'tile-grout',
-    'Air Conditioner Cleaning': 'air-conditioner',
-    'Timber Floor Cleaning': 'timber-floor',
-    'Pest Control Treatment': 'pest-control',
-    'Vinyl Floor Cleaning': 'vinyl-floor',
-    'Deck Restore': 'deck-restore'
+    'Tile & Grout Cleaning': 'tile-grout'
   };
 
   // Check if it's a legacy full name
@@ -143,12 +113,7 @@ export const getServiceShortName = (serviceValue: string): string => {
     'Deluxe Rug Wash': 'deluxe-rug',
     'Mattress Cleaning': 'mattress',
     'Mould Cleaning': 'mould',
-    'Tile & Grout Cleaning': 'tile-grout',
-    'Air Conditioner Cleaning': 'air-conditioner',
-    'Timber Floor Cleaning': 'timber-floor',
-    'Pest Control Treatment': 'pest-control',
-    'Vinyl Floor Cleaning': 'vinyl-floor',
-    'Deck Restore': 'deck-restore'
+    'Tile & Grout Cleaning': 'tile-grout'
   };
 
   const mappedValue = legacyMappings[serviceValue];
@@ -185,11 +150,6 @@ export const getAllQuoteServices = (): ServiceInfo[] => {
     SERVICES['deluxe-rug'],
     SERVICES['mattress'],
     SERVICES['mould'],
-    SERVICES['tile-grout'],
-    SERVICES['air-conditioner'],
-    SERVICES['timber-floor'],
-    SERVICES['pest-control'],
-    SERVICES['vinyl-floor'],
-    SERVICES['deck-restore']
+    SERVICES['tile-grout']
   ];
 };

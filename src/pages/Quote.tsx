@@ -66,11 +66,6 @@ const Quote = () => {
     "mattress",
     "mould",
     "tile-grout",
-    "air-conditioner",
-    "timber-floor",
-    "pest-control",
-    "vinyl-floor",
-    "deck-restore",
   ];
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
