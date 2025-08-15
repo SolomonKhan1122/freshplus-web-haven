@@ -13,6 +13,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import LicensedInsured from "./pages/LicensedInsured";
 import EndOfLeaseCleaning from "./pages/EndOfLeaseCleaning";
+import TileGroutCleaning from "./pages/TileGroutCleaning";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminBookings from "./pages/admin/AdminBookings";
@@ -34,6 +35,7 @@ function App() {
             <Route path="/" element={<Index />} />
             <Route path="/services/:service" element={<Services />} />
             <Route path="/services/end-of-lease" element={<EndOfLeaseCleaning />} />
+            <Route path="/services/tile-grout" element={<TileGroutCleaning />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/book" element={<Book />} />
             <Route path="/contact" element={<Contact />} />

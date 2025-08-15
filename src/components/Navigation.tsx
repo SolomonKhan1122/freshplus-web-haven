@@ -13,6 +13,7 @@ const Navigation = () => {
     { name: "Deep Cleaning", path: "/services/deep-cleaning" },
     { name: "Window Cleaning", path: "/services/window" },
     { name: "Carpet Cleaning", path: "/services/carpet" },
+    { name: "Tile & Grout Cleaning", path: "/services/tile-grout" },
     { name: "End of Lease Cleaning", path: "/services/end-of-lease" },
   ];
 
