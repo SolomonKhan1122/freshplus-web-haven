@@ -126,7 +126,7 @@ Quote ID: ${quote.id}`;
               const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + 
                 encodeURIComponent('${quote.email}') + '&su=' + 
                 encodeURIComponent('${subject}') + '&body=' + 
-                encodeURIComponent(\`${body.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`);
+                encodeURIComponent('${body.replace(/'/g, "\\'")}');
               window.open(gmailUrl, '_blank');
             }
             
@@ -134,15 +134,12 @@ Quote ID: ${quote.id}`;
               const outlookUrl = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + 
                 encodeURIComponent('${quote.email}') + '&subject=' + 
                 encodeURIComponent('${subject}') + '&body=' + 
-                encodeURIComponent(\`${body.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`);
+                encodeURIComponent('${body.replace(/'/g, "\\'")}');
               window.open(outlookUrl, '_blank');
             }
             
             function copyToClipboard() {
-              const fullEmail = \`To: ${quote.email}
-Subject: ${subject}
-
-${body.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`;
+              const fullEmail = 'To: ${quote.email}\\nSubject: ${subject}\\n\\n${body.replace(/'/g, "\\'")}';
               
               navigator.clipboard.writeText(fullEmail).then(function() {
                 alert('Email content copied to clipboard!\\n\\nYou can now paste it into any email client.');
@@ -167,14 +164,14 @@ ${body.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`;
       emailWindow.document.close();
     } else {
       // If popup is blocked, show alert with email content
-      alert(\`Reply to: \${quote.email}
+      alert(`Reply to: ${quote.email}
 
-Subject: \${subject}
+Subject: ${subject}
 
 Message:
-\${body}
+${body}
 
-Copy this content and paste it into your email client.\`);
+Copy this content and paste it into your email client.`);
     }
   };
 
