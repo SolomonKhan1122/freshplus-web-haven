@@ -8,7 +8,7 @@ const ADMIN_EMAIL = 'infofreshplusclean@gmail.com';
 const BUSINESS_EMAIL = 'info@freshpluscleaning.com.au';
 
 // Initialize Resend with API key from environment variable
-// Updated API key for production use
+// Using the demo API key that should work for testing
 const resendApiKey = import.meta.env.VITE_RESEND_API_KEY || 
                      import.meta.env.RESEND_API_KEY || 
                      're_2kXVnpuG_A4VZQyHV33D3bz7Gr4mySFx1';
@@ -25,10 +25,30 @@ console.log('- Environment:', import.meta.env.MODE || 'development');
 if (!resendApiKey) {
   console.error('❌ CRITICAL: No Resend API key found. Emails will not work.');
 } else if (resendApiKey === 're_2kXVnpuG_A4VZQyHV33D3bz7Gr4mySFx1') {
-  console.log('✅ Using updated production API key');
+  console.log('🔄 Using demo API key - testing email functionality');
 } else {
   console.log('✅ Using custom API key from environment variables');
 }
+
+// Test email function to verify service is working
+export const sendTestEmail = async (testEmail: string) => {
+  console.log('🧪 Testing email service with address:', testEmail);
+  
+  try {
+    const testResult = await resend.emails.send({
+      from: 'FreshPlus Test <onboarding@resend.dev>',
+      to: [testEmail],
+      subject: 'FreshPlus Email Service Test',
+      html: '<h1>Email Service Test</h1><p>If you receive this, the email service is working!</p>',
+    });
+    
+    console.log('✅ Test email sent successfully:', testResult.data?.id);
+    return { success: true, data: testResult.data };
+  } catch (error) {
+    console.error('❌ Test email failed:', error);
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
+  }
+};
 
 export interface BookingData {
   id: string;

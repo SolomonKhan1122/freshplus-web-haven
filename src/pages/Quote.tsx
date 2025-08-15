@@ -134,8 +134,39 @@ const Quote = () => {
           });
         } else {
           console.error("❌ Failed to send confirmation emails:", emailResult.error);
-          toast.warning("Quote submitted successfully, but there was an issue sending confirmation emails. We'll contact you soon!", {
-            duration: 6000,
+          console.error("📧 Email error details:", emailResult);
+          
+          // Fallback: Create a mailto link with the quote details
+          const fallbackSubject = `New Quote Request from ${values.name}`;
+          const fallbackBody = `
+New Quote Request Details:
+
+Customer Information:
+- Name: ${values.name}
+- Email: ${values.email}
+- Phone: ${values.phone1}
+${values.phone2 ? `- Secondary Phone: ${values.phone2}` : ''}
+- Address: ${values.address}, ${values.city} ${values.postcode}
+
+Services Requested:
+${values.services.join(', ')}
+
+Preferred Date: ${values.preferredDate ? format(values.preferredDate, 'PPP') : 'Not specified'}
+
+Job Description:
+${values.jobDescription || 'Not provided'}
+
+This quote was submitted through the website but email delivery failed.
+          `.trim();
+          
+          const mailtoUrl = `mailto:infofreshplusclean@gmail.com?subject=${encodeURIComponent(fallbackSubject)}&body=${encodeURIComponent(fallbackBody)}`;
+          
+          toast.warning("Quote submitted successfully! Email delivery had an issue, but we've prepared a backup email for you to send.", {
+            duration: 8000,
+            action: {
+              label: "Send Backup Email",
+              onClick: () => window.open(mailtoUrl)
+            }
           });
         }
       } else {
