@@ -10,7 +10,7 @@ const Footer = () => {
             <div className="flex items-center mb-6">
               <img 
                 src="/logo.webp" 
-                alt="FreshPlus Professional Home Services" 
+                alt="Fresh Plus Professional Cleaning Services" 
                 className="h-24 w-auto"
               />
               <span className="ml-4 text-base font-medium text-accent underline decoration-2 underline-offset-3 decoration-accent">
@@ -103,6 +103,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/blog" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
+                  <span className="w-2 h-2 bg-secondary rounded-full"></span>
+                  Blog
+                </Link>
+              </li>
+              <li>
                 <Link to="/quote" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
                   <span className="w-2 h-2 bg-secondary rounded-full"></span>
                   Get Quote
@@ -152,7 +158,7 @@ const Footer = () => {
         <div className="border-t border-primary-light/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-primary-light">
-              &copy; {new Date().getFullYear()} FreshPlus Professional Cleaning Services. All rights reserved.
+              &copy; {new Date().getFullYear()} Fresh Plus Professional Cleaning Services. All rights reserved.
             </p>
             <div className="flex items-center gap-6 text-sm text-primary-light">
               <Link to="/privacy-policy" className="hover:text-accent transition-colors">

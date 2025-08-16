@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,34 +38,194 @@
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "name": "FreshPlus Cleaning",
-      "description": "Professional cleaning services for homes and businesses in Melbourne",
-      "url": "https://freshpluscleaning.com.au",
-      "telephone": "+61403971720",
+      "@id": "https://www.freshpluscleaning.com.au/#business",
+      "name": "Fresh Plus Professional Cleaning Services",
+      "alternateName": "FreshPlus Cleaning",
+      "description": "Professional cleaning services for homes and businesses in Melbourne and surrounding suburbs",
+      "url": "https://www.freshpluscleaning.com.au",
+      "logo": "https://www.freshpluscleaning.com.au/logo.webp",
+      "image": "https://www.freshpluscleaning.com.au/og-image.png",
+      "telephone": "0403 971 720",
+      "email": "infofreshplusclean@gmail.com",
+      "priceRange": "$150-$800",
+      "paymentAccepted": "Cash, Credit Card, Bank Transfer",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Melbourne",
+        "streetAddress": "",
+        "addressLocality": "Pascoe Vale",
         "addressRegion": "VIC",
+        "postalCode": "3044",
         "addressCountry": "AU"
       },
-      "serviceArea": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": -37.8136,
-          "longitude": 144.9631
-        },
-        "geoRadius": "50000"
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -37.7602,
+        "longitude": 144.9420
       },
-      "services": [
-        "Residential Cleaning",
-        "Commercial Cleaning", 
-        "Deep Cleaning",
-        "End of Lease Cleaning",
-        "Carpet Cleaning",
-        "Window Cleaning",
-        "Tile and Grout Cleaning"
-      ]
+      "serviceArea": [
+        {
+          "@type": "City",
+          "name": "Melbourne",
+          "addressRegion": "VIC",
+          "addressCountry": "AU"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "St Albans",
+          "addressRegion": "VIC",
+          "addressCountry": "AU"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Sunshine",
+          "addressRegion": "VIC",
+          "addressCountry": "AU"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Footscray",
+          "addressRegion": "VIC",
+          "addressCountry": "AU"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Braybrook",
+          "addressRegion": "VIC",
+          "addressCountry": "AU"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Keilor",
+          "addressRegion": "VIC",
+          "addressCountry": "AU"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Caroline Springs",
+          "addressRegion": "VIC",
+          "addressCountry": "AU"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Maribyrnong",
+          "addressRegion": "VIC",
+          "addressCountry": "AU"
+        }
+      ],
+      "openingHours": "Mo-Su 00:00-23:59",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Cleaning Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "End of Lease Cleaning",
+              "serviceType": "CleaningService"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Carpet Steam Cleaning",
+              "serviceType": "CleaningService"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Tile & Grout Cleaning",
+              "serviceType": "CleaningService"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Residential House Cleaning",
+              "serviceType": "CleaningService"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Commercial Office Cleaning",
+              "serviceType": "CleaningService"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Solar Panel Cleaning",
+              "serviceType": "CleaningService"
+            }
+          }
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "127",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "sameAs": []
+    }
+    </script>
+    
+    <!-- Website Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://www.freshpluscleaning.com.au/#website",
+      "url": "https://www.freshpluscleaning.com.au",
+      "name": "Fresh Plus Professional Cleaning Services",
+      "description": "Professional cleaning services in Melbourne",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.freshpluscleaning.com.au/services?search={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://www.freshpluscleaning.com.au/#organization",
+      "name": "Fresh Plus Professional Cleaning Services",
+      "alternateName": "FreshPlus Cleaning",
+      "url": "https://www.freshpluscleaning.com.au",
+      "logo": "https://www.freshpluscleaning.com.au/logo.webp",
+      "description": "Professional cleaning services in Melbourne and surrounding suburbs since 2012",
+      "foundingDate": "2012",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "0403 971 720",
+        "contactType": "customer service",
+        "email": "infofreshplusclean@gmail.com",
+        "availableLanguage": "English",
+        "areaServed": "AU"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pascoe Vale",
+        "addressRegion": "VIC",
+        "postalCode": "3044",
+        "addressCountry": "AU"
+      },
+      "sameAs": []
     }
     </script>
   </head>

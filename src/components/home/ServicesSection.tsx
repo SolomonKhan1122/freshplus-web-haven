@@ -45,6 +45,12 @@ const ServicesSection = () => {
       icon: "🔑",
       path: "/services/end-of-lease",
     },
+    {
+      title: "Solar Panel Cleaning",
+      description: "Maximize efficiency with professional solar panel cleaning",
+      icon: "☀️",
+      path: "/services/solar-panel",
+    },
   ];
 
   return (

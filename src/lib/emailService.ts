@@ -317,7 +317,7 @@ export const generateBookingConfirmationEmail = (booking: BookingData) => {
             </div>
             
             <div class="footer">
-                <p><strong>FreshPlus Professional Home Services</strong></p>
+                <p><strong>Fresh Plus Professional Cleaning Services</strong></p>
                 <p>Melbourne's Most Trusted Cleaning Service</p>
                 <p>Office Hours: 8:00 AM to 5:00 PM daily</p>
                 <p style="margin-top: 15px; opacity: 0.7;">
@@ -584,7 +584,7 @@ export const generateQuoteConfirmationEmail = (quote: QuoteData) => {
             </div>
             
             <div class="footer">
-                <p><strong>FreshPlus Professional Home Services</strong></p>
+                <p><strong>Fresh Plus Professional Cleaning Services</strong></p>
                 <p>Melbourne's Most Trusted Cleaning Service</p>
                 <p>Office Hours: 8:00 AM to 5:00 PM daily</p>
                 <p style="margin-top: 15px; opacity: 0.7;">

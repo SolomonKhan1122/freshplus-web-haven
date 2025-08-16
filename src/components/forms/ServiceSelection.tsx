@@ -28,6 +28,7 @@ export const ServiceSelection = ({ control }: ServiceSelectionProps) => (
               <SelectItem value="deep-cleaning">Deep Cleaning</SelectItem>
               <SelectItem value="window">Window Cleaning</SelectItem>
               <SelectItem value="carpet">Carpet Cleaning</SelectItem>
+              <SelectItem value="solar-panel">Solar Panel Cleaning</SelectItem>
             </SelectContent>
           </Select>
           <FormMessage />

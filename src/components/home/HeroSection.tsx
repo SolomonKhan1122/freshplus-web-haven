@@ -15,18 +15,19 @@ const HeroSection = () => {
     { name: "Carpet Cleaning", path: "/services/carpet" },
     { name: "Tile & Grout Cleaning", path: "/services/tile-grout" },
     { name: "End of Lease Cleaning", path: "/services/end-of-lease" },
+    { name: "Solar Panel Cleaning", path: "/services/solar-panel" },
   ];
 
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white px-4 py-3 sm:py-4 shadow-sm">
+      <header className="bg-white px-4 py-2 sm:py-3 shadow-sm">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center flex-1 min-w-0">
             <Link to="/" className="flex items-center flex-1 min-w-0">
               <img 
                 src={logoImage} 
-                alt="FreshPlus Professional Home Services" 
+                alt="Fresh Plus Professional Cleaning Services" 
                 className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto flex-shrink-0"
               />
               <span className="ml-2 sm:ml-3 md:ml-4 text-sm sm:text-base md:text-lg font-medium text-primary bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent underline decoration-2 underline-offset-4 decoration-accent hidden sm:block">
@@ -34,16 +35,16 @@ const HeroSection = () => {
               </span>
             </Link>
           </div>
-          <div className="hidden lg:flex items-center gap-3 xl:gap-4 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             <Button
               variant="outline"
-              className="border-2 border-primary text-primary hover:bg-primary-light bg-transparent text-sm xl:text-base px-3 xl:px-4"
+              className="border-2 border-primary text-primary hover:bg-primary-light bg-transparent text-sm px-4 py-2"
             >
               <Phone className="w-4 h-4 mr-2" />
               CALL +61 403 971 720
             </Button>
             <Link to="/quote">
-              <Button className="bg-accent hover:bg-accent-dark text-black font-semibold text-sm xl:text-base px-3 xl:px-4">BOOK NOW</Button>
+              <Button className="bg-accent hover:bg-accent-dark text-black font-semibold text-sm px-4 py-2">BOOK NOW</Button>
             </Link>
           </div>
           
@@ -102,6 +103,7 @@ const HeroSection = () => {
                 </div>
               </div>
               <Link to="/about" className="hover:text-accent cursor-pointer transition-colors">ABOUT US</Link>
+              <Link to="/blog" className="hover:text-accent cursor-pointer transition-colors">BLOG</Link>
               <Link to="/contact" className="hover:text-accent cursor-pointer transition-colors">CONTACT US</Link>
             </div>
           </div>
@@ -163,6 +165,14 @@ const HeroSection = () => {
             </Link>
             
             <Link
+              to="/blog"
+              className="block px-3 py-3 text-white hover:bg-primary-dark rounded-lg transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Blog
+            </Link>
+            
+            <Link
               to="/contact"
               className="block px-3 py-3 text-white hover:bg-primary-dark rounded-lg transition-colors"
               onClick={() => setIsOpen(false)}
@@ -204,8 +214,8 @@ const HeroSection = () => {
         <div className="relative container mx-auto px-4 py-8 sm:py-12 md:py-16 lg:py-20 flex items-center justify-center min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px]">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight drop-shadow-2xl">
-              <span className="block text-shadow-xl" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)' }}>FreshPlus</span>
-              <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-accent mt-2 font-extrabold" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)' }}>Professional Home Services</span>
+              <span className="block text-shadow-xl" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)' }}>Fresh Plus</span>
+              <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-accent mt-2 font-extrabold" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)' }}>Professional Cleaning Services</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-white mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed font-semibold" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}>
               Transform your space with Melbourne's most trusted cleaning professionals - serving homes and businesses for over 12 years!
