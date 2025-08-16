@@ -62,7 +62,7 @@ const TileGroutCleaning = () => {
             <div className="relative">
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-accent/10">
                 <img 
-                  src="/Tile&grout 2.webp" 
+                  src="/tile & grout replacement.webp" 
                   alt="Professional tile and grout cleaning service in Melbourne - before and after results"
                   className="w-full h-96 object-cover"
                   onError={(e) => {
@@ -149,7 +149,7 @@ const TileGroutCleaning = () => {
             <div className="relative">
               <div className="bg-gradient-to-br from-primary-light/10 to-accent/10 rounded-3xl shadow-2xl overflow-hidden border border-accent/20 p-6">
                 <img 
-                  src="/Tile&grout.webp" 
+                  src="/tile & grout replacement.webp" 
                   alt="Before and after tile and grout cleaning results - dramatic improvement in cleanliness"
                   className="w-full h-80 object-cover rounded-2xl shadow-lg"
                   onError={(e) => {
