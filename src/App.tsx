@@ -15,6 +15,7 @@ import LicensedInsured from "./pages/LicensedInsured";
 import EndOfLeaseCleaning from "./pages/EndOfLeaseCleaning";
 import TileGroutCleaning from "./pages/TileGroutCleaning";
 import CarpetCleaning from "./pages/CarpetCleaning";
+import ResidentialCleaning from "./pages/ResidentialCleaning";
 import QuotesList from "./pages/QuotesList";
 import SimpleAdmin from "./pages/SimpleAdmin";
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -40,6 +41,7 @@ function App() {
             <Route path="/services/end-of-lease" element={<EndOfLeaseCleaning />} />
             <Route path="/services/tile-grout" element={<TileGroutCleaning />} />
             <Route path="/services/carpet" element={<CarpetCleaning />} />
+            <Route path="/services/residential" element={<ResidentialCleaning />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/book" element={<Book />} />
             <Route path="/contact" element={<Contact />} />
