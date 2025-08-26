@@ -114,50 +114,34 @@ const Quote = () => {
 
       console.log("Quote submitted successfully:", data);
       
-      // Send admin notification - simple and reliable approach
+      // Send confirmation emails using the same professional email service as bookings
       if (data && data[0]) {
-        console.log("✅ Quote saved to database successfully");
-        
-        // Automatically open admin notification email (silent for user)
-        const adminSubject = `🚨 NEW QUOTE REQUEST - ${data[0].name}`;
-        const adminBody = `
-URGENT: New Quote Request Received
-
-Customer Details:
-━━━━━━━━━━━━━━━━━━━━━
-Name: ${data[0].name}
-Email: ${data[0].email}
-Phone: ${data[0].phone1}
-${data[0].phone2 ? `Secondary Phone: ${data[0].phone2}` : ''}
-Address: ${data[0].address}, ${data[0].city} ${data[0].postcode}
-
-Service Request:
-━━━━━━━━━━━━━━━━━━━━━
-Services: ${data[0].services.join(', ')}
-Preferred Date: ${data[0].preferred_date || 'Not specified'}
-${data[0].job_description ? `Job Description: ${data[0].job_description}` : ''}
-
-Quote ID: ${data[0].id}
-
-⚡ PLEASE RESPOND WITHIN 24 HOURS ⚡
-
-Reply directly to customer: ${data[0].email}
-        `.trim();
-        
-        const adminMailtoUrl = `mailto:infofreshplusclean@gmail.com?subject=${encodeURIComponent(adminSubject)}&body=${encodeURIComponent(adminBody)}`;
-        
-        // Open admin email silently in background
-        setTimeout(() => {
-          const adminWindow = window.open(adminMailtoUrl, '_blank');
-          if (adminWindow) {
-            adminWindow.close();
-          }
-        }, 1000);
-        
-        // Show success message to customer (no mention of email issues)
-        toast.success("Quote request submitted successfully! We've received your request and will contact you within 24 hours with your personalized quote.", {
-          duration: 6000,
+        console.log("📧 Sending quote confirmation emails...");
+        const emailResult = await sendQuoteEmails({
+          id: data[0].id,
+          name: data[0].name,
+          address: data[0].address,
+          city: data[0].city,
+          postcode: data[0].postcode,
+          phone1: data[0].phone1,
+          phone2: data[0].phone2,
+          email: data[0].email,
+          services: data[0].services,
+          preferred_date: data[0].preferred_date,
+          job_description: data[0].job_description,
         });
+        
+        if (emailResult.success) {
+          console.log("✅ Quote confirmation emails sent successfully to customer and admin");
+          toast.success("Quote request submitted successfully! Confirmation emails have been sent to you and our team. We'll get back to you within 24 hours with your personalized quote!", {
+            duration: 6000,
+          });
+        } else {
+          console.error("❌ Failed to send confirmation emails:", emailResult.error);
+          toast.warning("Quote request submitted successfully, but there was an issue sending confirmation emails. We'll contact you within 24 hours!", {
+            duration: 6000,
+          });
+        }
       } else {
         toast.success("Quote request submitted successfully! We'll get back to you soon.");
       }
