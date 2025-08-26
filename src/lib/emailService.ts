@@ -2,7 +2,8 @@ import { Resend } from 'resend';
 import { getServiceDisplayName } from './serviceMapping';
 
 // Admin email - receives all booking and quote notifications
-const ADMIN_EMAIL = 'infofreshplusclean@gmail.com';
+// Using verified email address for Resend API
+const ADMIN_EMAIL = 'goodcause1122@gmail.com';
 
 // Business email for customer communications
 const BUSINESS_EMAIL = 'info@freshpluscleaning.com.au';
