@@ -86,6 +86,11 @@ export const SERVICES: Record<string, ServiceInfo> = {
     value: 'construction-clean',
     displayName: 'Construction Clean',
     shortName: 'Construction'
+  },
+  'solar-panel': {
+    value: 'solar-panel',
+    displayName: 'Solar Panel Cleaning',
+    shortName: 'Solar Panel'
   }
 };
 
@@ -157,7 +162,8 @@ export const getAllServices = (): ServiceInfo[] => {
     SERVICES['commercial'],
     SERVICES['deep-cleaning'],
     SERVICES['window'],
-    SERVICES['carpet']
+    SERVICES['carpet'],
+    SERVICES['solar-panel']
   ];
 };
 
@@ -174,6 +180,7 @@ export const getAllQuoteServices = (): ServiceInfo[] => {
     SERVICES['tile-grout'],
     SERVICES['office-cleaning'],
     SERVICES['warehouse-cleaning'],
-    SERVICES['construction-clean']
+    SERVICES['construction-clean'],
+    SERVICES['solar-panel']
   ];
 };

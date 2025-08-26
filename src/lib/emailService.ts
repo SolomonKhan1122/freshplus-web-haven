@@ -1,8 +1,10 @@
 import { Resend } from 'resend';
+import { supabase } from './supabase';
 import { getServiceDisplayName } from './serviceMapping';
 
 // Admin email - receives all booking and quote notifications
-const ADMIN_EMAIL = 'infofreshplusclean@gmail.com';
+// Using verified email address for Resend API
+const ADMIN_EMAIL = 'goodcause1122@gmail.com';
 
 // Business email for customer communications
 const BUSINESS_EMAIL = 'info@freshpluscleaning.com.au';
@@ -317,7 +319,7 @@ export const generateBookingConfirmationEmail = (booking: BookingData) => {
             </div>
             
             <div class="footer">
-                <p><strong>FreshPlus Professional Home Services</strong></p>
+                <p><strong>Fresh Plus Professional Cleaning Services</strong></p>
                 <p>Melbourne's Most Trusted Cleaning Service</p>
                 <p>Office Hours: 8:00 AM to 5:00 PM daily</p>
                 <p style="margin-top: 15px; opacity: 0.7;">
@@ -584,7 +586,7 @@ export const generateQuoteConfirmationEmail = (quote: QuoteData) => {
             </div>
             
             <div class="footer">
-                <p><strong>FreshPlus Professional Home Services</strong></p>
+                <p><strong>Fresh Plus Professional Cleaning Services</strong></p>
                 <p>Melbourne's Most Trusted Cleaning Service</p>
                 <p>Office Hours: 8:00 AM to 5:00 PM daily</p>
                 <p style="margin-top: 15px; opacity: 0.7;">
@@ -1046,6 +1048,22 @@ export const sendBookingEmails = async (booking: BookingData) => {
   console.log('📧 Attempting to send booking emails for:', booking.name, '- Service:', getServiceDisplayName(booking.service));
   
   try {
+    // 1) Try Supabase Edge Function first (server-side email dispatch)
+    try {
+      const { data: edgeData, error: edgeError } = await supabase.functions.invoke('email-dispatch', {
+        body: { type: 'booking', booking, adminEmail: ADMIN_EMAIL }
+      });
+
+      if (edgeError) {
+        console.warn('⚠️ Edge function booking email error:', edgeError);
+      } else if (edgeData?.success) {
+        console.log('✅ Booking emails sent via Edge Function:', edgeData);
+        return { success: true, customerEmail: edgeData.customer, adminEmail: edgeData.admin };
+      }
+    } catch (e) {
+      console.warn('⚠️ Edge function booking invoke failed, falling back to direct Resend:', e);
+    }
+
     // Send confirmation email to customer
     console.log('📤 Sending customer confirmation email to:', booking.email);
     const customerEmail = await resend.emails.send({
@@ -1091,6 +1109,22 @@ export const sendQuoteEmails = async (quote: QuoteData) => {
   console.log('📧 Attempting to send quote emails for:', quote.name, '- Services:', quote.services.map(service => getServiceDisplayName(service)).join(', '));
   
   try {
+    // 1) Try Supabase Edge Function first (server-side email dispatch)
+    try {
+      const { data: edgeData, error: edgeError } = await supabase.functions.invoke('email-dispatch', {
+        body: { type: 'quote', quote, adminEmail: ADMIN_EMAIL }
+      });
+
+      if (edgeError) {
+        console.warn('⚠️ Edge function quote email error:', edgeError);
+      } else if (edgeData?.success) {
+        console.log('✅ Quote emails sent via Edge Function:', edgeData);
+        return { success: true, customerEmail: edgeData.customer, adminEmail: edgeData.admin };
+      }
+    } catch (e) {
+      console.warn('⚠️ Edge function quote invoke failed, falling back to direct Resend:', e);
+    }
+
     // Send confirmation email to customer
     console.log('📤 Sending customer quote confirmation to:', quote.email);
     const customerEmail = await resend.emails.send({

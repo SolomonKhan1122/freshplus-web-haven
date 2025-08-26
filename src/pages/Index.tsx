@@ -4,6 +4,7 @@ import WhyChooseUsSection from "../components/home/WhyChooseUsSection";
 import ReviewsSection from "../components/home/ReviewsSection";
 import GetInTouchSection from "../components/home/GetInTouchSection";
 import Footer from "../components/Footer";
+import { SEOHead } from "../components/SEOHead";
 
 const StatsSection = () => {
   const stats = [
@@ -36,6 +37,15 @@ const StatsSection = () => {
 const Index = () => {
   return (
     <div className="min-h-screen bg-white">
+      <SEOHead
+        title="Professional Cleaning Services Melbourne | Fresh Plus Cleaning"
+        description="Melbourne's premier cleaning service with 12+ years experience. End of lease, carpet, tile & grout, house & office cleaning. Licensed, insured & eco-friendly. Call 0403 971 720 for free quote!"
+        canonical="https://www.freshpluscleaning.com.au/"
+        type="website"
+        breadcrumbs={[
+          { name: "Home", url: "/" }
+        ]}
+      />
       <HeroSection />
       <StatsSection />
       <ServicesSection />

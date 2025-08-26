@@ -3,8 +3,22 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { Phone, MessageSquare, CheckCircle, Star, Clock, Shield, Award, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SEOHead, generateServiceSchema } from "@/components/SEOHead";
 
 const EndOfLeaseCleaning = () => {
+  // SEO Schema
+  const serviceSchema = generateServiceSchema(
+    "End of Lease Cleaning Melbourne",
+    "Professional end of lease cleaning service in Melbourne with 100% bond back guarantee. Expert cleaners covering all Melbourne suburbs with same-day service available.",
+    "CleaningService"
+  );
+
+  const breadcrumbs = [
+    { name: "Home", url: "/" },
+    { name: "Services", url: "/services" },
+    { name: "End of Lease Cleaning", url: "/end-of-lease-cleaning" }
+  ];
+
   const bondBackGuarantees = [
     "Complete kitchen deep clean including oven, stovetop, and exhaust fan",
     "Bathroom deep sanitization with mold and mildew removal",
@@ -50,6 +64,14 @@ const EndOfLeaseCleaning = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEOHead
+        title="End of Lease Cleaning Melbourne | 100% Bond Back Guarantee - Fresh Plus"
+        description="Melbourne's #1 end of lease cleaning service. 100% bond back guarantee or we return for free. Same day service available across all Melbourne suburbs."
+        canonical="https://www.freshpluscleaning.com.au/end-of-lease-cleaning"
+        type="service"
+        schema={serviceSchema}
+        breadcrumbs={breadcrumbs}
+      />
       <Navigation />
       
       {/* Hero Section */}

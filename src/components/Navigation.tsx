@@ -15,18 +15,19 @@ const Navigation = () => {
     { name: "Carpet Cleaning", path: "/services/carpet" },
     { name: "Tile & Grout Cleaning", path: "/services/tile-grout" },
     { name: "End of Lease Cleaning", path: "/services/end-of-lease" },
+    { name: "Solar Panel Cleaning", path: "/services/solar-panel" },
   ];
 
   return (
     <div className="w-full">
       {/* Header */}
-      <header className="bg-white px-4 py-3 sm:py-4 shadow-sm">
+      <header className="bg-white px-4 py-2 sm:py-3 shadow-sm">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center flex-1 min-w-0">
             <Link to="/" className="flex items-center flex-1 min-w-0">
               <img 
                 src={logoImage} 
-                alt="FreshPlus Professional Home Services" 
+                alt="Fresh Plus Professional Cleaning Services" 
                 className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto flex-shrink-0"
               />
               <span className="ml-2 sm:ml-3 md:ml-4 text-sm sm:text-base md:text-lg font-medium text-primary bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent underline decoration-2 underline-offset-4 decoration-accent hidden sm:block">
@@ -34,16 +35,16 @@ const Navigation = () => {
               </span>
             </Link>
           </div>
-          <div className="hidden lg:flex items-center gap-3 xl:gap-4 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             <Button
               variant="outline"
-              className="border-2 border-primary text-primary hover:bg-primary-light bg-transparent text-sm xl:text-base px-3 xl:px-4"
+              className="border-2 border-primary text-primary hover:bg-primary-light bg-transparent text-sm px-4 py-2"
             >
               <Phone className="w-4 h-4 mr-2" />
               CALL +61 403 971 720
             </Button>
             <Link to="/quote">
-              <Button className="bg-accent hover:bg-accent-dark text-black font-semibold text-sm xl:text-base px-3 xl:px-4">BOOK NOW</Button>
+              <Button className="bg-accent hover:bg-accent-dark text-black font-semibold text-sm px-4 py-2">BOOK NOW</Button>
             </Link>
           </div>
           
@@ -102,6 +103,7 @@ const Navigation = () => {
                 </div>
               </div>
               <Link to="/about" className="hover:text-accent cursor-pointer transition-colors">ABOUT US</Link>
+              <Link to="/blog" className="hover:text-accent cursor-pointer transition-colors">BLOG</Link>
               <Link to="/contact" className="hover:text-accent cursor-pointer transition-colors">CONTACT US</Link>
             </div>
           </div>
@@ -160,6 +162,14 @@ const Navigation = () => {
               onClick={() => setIsOpen(false)}
             >
               About Us
+            </Link>
+            
+            <Link
+              to="/blog"
+              className="block px-3 py-3 text-white hover:bg-primary-dark rounded-lg transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Blog
             </Link>
             
             <Link
