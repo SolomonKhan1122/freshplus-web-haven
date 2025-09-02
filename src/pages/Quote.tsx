@@ -495,7 +495,7 @@ const Quote = () => {
                   className="w-full bg-gradient-to-r from-accent to-accent-dark hover:from-accent-dark hover:to-accent text-black font-extrabold py-6 text-2xl rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 border-2 border-accent-dark"
                   disabled={!form.watch("termsAccepted") || isSubmitting}
                 >
-                  {isSubmitting ? "SUBMITTING..." : "🎯 BOOK ONLINE NOW"}
+                  {isSubmitting ? "SUBMITTING..." : "GET QUOTE"}
                 </Button>
               </div>
             </form>

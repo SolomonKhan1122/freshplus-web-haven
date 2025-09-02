@@ -225,7 +225,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/quote">
                 <Button className="bg-accent hover:bg-accent-dark text-black font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg w-full sm:w-auto shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-                  BOOK ONLINE NOW
+                  GET QUOTE
                 </Button>
               </Link>
               <a href="tel:+61403971720">
