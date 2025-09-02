@@ -1,51 +1,54 @@
-import { Resend } from 'resend';
 import { supabase } from './supabase';
 import { getServiceDisplayName } from './serviceMapping';
 
 // Admin email - receives all booking and quote notifications
-// Using verified email address for Resend API
 const ADMIN_EMAIL = 'goodcause1122@gmail.com';
 
 // Business email for customer communications
 const BUSINESS_EMAIL = 'info@freshpluscleaning.com.au';
 
-// Initialize Resend with API key from environment variable
-// Using the demo API key that should work for testing
-const resendApiKey = import.meta.env.VITE_RESEND_API_KEY || 
-                     import.meta.env.RESEND_API_KEY || 
-                     're_2kXVnpuG_A4VZQyHV33D3bz7Gr4mySFx1';
-const resend = new Resend(resendApiKey);
-
-// Check if API key is properly configured
+// Email service now uses Supabase Edge Function exclusively to avoid CORS issues
 console.log('🔧 Email Service Configuration:');
-console.log('- Resend API Key configured:', resendApiKey ? '✅ Yes' : '❌ No');
-console.log('- API Key preview:', resendApiKey ? resendApiKey.substring(0, 8) + '...' : 'None');
+console.log('- Email Service: ✅ Supabase Edge Function');
 console.log('- Admin Email:', ADMIN_EMAIL);
 console.log('- Business Email:', BUSINESS_EMAIL);
 console.log('- Environment:', import.meta.env.MODE || 'development');
-
-if (!resendApiKey) {
-  console.error('❌ CRITICAL: No Resend API key found. Emails will not work.');
-} else if (resendApiKey === 're_2kXVnpuG_A4VZQyHV33D3bz7Gr4mySFx1') {
-  console.log('🔄 Using demo API key - testing email functionality');
-} else {
-  console.log('✅ Using custom API key from environment variables');
-}
+console.log('✅ All emails will be sent via Supabase Edge Function (no CORS issues)');
 
 // Test email function to verify service is working
 export const sendTestEmail = async (testEmail: string) => {
   console.log('🧪 Testing email service with address:', testEmail);
   
   try {
-    const testResult = await resend.emails.send({
-      from: 'FreshPlus Test <onboarding@resend.dev>',
-      to: [testEmail],
-      subject: 'FreshPlus Email Service Test',
-      html: '<h1>Email Service Test</h1><p>If you receive this, the email service is working!</p>',
-    });
+    // Create a test quote to send via Edge Function
+    const testQuote = {
+      id: 'test-' + Date.now(),
+      name: 'Test User',
+      email: testEmail,
+      address: 'Test Address',
+      city: 'Melbourne',
+      postcode: '3000',
+      phone1: '0400000000',
+      services: ['residential-cleaning'],
+      job_description: 'This is a test email to verify the email service is working.'
+    };
     
-    console.log('✅ Test email sent successfully:', testResult.data?.id);
-    return { success: true, data: testResult.data };
+    const { data: edgeData, error: edgeError } = await supabase.functions.invoke('email-dispatch', {
+      body: { type: 'quote', quote: testQuote, adminEmail: ADMIN_EMAIL }
+    });
+
+    if (edgeError) {
+      console.error('❌ Test email failed:', edgeError);
+      return { success: false, error: edgeError.message || JSON.stringify(edgeError) };
+    }
+    
+    if (edgeData?.success) {
+      console.log('✅ Test email sent successfully via Edge Function');
+      return { success: true, data: edgeData };
+    } else {
+      console.error('❌ Test email failed:', edgeData);
+      return { success: false, error: edgeData?.error || 'Unknown error' };
+    }
   } catch (error) {
     console.error('❌ Test email failed:', error);
     return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
@@ -1048,50 +1051,27 @@ export const sendBookingEmails = async (booking: BookingData) => {
   console.log('📧 Attempting to send booking emails for:', booking.name, '- Service:', getServiceDisplayName(booking.service));
   
   try {
-    // 1) Try Supabase Edge Function first (server-side email dispatch)
-    try {
-      const { data: edgeData, error: edgeError } = await supabase.functions.invoke('email-dispatch', {
-        body: { type: 'booking', booking, adminEmail: ADMIN_EMAIL }
-      });
+    // Use Supabase Edge Function for server-side email dispatch (avoids CORS issues)
+    const { data: edgeData, error: edgeError } = await supabase.functions.invoke('email-dispatch', {
+      body: { type: 'booking', booking, adminEmail: ADMIN_EMAIL }
+    });
 
-      if (edgeError) {
-        console.warn('⚠️ Edge function booking email error:', edgeError);
-      } else if (edgeData?.success) {
-        console.log('✅ Booking emails sent via Edge Function:', edgeData);
-        return { success: true, customerEmail: edgeData.customer, adminEmail: edgeData.admin };
-      }
-    } catch (e) {
-      console.warn('⚠️ Edge function booking invoke failed, falling back to direct Resend:', e);
+    if (edgeError) {
+      console.error('❌ Edge function booking email error:', edgeError);
+      throw new Error(`Edge function failed: ${edgeError.message || JSON.stringify(edgeError)}`);
     }
-
-    // Send confirmation email to customer
-    console.log('📤 Sending customer confirmation email to:', booking.email);
-    const customerEmail = await resend.emails.send({
-      from: 'FreshPlus Professional Services <bookings@resend.dev>',
-      replyTo: ADMIN_EMAIL,
-      to: [booking.email],
-      subject: `✅ Booking Confirmed - FreshPlus Professional Cleaning Service`,
-      html: generateBookingConfirmationEmail(booking),
-    });
-    console.log('✅ Customer email sent successfully:', customerEmail.data?.id);
-
-    // Send notification email to admin
-    console.log('📤 Sending admin notification email to:', ADMIN_EMAIL);
-    const adminEmail = await resend.emails.send({
-      from: 'FreshPlus System <alerts@resend.dev>',
-      replyTo: booking.email,
-      to: [ADMIN_EMAIL],
-      subject: `🚨 New Booking Alert - ${booking.name} - ${getServiceDisplayName(booking.service)}`,
-      html: generateAdminBookingNotification(booking),
-    });
-    console.log('✅ Admin email sent successfully:', adminEmail.data?.id);
-
-    console.log('🎉 All booking emails sent successfully!');
-    return { success: true, customerEmail, adminEmail };
+    
+    if (edgeData?.success) {
+      console.log('✅ Booking emails sent via Edge Function:', edgeData);
+      console.log('🎉 All booking emails sent successfully!');
+      return { success: true, customerEmail: edgeData.customer, adminEmail: edgeData.admin };
+    } else {
+      console.error('❌ Edge function returned unsuccessful result:', edgeData);
+      throw new Error(`Edge function returned error: ${edgeData?.error || 'Unknown error'}`);
+    }
   } catch (error) {
     console.error('❌ Error sending booking emails:', error);
     console.error('📋 Booking data:', JSON.stringify(booking, null, 2));
-    console.error('🔧 API Key being used:', resendApiKey ? resendApiKey.substring(0, 8) + '...' : 'None');
     
     // Detailed error information
     if (error instanceof Error) {
@@ -1109,50 +1089,27 @@ export const sendQuoteEmails = async (quote: QuoteData) => {
   console.log('📧 Attempting to send quote emails for:', quote.name, '- Services:', quote.services.map(service => getServiceDisplayName(service)).join(', '));
   
   try {
-    // 1) Try Supabase Edge Function first (server-side email dispatch)
-    try {
-      const { data: edgeData, error: edgeError } = await supabase.functions.invoke('email-dispatch', {
-        body: { type: 'quote', quote, adminEmail: ADMIN_EMAIL }
-      });
+    // Use Supabase Edge Function for server-side email dispatch (avoids CORS issues)
+    const { data: edgeData, error: edgeError } = await supabase.functions.invoke('email-dispatch', {
+      body: { type: 'quote', quote, adminEmail: ADMIN_EMAIL }
+    });
 
-      if (edgeError) {
-        console.warn('⚠️ Edge function quote email error:', edgeError);
-      } else if (edgeData?.success) {
-        console.log('✅ Quote emails sent via Edge Function:', edgeData);
-        return { success: true, customerEmail: edgeData.customer, adminEmail: edgeData.admin };
-      }
-    } catch (e) {
-      console.warn('⚠️ Edge function quote invoke failed, falling back to direct Resend:', e);
+    if (edgeError) {
+      console.error('❌ Edge function quote email error:', edgeError);
+      throw new Error(`Edge function failed: ${edgeError.message || JSON.stringify(edgeError)}`);
     }
-
-    // Send confirmation email to customer
-    console.log('📤 Sending customer quote confirmation to:', quote.email);
-    const customerEmail = await resend.emails.send({
-      from: 'FreshPlus Professional Services <quotes@resend.dev>',
-      replyTo: ADMIN_EMAIL,
-      to: [quote.email],
-      subject: `📋 Quote Request Received - FreshPlus Professional Cleaning Service`,
-      html: generateQuoteConfirmationEmail(quote),
-    });
-    console.log('✅ Customer quote email sent successfully:', customerEmail.data?.id);
-
-    // Send notification email to admin
-    console.log('📤 Sending admin quote notification to:', ADMIN_EMAIL);
-    const adminEmail = await resend.emails.send({
-      from: 'FreshPlus System <alerts@resend.dev>',
-      replyTo: quote.email,
-      to: [ADMIN_EMAIL],
-      subject: `💰 New Quote Request - ${quote.name} - ${quote.services.map(service => getServiceDisplayName(service)).join(', ')}`,
-      html: generateAdminQuoteNotification(quote),
-    });
-    console.log('✅ Admin quote email sent successfully:', adminEmail.data?.id);
-
-    console.log('🎉 All quote emails sent successfully!');
-    return { success: true, customerEmail, adminEmail };
+    
+    if (edgeData?.success) {
+      console.log('✅ Quote emails sent via Edge Function:', edgeData);
+      console.log('🎉 All quote emails sent successfully!');
+      return { success: true, customerEmail: edgeData.customer, adminEmail: edgeData.admin };
+    } else {
+      console.error('❌ Edge function returned unsuccessful result:', edgeData);
+      throw new Error(`Edge function returned error: ${edgeData?.error || 'Unknown error'}`);
+    }
   } catch (error) {
     console.error('❌ Error sending quote emails:', error);
     console.error('📋 Quote data:', JSON.stringify(quote, null, 2));
-    console.error('🔧 API Key being used:', resendApiKey ? resendApiKey.substring(0, 8) + '...' : 'None');
     
     // Detailed error information
     if (error instanceof Error) {
