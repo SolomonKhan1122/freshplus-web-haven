@@ -2,7 +2,7 @@ import { supabase } from './supabase';
 import { getServiceDisplayName } from './serviceMapping';
 
 // Admin email - receives all booking and quote notifications
-const ADMIN_EMAIL = 'goodcause1122@gmail.com';
+const ADMIN_EMAIL = 'infofreshplusclean@gmail.com';
 
 // Business email for customer communications
 const BUSINESS_EMAIL = 'info@freshpluscleaning.com.au';
