@@ -19,6 +19,7 @@ import { FormSection } from "@/components/forms/FormSection";
 import { supabase } from "@/lib/supabase";
 import { sendBookingEmails } from "@/lib/emailService";
 import { useState } from "react";
+import ThankYouPage from "@/components/ThankYouPage";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -36,6 +37,8 @@ const formSchema = z.object({
 const Book = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [submittedName, setSubmittedName] = useState("");
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -103,19 +106,14 @@ const Book = () => {
         
         if (emailResult.success) {
           console.log("✅ Booking confirmation emails sent successfully to customer and admin");
-          toast.success("Booking confirmed! Confirmation emails have been sent to you and our team. We'll be in touch soon!", {
-            duration: 6000,
-          });
         } else {
           console.error("❌ Failed to send confirmation emails:", emailResult.error);
-          toast.warning("Booking submitted successfully, but there was an issue sending confirmation emails. We'll contact you to confirm!", {
-            duration: 6000,
-          });
         }
-      } else {
-        toast.success("Booking submitted successfully! We'll contact you to confirm details.");
       }
       
+      // Show thank you page instead of toast
+      setSubmittedName(values.name);
+      setShowThankYou(true);
       form.reset();
       
     } catch (error) {
@@ -240,6 +238,15 @@ const Book = () => {
           </Form>
         </div>
       </div>
+      
+      {/* Thank You Page Overlay */}
+      {showThankYou && (
+        <ThankYouPage 
+          type="booking" 
+          customerName={submittedName}
+          onClose={() => setShowThankYou(false)}
+        />
+      )}
     </div>
   );
 };

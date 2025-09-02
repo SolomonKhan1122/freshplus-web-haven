@@ -63,7 +63,7 @@ const Contact = () => {
                 <Mail size={32} className="text-white" />
               </div>
               <h2 className="text-2xl font-bold text-primary mb-3">Email Us</h2>
-              <p className="text-primary/80 font-semibold mb-2">infofreshplusclean@gmail.com</p>
+              <p className="text-primary/80 text-sm font-semibold mb-2 break-all">infofreshplusclean@gmail.com</p>
               <p className="text-secondary text-sm">Detailed inquiries welcome</p>
             </a>
 

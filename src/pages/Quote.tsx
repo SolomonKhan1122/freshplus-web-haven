@@ -18,6 +18,7 @@ import { supabase } from "@/lib/supabase";
 import { sendQuoteEmails } from "@/lib/emailService";
 import { getServiceDisplayName } from "@/lib/serviceMapping";
 import { useState } from "react";
+import ThankYouPage from "@/components/ThankYouPage";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -39,6 +40,8 @@ const formSchema = z.object({
 const Quote = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [submittedName, setSubmittedName] = useState("");
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -134,19 +137,14 @@ const Quote = () => {
         
         if (emailResult.success) {
           console.log("✅ Quote confirmation emails sent successfully to customer and admin");
-          toast.success("Quote request submitted successfully! Confirmation emails have been sent to you and our team. We'll get back to you within 24 hours with your personalized quote!", {
-            duration: 6000,
-          });
         } else {
           console.error("❌ Failed to send confirmation emails:", emailResult.error);
-          toast.warning("Quote request submitted successfully, but there was an issue sending confirmation emails. We'll contact you within 24 hours!", {
-            duration: 6000,
-          });
         }
-      } else {
-        toast.success("Quote request submitted successfully! We'll get back to you soon.");
       }
       
+      // Show thank you page instead of toast
+      setSubmittedName(values.name);
+      setShowThankYou(true);
       form.reset();
       
     } catch (error) {
@@ -504,6 +502,15 @@ const Quote = () => {
           </Form>
         </div>
       </div>
+      
+      {/* Thank You Page Overlay */}
+      {showThankYou && (
+        <ThankYouPage 
+          type="quote" 
+          customerName={submittedName}
+          onClose={() => setShowThankYou(false)}
+        />
+      )}
     </div>
   );
 };

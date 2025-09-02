@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
 import { sendContactEmails } from "@/lib/emailService";
 import { Send } from "lucide-react";
+import ThankYouPage from "./ThankYouPage";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -22,6 +23,8 @@ const contactSchema = z.object({
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [submittedName, setSubmittedName] = useState("");
 
   const form = useForm<z.infer<typeof contactSchema>>({
     resolver: zodResolver(contactSchema),
@@ -79,7 +82,9 @@ const ContactForm = () => {
         }
       }
       
-      toast.success("Message sent successfully! We'll get back to you within 1 hour (7AM-7PM) or next business day (after 7PM).");
+      // Show thank you page instead of toast
+      setSubmittedName(values.name);
+      setShowThankYou(true);
       form.reset();
       
     } catch (error) {
@@ -205,6 +210,15 @@ const ContactForm = () => {
           </form>
         </Form>
       </CardContent>
+      
+      {/* Thank You Page Overlay */}
+      {showThankYou && (
+        <ThankYouPage 
+          type="contact" 
+          customerName={submittedName}
+          onClose={() => setShowThankYou(false)}
+        />
+      )}
     </Card>
   );
 };
