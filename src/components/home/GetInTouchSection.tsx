@@ -59,7 +59,7 @@ const GetInTouchSection = () => {
             <div className="bg-secondary w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
               <Calendar className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
             </div>
-            <h3 className="text-lg sm:text-xl font-bold mb-2">Book Online</h3>
+            <h3 className="text-lg sm:text-xl font-bold mb-2">Get Quote</h3>
             <p className="text-primary-light text-xs sm:text-sm">Schedule service</p>
             <p className="text-xs sm:text-sm text-primary-light mt-2">24/7 booking</p>
           </Link>

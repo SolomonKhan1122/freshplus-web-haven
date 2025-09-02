@@ -232,7 +232,7 @@ const Book = () => {
                 className="w-full"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Submitting..." : "Confirm Booking"}
+                {isSubmitting ? "Submitting..." : "Get Quote Now"}
               </Button>
             </form>
           </Form>
