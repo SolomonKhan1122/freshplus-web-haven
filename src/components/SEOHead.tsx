@@ -30,7 +30,7 @@ export const SEOHead = ({
       : description.substring(0, 157) + '...';
   
   const canonicalUrl = canonical || `https://www.freshpluscleaning.com.au${window.location.pathname}`;
-  const ogImage = 'https://www.freshpluscleaning.com.au/og-image.png';
+  const ogImage = 'https://www.freshpluscleaning.com.au/Home_Hero.webp';
 
   // Generate breadcrumb schema
   const breadcrumbSchema = breadcrumbs ? {

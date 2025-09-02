@@ -1,22 +1,16 @@
-# Welcome to your Lovable project
+# FreshPlus Professional Cleaning Services
 
-## Project info
+## About
 
-**URL**: https://lovable.dev/projects/283d4a1b-49c5-496d-9145-e5735346a077
+**Website**: https://www.freshpluscleaning.com.au
 
-## How can I edit this code?
+FreshPlus is Melbourne's premier professional cleaning service with 12+ years of experience. We provide licensed, insured, and eco-friendly cleaning solutions for homes and businesses across Melbourne and surrounding suburbs.
 
-There are several ways of editing your application.
+## Development
 
-**Use Lovable**
+**Local Development**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/283d4a1b-49c5-496d-9145-e5735346a077) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+To work on this project locally using your preferred IDE, follow these steps:
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -60,10 +54,16 @@ This project is built with .
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/283d4a1b-49c5-496d-9145-e5735346a077) and click on Share -> Publish.
+This project is deployed automatically when changes are pushed to the main branch on GitHub.
 
-## I want to use a custom domain - is that possible?
+## Services Offered
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+- End of Lease Cleaning
+- Carpet & Rug Cleaning  
+- Deep Cleaning
+- Commercial Cleaning
+- Solar Panel Cleaning
+- Tile & Grout Cleaning
+- And more...
