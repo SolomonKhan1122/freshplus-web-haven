@@ -14,6 +14,20 @@ const Contact = () => {
             <p className="text-xl text-primary/80 mb-8 max-w-3xl mx-auto">
               Have questions about our cleaning services? We're here to help! Get in touch with Melbourne's most trusted cleaning professionals.
             </p>
+            
+            {/* Urgent Contact Notice */}
+            <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-6 mb-8 max-w-2xl mx-auto">
+              <div className="flex items-center justify-center gap-3 mb-3">
+                <Phone className="w-6 h-6 text-amber-600" />
+                <h3 className="text-xl font-bold text-amber-800">Need Urgent Assistance?</h3>
+              </div>
+              <p className="text-amber-700 font-semibold">
+                For urgent inquiries, please call us directly at <a href="tel:+61403971720" className="text-primary hover:text-accent font-bold underline">+61 403 971 720</a>
+              </p>
+              <p className="text-amber-600 text-sm mt-2">
+                Response times: Within 1 hour (7AM-7PM) • Next business day (after 7PM)
+              </p>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -26,7 +40,7 @@ const Contact = () => {
               </div>
               <h2 className="text-2xl font-bold text-primary mb-3">Call Now</h2>
               <p className="text-primary/80 text-lg font-semibold mb-2">+61 403 971 720</p>
-              <p className="text-secondary text-sm">Immediate assistance available</p>
+              <p className="text-secondary text-sm">Within 1 hour (7AM-7PM)</p>
             </a>
 
             <a
