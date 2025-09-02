@@ -38,6 +38,7 @@ const formSchema = z.object({
 
 const Quote = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -403,7 +404,7 @@ const Quote = () => {
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
                     <FormLabel className="text-primary font-bold text-lg">Preferred Booking Date</FormLabel>
-                    <Popover>
+                    <Popover open={isDatePickerOpen} onOpenChange={setIsDatePickerOpen}>
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
@@ -426,7 +427,10 @@ const Quote = () => {
                         <Calendar
                           mode="single"
                           selected={field.value}
-                          onSelect={field.onChange}
+                          onSelect={(date) => {
+                            field.onChange(date);
+                            setIsDatePickerOpen(false); // Close popup when date is selected
+                          }}
                           disabled={(date) =>
                             date < new Date() || date < new Date("1900-01-01")
                           }

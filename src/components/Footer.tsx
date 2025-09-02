@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Star, Award, Shield } from "lucide-react";
 
+// Scroll to top helper function
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-primary-dark to-primary text-white">
@@ -43,43 +48,43 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-6">Our Services</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/services/residential" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
+                <Link to="/services/residential" onClick={scrollToTop} className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
                   <span className="w-2 h-2 bg-accent rounded-full"></span>
                   Residential Cleaning
                 </Link>
               </li>
               <li>
-                <Link to="/services/commercial" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
+                <Link to="/services/commercial" onClick={scrollToTop} className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
                   <span className="w-2 h-2 bg-accent rounded-full"></span>
                   Commercial Cleaning
                 </Link>
               </li>
               <li>
-                <Link to="/services/deep-cleaning" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
+                <Link to="/services/deep-cleaning" onClick={scrollToTop} className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
                   <span className="w-2 h-2 bg-accent rounded-full"></span>
                   Deep Cleaning
                 </Link>
               </li>
               <li>
-                <Link to="/services/carpet" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
+                <Link to="/services/carpet" onClick={scrollToTop} className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
                   <span className="w-2 h-2 bg-accent rounded-full"></span>
                   Carpet Cleaning
                 </Link>
               </li>
               <li>
-                <Link to="/services/window" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
+                <Link to="/services/window" onClick={scrollToTop} className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
                   <span className="w-2 h-2 bg-accent rounded-full"></span>
                   Window Cleaning
                 </Link>
               </li>
               <li>
-                <Link to="/services/tile-grout" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
+                <Link to="/services/tile-grout" onClick={scrollToTop} className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
                   <span className="w-2 h-2 bg-accent rounded-full"></span>
                   Tile & Grout Cleaning
                 </Link>
               </li>
               <li>
-                <Link to="/services/end-of-lease" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
+                <Link to="/services/end-of-lease" onClick={scrollToTop} className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
                   <span className="w-2 h-2 bg-accent rounded-full"></span>
                   End of Lease Cleaning
                 </Link>
@@ -91,25 +96,25 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-6">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/about" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
+                <Link to="/about" onClick={scrollToTop} className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
                   <span className="w-2 h-2 bg-secondary rounded-full"></span>
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
+                <Link to="/contact" onClick={scrollToTop} className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
                   <span className="w-2 h-2 bg-secondary rounded-full"></span>
                   Contact
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
+                <Link to="/blog" onClick={scrollToTop} className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
                   <span className="w-2 h-2 bg-secondary rounded-full"></span>
                   Blog
                 </Link>
               </li>
               <li>
-                <Link to="/quote" className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
+                <Link to="/quote" onClick={scrollToTop} className="text-primary-light hover:text-accent transition-colors flex items-center gap-2">
                   <span className="w-2 h-2 bg-secondary rounded-full"></span>
                   Get Quote
                 </Link>
@@ -161,13 +166,13 @@ const Footer = () => {
               &copy; {new Date().getFullYear()} Fresh Plus Professional Cleaning Services. All rights reserved.
             </p>
             <div className="flex items-center gap-6 text-sm text-primary-light">
-              <Link to="/privacy-policy" className="hover:text-accent transition-colors">
+              <Link to="/privacy-policy" onClick={scrollToTop} className="hover:text-accent transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/terms-of-service" className="hover:text-accent transition-colors">
+              <Link to="/terms-of-service" onClick={scrollToTop} className="hover:text-accent transition-colors">
                 Terms of Service
               </Link>
-              <Link to="/licensed-insured" className="hover:text-accent transition-colors">
+              <Link to="/licensed-insured" onClick={scrollToTop} className="hover:text-accent transition-colors">
                 Licensed & Insured
               </Link>
             </div>
