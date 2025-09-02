@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
+import { sendContactEmails } from "@/lib/emailService";
 import { Send } from "lucide-react";
 
 const contactSchema = z.object({
@@ -57,7 +58,28 @@ const ContactForm = () => {
       }
 
       console.log("Contact message submitted successfully:", data);
-      toast.success("Message sent successfully! We'll get back to you within 24 hours.");
+      
+      // Send admin notification email
+      if (data && data[0]) {
+        console.log("📧 Sending contact notification emails...");
+        const emailResult = await sendContactEmails({
+          id: data[0].id,
+          name: data[0].name,
+          email: data[0].email,
+          phone: data[0].phone,
+          subject: data[0].subject,
+          message: data[0].message,
+        });
+
+        if (emailResult.success) {
+          console.log("✅ Contact notification emails sent successfully");
+        } else {
+          console.error("❌ Failed to send contact notification emails:", emailResult.error);
+          // Don't fail the form submission if email fails, just log it
+        }
+      }
+      
+      toast.success("Message sent successfully! We'll get back to you within 1 hour (7AM-7PM) or next business day (after 7PM).");
       form.reset();
       
     } catch (error) {

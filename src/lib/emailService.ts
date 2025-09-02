@@ -81,6 +81,15 @@ export interface QuoteData {
   job_description?: string;
 }
 
+export interface ContactData {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  subject: string;
+  message: string;
+}
+
 // Generate booking confirmation email HTML for customer
 export const generateBookingConfirmationEmail = (booking: BookingData) => {
   const formattedDate = new Date(booking.service_date).toLocaleDateString('en-AU', {
@@ -1110,6 +1119,44 @@ export const sendQuoteEmails = async (quote: QuoteData) => {
   } catch (error) {
     console.error('❌ Error sending quote emails:', error);
     console.error('📋 Quote data:', JSON.stringify(quote, null, 2));
+    
+    // Detailed error information
+    if (error instanceof Error) {
+      console.error('Error name:', error.name);
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
+    
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error', details: error };
+  }
+};
+
+// Send contact form notification to admin
+export const sendContactEmails = async (contact: ContactData) => {
+  console.log('📧 Attempting to send contact emails for:', contact.name, '- Subject:', contact.subject);
+  
+  try {
+    // Use Supabase Edge Function for server-side email dispatch (avoids CORS issues)
+    const { data: edgeData, error: edgeError } = await supabase.functions.invoke('email-dispatch', {
+      body: { type: 'contact', contact, adminEmail: ADMIN_EMAIL }
+    });
+
+    if (edgeError) {
+      console.error('❌ Edge function contact email error:', edgeError);
+      throw new Error(`Edge function failed: ${edgeError.message || JSON.stringify(edgeError)}`);
+    }
+    
+    if (edgeData?.success) {
+      console.log('✅ Contact emails sent via Edge Function:', edgeData);
+      console.log('🎉 All contact emails sent successfully!');
+      return { success: true, customerEmail: edgeData.customer, adminEmail: edgeData.admin };
+    } else {
+      console.error('❌ Edge function returned unsuccessful result:', edgeData);
+      throw new Error(`Edge function returned error: ${edgeData?.error || 'Unknown error'}`);
+    }
+  } catch (error) {
+    console.error('❌ Error sending contact emails:', error);
+    console.error('📋 Contact data:', JSON.stringify(contact, null, 2));
     
     // Detailed error information
     if (error instanceof Error) {
