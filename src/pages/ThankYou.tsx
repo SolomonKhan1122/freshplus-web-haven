@@ -86,13 +86,16 @@ const ThankYou = () => {
             
             <div className="space-y-4 text-gray-700">
               <p className="text-lg">
-                ✅ We've received your <strong>{getSourceDisplay(source)}</strong> request
+                ✅ We've received your <strong>{type === 'booking' ? 'booking' : 'quote'} request</strong>
               </p>
               <p className="text-lg">
                 📧 Confirmation email has been sent to your inbox
               </p>
               <p className="text-lg">
-                ⏱️ Our team will contact you within <strong>24 hours</strong>
+                ⏱️ Our team will contact you within <strong>1 hour</strong> from 7:00 AM to 7:00 PM
+              </p>
+              <p className="text-sm text-gray-600 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                📅 <strong>Note:</strong> Requests submitted after 7:00 PM will be handled next business day
               </p>
             </div>
 
@@ -116,15 +119,18 @@ const ThankYou = () => {
             </div>
 
             {/* Contact Information */}
-            <div className="mt-8 p-6 bg-gradient-to-r from-accent/10 to-secondary/10 rounded-xl">
-              <h3 className="text-lg font-bold text-primary mb-4">Need Immediate Assistance?</h3>
+            <div className="mt-8 p-6 bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-xl">
+              <h3 className="text-lg font-bold text-red-700 mb-4">🚨 Urgent Inquiries?</h3>
+              <p className="text-sm text-red-600 mb-4">
+                For immediate assistance or urgent cleaning needs, please call us directly:
+              </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
                   href="tel:+61403971720"
-                  className="flex items-center justify-center bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors"
+                  className="flex items-center justify-center bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors font-bold"
                 >
                   <Phone className="h-4 w-4 mr-2" />
-                  Call: 0403 971 720
+                  Call Now: 0403 971 720
                 </a>
                 <a 
                   href="mailto:infofreshplusclean@gmail.com"
@@ -134,6 +140,9 @@ const ThankYou = () => {
                   Email Us
                 </a>
               </div>
+              <p className="text-xs text-gray-600 mt-3 text-center">
+                Available 7:00 AM - 7:00 PM daily
+              </p>
             </div>
           </div>
 
