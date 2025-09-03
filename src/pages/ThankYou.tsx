@@ -33,10 +33,7 @@ const ThankYou = () => {
       
       // Google Ads conversion event (this is what triggers conversion tracking)
       gtag('event', 'conversion', {
-        send_to: 'AW-17525851975',
-        value: 1.0,
-        currency: 'AUD',
-        transaction_id: `${Date.now()}-${source}`
+        send_to: 'AW-17525851975/avIKCMDsq5MbEMeO_aRB'
       });
       
       // Page view tracking for thank you page
