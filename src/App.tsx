@@ -33,6 +33,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import PressureWashingLanding from "./pages/PressureWashingLanding";
 import TileGroutLanding from "./pages/TileGroutLanding";
 import EndOfLeaseLanding from "./pages/EndOfLeaseLanding";
+import ThankYou from "./pages/ThankYou";
 
 function App() {
   const queryClient = new QueryClient();
@@ -71,6 +72,9 @@ function App() {
             <Route path="/pressure-washing" element={<PressureWashingLanding />} />
             <Route path="/tile-grout-cleaning" element={<TileGroutLanding />} />
             <Route path="/end-of-lease-cleaning" element={<EndOfLeaseLanding />} />
+            
+            {/* Thank You Page for Conversion Tracking */}
+            <Route path="/thank-you" element={<ThankYou />} />
             
             {/* Admin Routes */}
             <Route path="/admin/login" element={<AdminLogin />} />
