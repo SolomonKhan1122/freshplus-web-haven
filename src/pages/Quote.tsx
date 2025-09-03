@@ -519,15 +519,7 @@ const Quote = () => {
           </Form>
         </div>
       </div>
-      
-      {/* Thank You Page Overlay */}
-      {showThankYou && (
-        <ThankYouPage 
-          type="quote" 
-          customerName={submittedName}
-          onClose={() => setShowThankYou(false)}
-        />
-      )}
+
     </div>
   );
 };

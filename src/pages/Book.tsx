@@ -254,15 +254,7 @@ const Book = () => {
           </Form>
         </div>
       </div>
-      
-      {/* Thank You Page Overlay */}
-      {showThankYou && (
-        <ThankYouPage 
-          type="booking" 
-          customerName={submittedName}
-          onClose={() => setShowThankYou(false)}
-        />
-      )}
+
     </div>
   );
 };
