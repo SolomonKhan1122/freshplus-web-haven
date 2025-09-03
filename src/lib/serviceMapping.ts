@@ -7,6 +7,11 @@ export interface ServiceInfo {
 }
 
 export const SERVICES: Record<string, ServiceInfo> = {
+  'pressure-washing': {
+    value: 'pressure-washing',
+    displayName: 'Pressure Washing',
+    shortName: 'Pressure Washing'
+  },
   'end-of-lease': {
     value: 'end-of-lease',
     displayName: 'End of Lease Cleaning',
@@ -157,6 +162,7 @@ export const getServiceShortName = (serviceValue: string): string => {
 // Get all services for dropdowns (in order)
 export const getAllServices = (): ServiceInfo[] => {
   return [
+    SERVICES['pressure-washing'],
     SERVICES['end-of-lease'],
     SERVICES['residential'], 
     SERVICES['commercial'],
@@ -170,6 +176,7 @@ export const getAllServices = (): ServiceInfo[] => {
 // Get all quote services (in order)
 export const getAllQuoteServices = (): ServiceInfo[] => {
   return [
+    SERVICES['pressure-washing'],
     SERVICES['end-of-lease'],
     SERVICES['carpet-dry'],
     SERVICES['rug-cleaning'],

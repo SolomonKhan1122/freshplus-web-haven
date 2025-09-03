@@ -30,6 +30,9 @@ import AdminBookings from "./pages/admin/AdminBookings";
 import AdminQuotes from "./pages/admin/AdminQuotes";
 import AdminContacts from "./pages/admin/AdminContacts";
 import ProtectedRoute from "./components/ProtectedRoute";
+import PressureWashingLanding from "./pages/PressureWashingLanding";
+import TileGroutLanding from "./pages/TileGroutLanding";
+import EndOfLeaseLanding from "./pages/EndOfLeaseLanding";
 
 function App() {
   const queryClient = new QueryClient();
@@ -63,6 +66,11 @@ function App() {
             <Route path="/licensed-insured" element={<LicensedInsured />} />
             <Route path="/admin/quotes-list" element={<QuotesList />} />
             <Route path="/admin/simple" element={<SimpleAdmin />} />
+            
+            {/* Landing Pages for Google Ads */}
+            <Route path="/pressure-washing" element={<PressureWashingLanding />} />
+            <Route path="/tile-grout-cleaning" element={<TileGroutLanding />} />
+            <Route path="/end-of-lease-cleaning" element={<EndOfLeaseLanding />} />
             
             {/* Admin Routes */}
             <Route path="/admin/login" element={<AdminLogin />} />

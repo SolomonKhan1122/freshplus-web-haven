@@ -62,6 +62,7 @@ const Quote = () => {
   });
 
   const availableServices = [
+    "pressure-washing",
     "end-of-lease",
     "carpet-dry",
     "rug-cleaning", 
