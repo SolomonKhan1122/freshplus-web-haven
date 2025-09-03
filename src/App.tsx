@@ -34,6 +34,7 @@ import PressureWashingLanding from "./pages/PressureWashingLanding";
 import TileGroutLanding from "./pages/TileGroutLanding";
 import EndOfLeaseLanding from "./pages/EndOfLeaseLanding";
 import ThankYou from "./pages/ThankYou";
+import GoogleAnalyticsTracker from "./components/GoogleAnalyticsTracker";
 
 function App() {
   const queryClient = new QueryClient();
@@ -45,6 +46,7 @@ function App() {
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <GoogleAnalyticsTracker />
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Index />} />

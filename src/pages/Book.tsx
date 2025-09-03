@@ -110,25 +110,9 @@ const Book = () => {
         }
       }
       
-      // Track conversion for Google Analytics and Google Ads
-      if (typeof gtag !== 'undefined') {
-        // Google Analytics event
-        gtag('event', 'form_submit', {
-          event_category: 'engagement',
-          event_label: 'main_booking_form',
-          value: 1
-        });
-        
-        // Google Ads conversion
-        gtag('event', 'conversion', {
-          send_to: 'AW-17525851975/booking_submission',
-          event_category: 'conversion',
-          event_label: 'main_booking',
-          value: 1
-        });
-      }
+      console.log('✅ Booking submitted successfully, redirecting to thank you page');
       
-      // Redirect to thank you page
+      // Redirect to thank you page (conversion tracking happens there)
       navigate(`/thank-you?source=main-booking&type=booking&name=${encodeURIComponent(values.name)}`);
       form.reset();
       

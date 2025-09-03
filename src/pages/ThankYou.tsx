@@ -15,8 +15,42 @@ const ThankYou = () => {
   const type = searchParams.get('type') || 'quote';
   const name = searchParams.get('name') || 'valued customer';
 
-  // Auto-redirect countdown (optional - can be removed if not wanted)
+  // Track conversion when thank you page loads
   useEffect(() => {
+    // Fire Google Analytics and Google Ads conversion events
+    if (typeof gtag !== 'undefined') {
+      console.log('🎯 Firing conversion events on thank you page');
+      
+      // Google Analytics conversion event
+      gtag('event', 'conversion_complete', {
+        event_category: 'conversion',
+        event_label: source,
+        custom_map: {
+          'custom_parameter_1': type,
+          'custom_parameter_2': source
+        }
+      });
+      
+      // Google Ads conversion event (this is what triggers conversion tracking)
+      gtag('event', 'conversion', {
+        send_to: 'AW-17525851975',
+        value: 1.0,
+        currency: 'AUD',
+        transaction_id: `${Date.now()}-${source}`
+      });
+      
+      // Page view tracking for thank you page
+      gtag('config', 'G-VY43MPH5J3', {
+        page_title: `Thank You - ${getSourceDisplay(source)}`,
+        page_location: window.location.href
+      });
+      
+      console.log('✅ Conversion events fired successfully');
+    } else {
+      console.warn('⚠️ gtag not available - conversion tracking may not work');
+    }
+
+    // Auto-redirect countdown (optional - can be removed if not wanted)
     const timer = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
@@ -29,7 +63,7 @@ const ThankYou = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [navigate]);
+  }, [source, type, navigate]);
 
   const getSourceDisplay = (source: string) => {
     const sourceMap: Record<string, string> = {
