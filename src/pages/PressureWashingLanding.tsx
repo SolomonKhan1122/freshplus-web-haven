@@ -48,8 +48,20 @@ const PressureWashingLanding = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
-            {/* Left Column - Headlines & Benefits */}
+            {/* Left Column - Image & Headlines */}
             <div className="space-y-8">
+              {/* Hero Image */}
+              <div className="relative mb-4">
+                <img 
+                  src="/Pressure_washing.webp" 
+                  alt="Professional Pressure Washing Services Melbourne - Before and After Results" 
+                  className="w-full h-80 sm:h-96 lg:h-[28rem] object-cover object-top rounded-2xl shadow-2xl"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent rounded-2xl"></div>
+                <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg">
+                  <p className="text-sm font-bold text-primary">✨ Amazing Results Guaranteed</p>
+                </div>
+              </div>
               {/* Attention-Grabbing Badge */}
               <div className="inline-flex items-center bg-accent text-black px-4 py-2 rounded-full font-bold text-sm">
                 <Zap className="h-4 w-4 mr-2" />
