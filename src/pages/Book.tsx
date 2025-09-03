@@ -111,6 +111,24 @@ const Book = () => {
         }
       }
       
+      // Track conversion for Google Analytics and Google Ads
+      if (typeof gtag !== 'undefined') {
+        // Google Analytics event
+        gtag('event', 'form_submit', {
+          event_category: 'engagement',
+          event_label: 'main_booking_form',
+          value: 1
+        });
+        
+        // Google Ads conversion
+        gtag('event', 'conversion', {
+          send_to: 'AW-17525851975/booking_submission',
+          event_category: 'conversion',
+          event_label: 'main_booking',
+          value: 1
+        });
+      }
+      
       // Show thank you page instead of toast
       setSubmittedName(values.name);
       setShowThankYou(true);

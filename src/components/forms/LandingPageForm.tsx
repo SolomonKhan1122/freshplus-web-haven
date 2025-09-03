@@ -116,11 +116,40 @@ const LandingPageForm = ({ serviceType, availableServices }: LandingPageFormProp
 
       if (emailResult.success) {
         console.log('Emails sent successfully');
+        
+        // Track conversion for Google Analytics and Google Ads
+        if (typeof gtag !== 'undefined') {
+          // Google Analytics event
+          gtag('event', 'form_submit', {
+            event_category: 'engagement',
+            event_label: `landing_page_${serviceType}`,
+            value: 1
+          });
+          
+          // Google Ads conversion
+          gtag('event', 'conversion', {
+            send_to: 'AW-17525851975/quote_submission',
+            event_category: 'conversion',
+            event_label: serviceType,
+            value: 1
+          });
+        }
+        
         setSubmittedName(values.name);
         setShowThankYou(true);
         toast.success("Quote request submitted successfully! Check your email for confirmation.");
       } else {
         console.error('Email sending failed:', emailResult.error);
+        
+        // Still track the submission even if email fails
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'form_submit', {
+            event_category: 'engagement',
+            event_label: `landing_page_${serviceType}`,
+            value: 1
+          });
+        }
+        
         toast.success("Quote saved! We'll contact you soon (email notification pending).");
         setSubmittedName(values.name);
         setShowThankYou(true);

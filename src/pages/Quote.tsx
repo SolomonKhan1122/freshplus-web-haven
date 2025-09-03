@@ -143,6 +143,24 @@ const Quote = () => {
         }
       }
       
+      // Track conversion for Google Analytics and Google Ads
+      if (typeof gtag !== 'undefined') {
+        // Google Analytics event
+        gtag('event', 'form_submit', {
+          event_category: 'engagement',
+          event_label: 'main_quote_form',
+          value: 1
+        });
+        
+        // Google Ads conversion
+        gtag('event', 'conversion', {
+          send_to: 'AW-17525851975/quote_submission',
+          event_category: 'conversion',
+          event_label: 'main_quote',
+          value: 1
+        });
+      }
+      
       // Show thank you page instead of toast
       setSubmittedName(values.name);
       setShowThankYou(true);
