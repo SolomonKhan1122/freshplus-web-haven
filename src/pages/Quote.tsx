@@ -18,7 +18,7 @@ import { supabase } from "@/lib/supabase";
 import { sendQuoteEmails } from "@/lib/emailService";
 import { getServiceDisplayName } from "@/lib/serviceMapping";
 import { useState } from "react";
-import ThankYouPage from "@/components/ThankYouPage";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -40,8 +40,7 @@ const formSchema = z.object({
 const Quote = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
-  const [showThankYou, setShowThankYou] = useState(false);
-  const [submittedName, setSubmittedName] = useState("");
+  const navigate = useNavigate();
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -161,9 +160,8 @@ const Quote = () => {
         });
       }
       
-      // Show thank you page instead of toast
-      setSubmittedName(values.name);
-      setShowThankYou(true);
+      // Redirect to thank you page
+      navigate(`/thank-you?source=main-quote&type=quote&name=${encodeURIComponent(values.name)}`);
       form.reset();
       
     } catch (error) {

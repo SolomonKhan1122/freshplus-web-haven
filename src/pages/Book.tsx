@@ -19,7 +19,7 @@ import { FormSection } from "@/components/forms/FormSection";
 import { supabase } from "@/lib/supabase";
 import { sendBookingEmails } from "@/lib/emailService";
 import { useState } from "react";
-import ThankYouPage from "@/components/ThankYouPage";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -37,8 +37,7 @@ const formSchema = z.object({
 const Book = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
-  const [showThankYou, setShowThankYou] = useState(false);
-  const [submittedName, setSubmittedName] = useState("");
+  const navigate = useNavigate();
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -129,9 +128,8 @@ const Book = () => {
         });
       }
       
-      // Show thank you page instead of toast
-      setSubmittedName(values.name);
-      setShowThankYou(true);
+      // Redirect to thank you page
+      navigate(`/thank-you?source=main-booking&type=booking&name=${encodeURIComponent(values.name)}`);
       form.reset();
       
     } catch (error) {

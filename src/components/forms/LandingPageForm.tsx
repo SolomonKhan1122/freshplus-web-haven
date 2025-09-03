@@ -17,7 +17,7 @@ import { supabase } from "@/lib/supabase";
 import { sendQuoteEmails } from "@/lib/emailService";
 import { getServiceDisplayName } from "@/lib/serviceMapping";
 import { useState } from "react";
-import ThankYouPage from "@/components/ThankYouPage";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -44,8 +44,7 @@ interface LandingPageFormProps {
 const LandingPageForm = ({ serviceType, availableServices }: LandingPageFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
-  const [showThankYou, setShowThankYou] = useState(false);
-  const [submittedName, setSubmittedName] = useState("");
+  const navigate = useNavigate();
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -135,9 +134,8 @@ const LandingPageForm = ({ serviceType, availableServices }: LandingPageFormProp
           });
         }
         
-        setSubmittedName(values.name);
-        setShowThankYou(true);
-        toast.success("Quote request submitted successfully! Check your email for confirmation.");
+        // Redirect to thank you page with parameters
+        navigate(`/thank-you?source=${serviceType}&type=quote&name=${encodeURIComponent(values.name)}`);
       } else {
         console.error('Email sending failed:', emailResult.error);
         
@@ -150,9 +148,8 @@ const LandingPageForm = ({ serviceType, availableServices }: LandingPageFormProp
           });
         }
         
-        toast.success("Quote saved! We'll contact you soon (email notification pending).");
-        setSubmittedName(values.name);
-        setShowThankYou(true);
+        // Redirect to thank you page even if email fails
+        navigate(`/thank-you?source=${serviceType}&type=quote&name=${encodeURIComponent(values.name)}`);
       }
     } catch (error) {
       console.error('Error submitting quote:', error);
@@ -161,10 +158,6 @@ const LandingPageForm = ({ serviceType, availableServices }: LandingPageFormProp
       setIsSubmitting(false);
     }
   };
-
-  if (showThankYou) {
-    return <ThankYouPage name={submittedName} />;
-  }
 
   return (
     <div className="max-w-2xl mx-auto">
