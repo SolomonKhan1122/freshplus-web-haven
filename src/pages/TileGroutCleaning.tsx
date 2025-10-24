@@ -1,433 +1,301 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Star, Shield, Clock, CheckCircle, Sparkles, Home, Building, Phone, Mail } from "lucide-react";
+import { 
+  Phone, 
+  CheckCircle, 
+  Clock, 
+  Shield, 
+  Sparkles,
+  Star,
+  Award,
+  Calendar,
+  Leaf,
+  Home
+} from "lucide-react";
 
 const TileGroutCleaning = () => {
+  const cleaningServices = [
+    {
+      name: "Kitchen Tiles",
+      description: "Remove grease, grime, and stains from kitchen backsplashes and floor tiles",
+      icon: Sparkles
+    },
+    {
+      name: "Bathroom Tiles",
+      description: "Eliminate soap scum, mold, and mildew from bathroom walls and floors",
+      icon: Shield
+    },
+    {
+      name: "Outdoor Tiles",
+      description: "Restore patio, balcony, and outdoor tile surfaces to pristine condition",
+      icon: Home
+    }
+  ];
+
+  const whyChooseUs = [
+    {
+      title: "Professional Equipment",
+      description: "High-pressure steam cleaning systems",
+      icon: Shield
+    },
+    {
+      title: "Eco-Friendly Solutions",
+      description: "Safe for family and environment",
+      icon: Leaf
+    },
+    {
+      title: "Expert Technicians",
+      description: "Trained in tile and grout restoration",
+      icon: Clock
+    },
+    {
+      title: "Guaranteed Results",
+      description: "Satisfaction or we'll make it right",
+      icon: Award
+    }
+  ];
+
+  const pricingPlans = [
+    {
+      title: "Bathroom Clean",
+      description: "Perfect for single bathroom refresh",
+      features: ["Tile cleaning", "Grout deep clean", "Mold removal", "Sanitization", "1-2 hour service"],
+      cta: "Get Quote"
+    },
+    {
+      title: "Kitchen & Bath",
+      description: "Complete kitchen and bathroom solution",
+      features: ["All bathroom services", "Kitchen backsplash", "Floor tiles", "Grout sealing", "2-4 hour service"],
+      cta: "Get Quote",
+      popular: true
+    },
+    {
+      title: "Whole Home",
+      description: "Comprehensive tile cleaning package",
+      features: ["All tiled areas", "Multiple bathrooms", "Kitchen tiles", "Outdoor tiles", "4-6 hour service"],
+      cta: "Get Quote"
+    }
+  ];
+
+  const serviceAreas = [
+    "Melbourne CBD", "South Yarra", "Richmond", "Collingwood", "Fitzroy",
+    "Carlton", "St Kilda", "Prahran", "Toorak", "Hawthorn",
+    "Camberwell", "Kew", "Northcote", "Thornbury", "Preston"
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-light to-white">
+    <div className="min-h-screen bg-white">
+      <SEOHead
+        title="Tile & Grout Cleaning Melbourne | Fresh Plus Cleaning"
+        description="Professional tile and grout cleaning services across Melbourne. Remove stains, mold, and restore shine. Kitchen, bathroom, and outdoor tile specialists."
+        canonical="https://www.freshpluscleaning.com.au/services/tile-grout-cleaning"
+        type="service"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": "Tile and Grout Cleaning",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Fresh Plus Cleaning Melbourne",
+            "telephone": "+61 403 971 720",
+            "areaServed": "Melbourne, VIC",
+            "url": "https://freshpluscleaning.com.au"
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "Melbourne",
+            "addressRegion": "VIC",
+            "addressCountry": "AU"
+          }
+        }}
+      />
+      
       <Navigation />
       
       {/* Hero Section */}
-      <div className="pt-24 pb-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Hero Content */}
-            <div>
-              <span className="inline-block bg-accent/10 text-accent font-semibold px-4 py-2 rounded-full text-sm uppercase tracking-wide mb-4">
-                Professional Tile & Grout Cleaning
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 leading-tight">
-                Restore Your Tiles to <span className="bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent">Perfection</span>
-              </h1>
-              <p className="text-xl text-primary/80 mb-8 leading-relaxed">
-                Professional tile and grout cleaning services in Melbourne, Victoria. 
-                Transform your dirty, stained tiles back to their original beauty with our 
-                advanced cleaning techniques and 12 years of expertise.
-              </p>
-              
-              {/* Trust Indicators */}
-              <div className="flex flex-wrap gap-6 mb-8">
-                {[
-                  { icon: Star, text: "5-Star Rated Service" },
-                  { icon: Shield, text: "Fully Licensed & Insured" },
-                  { icon: Clock, text: "12+ Years Experience" }
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <item.icon className="w-5 h-5 text-accent" />
-                    <span className="text-primary/80 font-medium">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-              
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/quote">
-                  <Button className="bg-accent hover:bg-accent/90 text-black font-bold py-4 px-8 text-lg w-full sm:w-auto">
-                    Get Free Quote
-                  </Button>
-                </Link>
-                <a href="tel:+61403971720">
-                  <Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-white py-4 px-8 text-lg w-full sm:w-auto">
-                    <Phone className="w-5 h-5 mr-2" />
-                    Call Now
-                  </Button>
-                </a>
-              </div>
-            </div>
-            
-            {/* Hero Image */}
-            <div className="relative">
-              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-accent/10">
-                <img 
-                  src="/tile & grout replacement.webp" 
-                  alt="Professional tile and grout cleaning service in Melbourne - before and after results"
-                  className="w-full h-96 object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = '/Home_Hero.webp';
-                    e.currentTarget.className = 'w-full h-96 object-cover';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
-                <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-xl p-4">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-6 h-6 text-accent" />
-                    <span className="font-bold text-primary">Professional Results Guaranteed</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <section className="bg-white py-16 md:py-20 text-center px-4">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6">
+            Tile & Grout Cleaning Melbourne
+          </h1>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Restore the shine your tiles deserve. Professional cleaning that removes embedded dirt, stains, and mold from tiles and grout.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+            <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
+              <Link to="/quote">Get Free Quote</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-6 text-lg">
+              <a href="tel:+61403971720">
+                <Phone className="mr-2 h-5 w-5" />
+                Call 0403 971 720
+              </a>
+            </Button>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Why Choose Our Service */}
-      <div className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-primary mb-4">
-              Why Your Tiles Need Professional Cleaning
-            </h2>
-            <p className="text-xl text-primary/80 max-w-3xl mx-auto">
-              Over time, tiles and grout accumulate dirt, stains, mold, and bacteria that regular cleaning can't remove. 
-              Our professional service restores hygiene and beauty to your surfaces.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
+      {/* Trust Bar */}
+      <section className="py-8 bg-gray-100">
+        <div className="max-w-screen-xl mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 text-center gap-6">
             {[
-              {
-                title: "Health & Hygiene",
-                description: "Eliminate mold, mildew, and bacteria that can cause health issues and poor indoor air quality.",
-                benefits: ["Removes allergens", "Prevents mold growth", "Improves air quality", "Safe for families"]
-              },
-              {
-                title: "Aesthetic Appeal",
-                description: "Restore the original beauty of your tiles by removing deep stains and discoloration.",
-                benefits: ["Removes stubborn stains", "Brightens grout lines", "Restores original color", "Like-new appearance"]
-              },
-              {
-                title: "Cost Effective",
-                description: "Extend the life of your tiles and avoid costly replacements with regular professional cleaning.",
-                benefits: ["Prevents damage", "Extends tile lifespan", "Avoids replacements", "Maintains property value"]
-              }
-            ].map((item, index) => (
-              <div key={index} className="bg-gradient-to-br from-primary-light/20 to-secondary-light/20 rounded-2xl p-8 border border-accent/10">
-                <h3 className="text-2xl font-bold text-primary mb-4">{item.title}</h3>
-                <p className="text-primary/80 mb-6">{item.description}</p>
-                <ul className="space-y-2">
-                  {item.benefits.map((benefit, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span className="text-primary/70">{benefit}</span>
+              { icon: Calendar, text: "12+ Years Experience" },
+              { icon: Shield, text: "Licensed & Insured" },
+              { icon: Star, text: "4.9★ Google Rating" },
+              { icon: Leaf, text: "Eco-Friendly Products" }
+            ].map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <div key={index} className="flex flex-col items-center gap-2">
+                  <IconComponent className="w-8 h-8 text-primary" />
+                  <p className="font-medium text-gray-700">{item.text}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Service Overview */}
+      <section className="py-14 px-4">
+        <div className="max-w-screen-lg mx-auto text-center">
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+            Our professional tile and grout cleaning service uses advanced steam cleaning technology to deep clean, sanitize, and restore your tiles. From stubborn stains to embedded mold, we make your tiles look brand new.
+          </p>
+        </div>
+      </section>
+
+      {/* Cleaning Services Grid */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-screen-xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
+            Tile & Grout Services
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {cleaningServices.map((service, index) => {
+              const IconComponent = service.icon;
+              return (
+                <div key={index} className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                  <IconComponent className="w-10 h-10 text-accent mb-4" />
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.name}</h3>
+                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-screen-xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
+            Why Choose Fresh Plus
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {whyChooseUs.map((feature, index) => {
+              const IconComponent = feature.icon;
+              return (
+                <div key={index} className="text-center">
+                  <div className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <IconComponent className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Packages */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-screen-xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
+            Tile Cleaning Packages
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Choose the perfect package for your tile cleaning needs
+          </p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {pricingPlans.map((plan, index) => (
+              <div key={index} className={`bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow relative ${plan.popular ? 'ring-2 ring-accent' : ''}`}>
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-accent text-black px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                  </div>
+                )}
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{plan.title}</h3>
+                <p className="text-gray-600 mb-6">{plan.description}</p>
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-2 text-gray-700">
+                      <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0" />
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
+                <Button asChild className={`w-full ${plan.popular ? 'bg-accent hover:bg-accent-dark text-black' : 'bg-primary hover:bg-primary-dark text-white'} font-semibold`}>
+                  <Link to="/quote">{plan.cta}</Link>
+                </Button>
               </div>
             ))}
           </div>
         </div>
-      </div>
-
-      {/* Before & After Showcase */}
-      <div className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-primary mb-4">
-              See the Amazing <span className="text-accent">Transformation</span>
-            </h2>
-            <p className="text-xl text-primary/80 max-w-3xl mx-auto">
-              Our professional tile and grout cleaning delivers remarkable results. 
-              See how we transform dirty, stained surfaces back to their original beauty.
-            </p>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Before/After Image */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-primary-light/10 to-accent/10 rounded-3xl shadow-2xl overflow-hidden border border-accent/20 p-6">
-                <img 
-                  src="/tile & grout replacement.webp" 
-                  alt="Before and after tile and grout cleaning results - dramatic improvement in cleanliness"
-                  className="w-full h-80 object-cover rounded-2xl shadow-lg"
-                  onError={(e) => {
-                    e.currentTarget.src = '/Home_Hero.webp';
-                    e.currentTarget.className = 'w-full h-80 object-cover rounded-2xl shadow-lg';
-                  }}
-                />
-                <div className="absolute top-10 left-10 bg-red-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
-                  BEFORE
-                </div>
-                <div className="absolute top-10 right-10 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
-                  AFTER
-                </div>
-              </div>
-              
-              {/* Floating stats */}
-              <div className="absolute -bottom-6 -right-6 bg-accent text-white p-6 rounded-2xl shadow-lg">
-                <div className="text-center">
-                  <div className="text-3xl font-bold">100%</div>
-                  <div className="text-sm">Satisfied Customers</div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Results Details */}
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-3xl font-bold text-primary mb-6">Dramatic Results You Can See</h3>
-                <p className="text-lg text-primary/80 mb-8">
-                  Our advanced cleaning techniques and professional-grade equipment deliver transformations 
-                  that exceed expectations. See the difference professional care makes.
-                </p>
-              </div>
-              
-              <div className="grid sm:grid-cols-2 gap-6">
-                {[
-                  {
-                    icon: <Sparkles className="w-8 h-8 text-accent" />,
-                    title: "Grout Restoration",
-                    description: "Transform dark, stained grout back to its original color"
-                  },
-                  {
-                    icon: <Shield className="w-8 h-8 text-accent" />,
-                    title: "Deep Sanitization",
-                    description: "Eliminate bacteria, mold, and harmful microorganisms"
-                  },
-                  {
-                    icon: <Star className="w-8 h-8 text-accent" />,
-                    title: "Surface Protection",
-                    description: "Apply protective coating to prevent future staining"
-                  },
-                  {
-                    icon: <Clock className="w-8 h-8 text-accent" />,
-                    title: "Long-Lasting",
-                    description: "Results that maintain their beauty for months longer"
-                  }
-                ].map((result, index) => (
-                  <div key={index} className="bg-white p-6 rounded-xl shadow-md border border-accent/10 hover:shadow-lg transition-shadow">
-                    <div className="flex items-start gap-4">
-                      <div className="bg-accent/10 p-2 rounded-lg flex-shrink-0">
-                        {result.icon}
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-primary mb-2">{result.title}</h4>
-                        <p className="text-primary/70 text-sm">{result.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="bg-gradient-to-r from-primary-light/20 to-accent/10 p-6 rounded-xl shadow-lg border-l-4 border-accent">
-                <div className="flex items-center gap-3 mb-3">
-                  <Star className="w-6 h-6 text-accent" />
-                  <h4 className="font-bold text-primary">Melbourne Homeowner</h4>
-                </div>
-                <p className="text-primary/80 italic">
-                  "I couldn't believe the transformation! My bathroom tiles look brand new. 
-                  The grout went from black to white - it's like having a completely renovated bathroom."
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Our Process */}
-      <div className="py-16 bg-gradient-to-br from-primary-light/30 to-secondary-light/30">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-primary mb-4">Our Professional Cleaning Process</h2>
-            <p className="text-xl text-primary/80 max-w-3xl mx-auto">
-              We use advanced equipment and eco-friendly solutions to deliver exceptional results every time.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              {
-                step: "01",
-                title: "Inspection & Assessment",
-                description: "We thoroughly inspect your tiles and grout to determine the best cleaning approach and identify problem areas."
-              },
-              {
-                step: "02", 
-                title: "Pre-Treatment",
-                description: "Application of specialized cleaning solutions to break down dirt, stains, and built-up grime for easier removal."
-              },
-              {
-                step: "03",
-                title: "Deep Steam Cleaning",
-                description: "High-pressure steam cleaning with professional equipment removes deep-seated dirt and sanitizes surfaces."
-              },
-              {
-                step: "04",
-                title: "Sealing (Optional)",
-                description: "Protective grout sealing to prevent future staining and make maintenance easier for long-lasting results."
-              }
-            ].map((process, index) => (
-              <div key={index} className="bg-white rounded-2xl p-6 shadow-lg border border-accent/10 text-center">
-                <div className="bg-gradient-to-r from-accent to-secondary text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">
-                  {process.step}
-                </div>
-                <h3 className="text-xl font-bold text-primary mb-3">{process.title}</h3>
-                <p className="text-primary/70">{process.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      </section>
 
       {/* Service Areas */}
-      <div className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Service Types */}
-            <div>
-              <h2 className="text-4xl font-bold text-primary mb-8">Areas We Clean</h2>
-              
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-primary-light/20 to-secondary-light/20 rounded-xl p-6 border border-accent/10">
-                  <Home className="w-8 h-8 text-accent mb-3" />
-                  <h3 className="text-xl font-bold text-primary mb-3">Residential</h3>
-                  <ul className="space-y-2 text-primary/70">
-                    <li>• Bathroom tiles & shower areas</li>
-                    <li>• Kitchen backsplashes</li>
-                    <li>• Floor tiles & grout</li>
-                    <li>• Laundry room surfaces</li>
-                    <li>• Outdoor patios & pool areas</li>
-                  </ul>
-                </div>
-                
-                <div className="bg-gradient-to-br from-accent-light/20 to-secondary-light/20 rounded-xl p-6 border border-accent/10">
-                  <Building className="w-8 h-8 text-accent mb-3" />
-                  <h3 className="text-xl font-bold text-primary mb-3">Commercial</h3>
-                  <ul className="space-y-2 text-primary/70">
-                    <li>• Restaurant kitchens</li>
-                    <li>• Office building lobbies</li>
-                    <li>• Retail store floors</li>
-                    <li>• Medical facility surfaces</li>
-                    <li>• Shopping center areas</li>
-                  </ul>
-                </div>
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-screen-xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
+            Tile Cleaning Across Melbourne
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Professional tile and grout cleaning throughout Melbourne
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {serviceAreas.map((suburb, index) => (
+              <div key={index} className="bg-gray-50 p-4 rounded-lg text-center hover:bg-gray-100 transition-colors">
+                <span className="text-gray-900 font-medium">{suburb}</span>
               </div>
-            </div>
-            
-            {/* Tile Types */}
-            <div>
-              <h2 className="text-4xl font-bold text-primary mb-8">Tile Types We Service</h2>
-              
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-accent/10">
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    "Ceramic Tiles", "Porcelain Tiles", "Natural Stone", "Marble Surfaces",
-                    "Granite Tiles", "Travertine", "Slate Floors", "Quarry Tiles",
-                    "Mosaic Tiles", "Glass Tiles", "Terracotta", "Limestone"
-                  ].map((tileType, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span className="text-primary/80">{tileType}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="mt-6 bg-gradient-to-r from-accent/10 to-secondary/10 rounded-xl p-6 border border-accent/20">
-                <h3 className="text-lg font-bold text-primary mb-2">Melbourne's Premier Tile Cleaning Service</h3>
-                <p className="text-primary/80">
-                  Serving all Melbourne suburbs with professional tile and grout cleaning. 
-                  From inner city apartments to suburban homes, we bring our expertise to you.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
-        </div>
-      </div>
-
-      {/* Pricing & Guarantee */}
-      <div className="py-16 bg-gradient-to-br from-primary-light/30 to-secondary-light/30">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-primary mb-4">Fair, Transparent Pricing</h2>
-            <p className="text-xl text-primary/80 max-w-3xl mx-auto">
-              No hidden fees, no surprises. Get a free quote tailored to your specific needs.
+          <div className="text-center mt-8">
+            <p className="text-gray-600">
+              Don't see your suburb? <a href="tel:+61403971720" className="text-accent font-semibold hover:underline">Call us</a> - we likely service your area too
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            
-            {/* Pricing Features */}
-            <div className="md:col-span-2 bg-white rounded-2xl p-8 shadow-lg border border-accent/10">
-              <h3 className="text-2xl font-bold text-primary mb-6">What's Included</h3>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {[
-                  "Comprehensive inspection", "Pre-treatment of stains", "Professional steam cleaning", 
-                  "Grout line restoration", "Post-cleaning inspection", "Satisfaction guarantee",
-                  "Eco-friendly products", "Free maintenance tips"
-                ].map((feature, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                    <span className="text-primary/80">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Guarantee */}
-            <div className="bg-gradient-to-br from-accent to-secondary text-white rounded-2xl p-8 text-center">
-              <Star className="w-12 h-12 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-4">100% Satisfaction Guarantee</h3>
-              <p className="mb-6">
-                We're not satisfied until you are. If you're not completely happy with our service, 
-                we'll return to make it right at no extra cost.
-              </p>
-              <div className="bg-white/20 rounded-xl p-4">
-                <p className="font-bold">12+ Years of Excellence</p>
-                <p className="text-sm">Trusted by 5000+ Melbourne families</p>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+      </section>
 
-      {/* CTA Section */}
-      <div className="py-16 bg-gradient-to-r from-primary to-primary-dark text-white">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Tiles?</h2>
-          <p className="text-xl mb-8 text-white/90">
-            Get a free, no-obligation quote for professional tile and grout cleaning in Melbourne. 
-            Contact us today and see the FreshPlus difference!
+      {/* Final CTA */}
+      <section className="py-16 px-4 bg-gradient-to-r from-primary to-primary-dark text-white">
+        <div className="max-w-screen-xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Ready to Restore Your Tiles?
+          </h2>
+          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            Transform dirty, stained tiles into sparkling clean surfaces. Get your free quote today
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Link to="/quote">
-              <Button className="bg-accent hover:bg-accent/90 text-black font-bold py-4 px-8 text-lg w-full sm:w-auto">
-                Get Your Free Quote
-              </Button>
-            </Link>
-            <a href="tel:+61403971720">
-              <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary py-4 px-8 text-lg w-full sm:w-auto">
-                <Phone className="w-5 h-5 mr-2" />
-                Call +61 403 971 720
-              </Button>
-            </a>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center text-white/80">
-            <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4" />
-              <span>Email: info@freshpluscleaning.com.au</span>
-            </div>
-            <div className="hidden sm:block">•</div>
-            <div>Serving all Melbourne suburbs</div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
+              <Link to="/quote">Get Your Free Quote</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg">
+              <a href="tel:+61403971720">
+                <Phone className="mr-2 h-5 w-5" />
+                Call 0403 971 720
+              </a>
+            </Button>
           </div>
         </div>
-      </div>
-      
+      </section>
+
       <Footer />
     </div>
   );
