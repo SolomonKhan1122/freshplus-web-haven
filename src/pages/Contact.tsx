@@ -148,21 +148,21 @@ const Contact = () => {
 
       {/* Form Section */}
       <section className="py-16 px-4 bg-gray-50">
-        <div className="max-w-screen-md mx-auto">
-          <div className="text-center mb-8">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-10">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Send Us a Message</h2>
             <p className="text-gray-600">
               Complete the form below and we'll get back to you within 1 hour during business hours
             </p>
           </div>
-          <div className="bg-white p-8 rounded-xl shadow-md">
+          <div className="bg-white p-8 md:p-12 rounded-xl shadow-sm">
             <ContactForm />
           </div>
         </div>
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-16 px-4 bg-gradient-to-r from-primary to-primary-dark text-white">
+      <section className="py-16 px-4 bg-primary text-white">
         <div className="max-w-screen-xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Book Your Cleaning Service?

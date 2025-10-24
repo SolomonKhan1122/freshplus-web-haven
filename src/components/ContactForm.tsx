@@ -6,25 +6,23 @@ import { Button } from "@/components/ui/button";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
 import { sendContactEmails } from "@/lib/emailService";
-import { Send } from "lucide-react";
-import ThankYouPage from "./ThankYouPage";
+import { Send, Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
-  phone: z.string().optional(),
+  phone: z.string().min(10, "Phone number must be at least 10 digits"),
   subject: z.string().min(1, "Subject is required"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showThankYou, setShowThankYou] = useState(false);
-  const [submittedName, setSubmittedName] = useState("");
+  const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof contactSchema>>({
     resolver: zodResolver(contactSchema),
@@ -82,10 +80,8 @@ const ContactForm = () => {
         }
       }
       
-      // Show thank you page instead of toast
-      setSubmittedName(values.name);
-      setShowThankYou(true);
-      form.reset();
+      // Navigate to thank you page with contact type
+      navigate(`/thank-you?type=contact&name=${encodeURIComponent(values.name)}&source=contact-form`);
       
     } catch (error) {
       console.error('Error submitting contact message:', error);
@@ -96,13 +92,17 @@ const ContactForm = () => {
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle className="text-2xl text-center text-primary">Send us a message</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+    <div className="w-full">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          
+          {/* Contact Information Section */}
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">Contact Information</h3>
+              <p className="text-sm text-gray-500">How should we reach you?</p>
+            </div>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
@@ -112,7 +112,7 @@ const ContactForm = () => {
                     <FormLabel>Full Name *</FormLabel>
                     <FormControl>
                       <Input 
-                        placeholder="Enter your full name" 
+                        className="bg-white"
                         {...field} 
                       />
                     </FormControl>
@@ -120,52 +120,17 @@ const ContactForm = () => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email Address *</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="Enter your email" 
-                        type="email"
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              
               <FormField
                 control={form.control}
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
+                    <FormLabel>Mobile *</FormLabel>
                     <FormControl>
                       <Input 
-                        placeholder="Enter your phone number" 
                         type="tel"
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="subject"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Subject *</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="What is this about?" 
+                        className="bg-white"
                         {...field} 
                       />
                     </FormControl>
@@ -177,15 +142,40 @@ const ContactForm = () => {
 
             <FormField
               control={form.control}
-              name="message"
+              name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Message *</FormLabel>
+                  <FormLabel>Email Address *</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="Tell us how we can help you..."
-                      className="min-h-[120px]"
-                      {...field}
+                    <Input 
+                      type="email"
+                      className="bg-white"
+                      {...field} 
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          {/* Message Details Section */}
+          <div className="space-y-6 pt-6 border-t border-gray-200">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">Message Details</h3>
+              <p className="text-sm text-gray-500">Tell us how we can help</p>
+            </div>
+
+            <FormField
+              control={form.control}
+              name="subject"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Subject *</FormLabel>
+                  <FormControl>
+                    <Input 
+                      className="bg-white"
+                      {...field} 
                     />
                   </FormControl>
                   <FormMessage />
@@ -193,33 +183,52 @@ const ContactForm = () => {
               )}
             />
 
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Your Message *</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      className="min-h-[150px] bg-white resize-none"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          {/* Submit Button */}
+          <div className="pt-6 border-t border-gray-200">
             <Button 
               type="submit" 
-              className="w-full"
+              size="lg"
+              className="w-full bg-accent hover:bg-accent-dark text-black font-semibold text-lg py-6"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
-                "Sending..."
+                <>
+                  <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                  Sending Message...
+                </>
               ) : (
                 <>
-                  <Send className="h-4 w-4 mr-2" />
+                  <Send className="h-5 w-5 mr-2" />
                   Send Message
                 </>
               )}
             </Button>
-          </form>
-        </Form>
-      </CardContent>
-      
-      {/* Thank You Page Overlay */}
-      {showThankYou && (
-        <ThankYouPage 
-          type="contact" 
-          customerName={submittedName}
-          onClose={() => setShowThankYou(false)}
-        />
-      )}
-    </Card>
+            
+            <p className="text-center text-sm text-gray-500 mt-4">
+              We typically respond within 1 hour during business hours (7AM-7PM)
+            </p>
+          </div>
+        </form>
+      </Form>
+    </div>
   );
 };
 
