@@ -22,14 +22,14 @@ const Navigation = () => {
   return (
     <div className="w-full">
       {/* Header - Sticky */}
-      <header className="sticky top-0 z-50 bg-white px-4 py-2 sm:py-3 shadow-md">
+      <header className="sticky top-0 z-50 bg-white px-4 py-3 sm:py-4 shadow-md">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center flex-1 min-w-0">
             <Link to="/" className="flex items-center flex-1 min-w-0">
               <img 
                 src={logoImage} 
                 alt="Fresh Plus Professional Cleaning Services" 
-                className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto flex-shrink-0"
+                className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto flex-shrink-0"
               />
               <span className="ml-2 sm:ml-3 md:ml-4 text-sm sm:text-base md:text-lg font-medium text-primary bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent underline decoration-2 underline-offset-4 decoration-accent hidden sm:block">
                 Your Home, Our Expertise
@@ -53,17 +53,17 @@ const Navigation = () => {
             </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-primary hover:text-accent p-3 bg-white border-2 border-primary rounded-lg shadow-md transition-all duration-200 hover:shadow-lg"
+              className="text-primary hover:text-accent p-2 bg-white border-2 border-primary rounded-lg shadow-md transition-all duration-200 hover:shadow-lg"
               aria-label="Toggle mobile menu"
             >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
       </header>
 
       {/* Navigation - Sticky */}
-      <nav className="sticky top-[72px] sm:top-[84px] md:top-[100px] lg:top-[116px] z-40 bg-primary text-white px-4 py-3 sm:py-4 shadow-md">
+      <nav className="sticky top-[84px] sm:top-[100px] md:top-[116px] lg:top-[132px] z-40 bg-primary text-white px-4 py-3 sm:py-4 shadow-md">
         <div className="container mx-auto">
           <div className="hidden md:flex items-center justify-center">
             {/* Centered Menu items */}
@@ -118,7 +118,7 @@ const Navigation = () => {
 
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="fixed md:hidden top-[72px] sm:top-[84px] md:top-[100px] lg:top-[116px] left-0 right-0 bg-primary text-white border-t border-primary-light shadow-xl z-30 max-h-[calc(100vh-72px)] sm:max-h-[calc(100vh-84px)] overflow-y-auto">
+        <div className="fixed md:hidden top-[84px] sm:top-[100px] md:top-[116px] lg:top-[132px] left-0 right-0 bg-primary text-white border-t border-primary-light shadow-xl z-30 max-h-[calc(100vh-84px)] sm:max-h-[calc(100vh-100px)] overflow-y-auto">
           <div className="px-4 py-4 space-y-3">
             <Link
               to="/"
