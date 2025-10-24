@@ -76,6 +76,7 @@ export interface QuoteData {
   phone1: string;
   phone2?: string;
   email: string;
+  property_type?: string;
   services: string[];
   preferred_date?: string;
   job_description?: string;
@@ -556,6 +557,12 @@ export const generateQuoteConfirmationEmail = (quote: QuoteData) => {
                         <span class="detail-value">${quote.phone2}</span>
                     </div>
                     ` : ''}
+                    ${quote.property_type ? `
+                    <div class="detail-row">
+                        <span class="detail-label">🏢 Property Type:</span>
+                        <span class="detail-value" style="text-transform: capitalize;">${quote.property_type.replace('-', ' ')}</span>
+                    </div>
+                    ` : ''}
                     <div class="detail-row">
                         <span class="detail-label">🏠 Services:</span>
                         <div class="services-list">
@@ -1031,6 +1038,12 @@ export const generateAdminQuoteNotification = (quote: QuoteData) => {
                     <div class="detail-row">
                         <span class="detail-label">Secondary Phone:</span>
                         <span class="detail-value">${quote.phone2}</span>
+                    </div>
+                    ` : ''}
+                    ${quote.property_type ? `
+                    <div class="detail-row">
+                        <span class="detail-label">Property Type:</span>
+                        <span class="detail-value" style="text-transform: capitalize;"><strong>${quote.property_type.replace('-', ' ')}</strong></span>
                     </div>
                     ` : ''}
                     <div class="detail-row">

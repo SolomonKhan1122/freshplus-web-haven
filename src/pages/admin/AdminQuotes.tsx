@@ -43,6 +43,7 @@ interface Quote {
   phone1: string;
   phone2: string | null;
   email: string;
+  property_type: string | null;
   services: string[];
   preferred_date: string | null;
   job_description: string | null;
@@ -423,6 +424,12 @@ Email: infofreshplusclean@gmail.com`;
                                         <p className="text-gray-900">{selectedQuote.address}</p>
                                         <p className="text-gray-900">{selectedQuote.city}, {selectedQuote.postcode}</p>
                                       </div>
+                                      {selectedQuote.property_type && (
+                                        <div>
+                                          <label className="text-sm font-medium text-gray-700">Property Type</label>
+                                          <p className="text-gray-900 capitalize">{selectedQuote.property_type.replace('-', ' ')}</p>
+                                        </div>
+                                      )}
                                       {selectedQuote.preferred_date && (
                                         <div>
                                           <label className="text-sm font-medium text-gray-700">Preferred Date</label>
