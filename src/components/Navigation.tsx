@@ -21,8 +21,8 @@ const Navigation = () => {
 
   return (
     <div className="w-full">
-      {/* Header */}
-      <header className="bg-white px-4 py-2 sm:py-3 shadow-sm">
+      {/* Header - Sticky */}
+      <header className="sticky top-0 z-50 bg-white px-4 py-2 sm:py-3 shadow-md">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center flex-1 min-w-0">
             <Link to="/" className="flex items-center flex-1 min-w-0">
@@ -37,27 +37,19 @@ const Navigation = () => {
             </Link>
           </div>
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-            <Button
-              variant="outline"
-              className="border-2 border-primary text-primary hover:bg-primary-light bg-transparent text-sm px-4 py-2"
-            >
-              <Phone className="w-4 h-4 mr-2" />
-              CALL +61 403 971 720
-            </Button>
             <Link to="/quote">
-              <Button className="bg-accent hover:bg-accent-dark text-black font-semibold text-sm px-4 py-2">BOOK NOW</Button>
+              <Button className="bg-accent hover:bg-accent-dark text-black font-semibold text-sm px-6 py-2">
+                Get Free Quote
+              </Button>
             </Link>
           </div>
           
           {/* Mobile CTA and menu button */}
           <div className="lg:hidden flex items-center gap-2 flex-shrink-0">
-            <a href="tel:+61403971720" className="hidden sm:block">
-              <Button size="sm" variant="outline" className="border-2 border-primary text-primary hover:bg-primary-light bg-transparent px-2">
-                <Phone className="w-4 h-4" />
-              </Button>
-            </a>
             <Link to="/quote" className="hidden sm:block">
-              <Button size="sm" className="bg-accent hover:bg-accent-dark text-black font-semibold px-3">BOOK</Button>
+              <Button size="sm" className="bg-accent hover:bg-accent-dark text-black font-semibold px-4">
+                Get Quote
+              </Button>
             </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -70,18 +62,15 @@ const Navigation = () => {
         </div>
       </header>
 
-      {/* Navigation */}
-      <nav className="bg-primary text-white px-4 py-3 sm:py-4">
+      {/* Navigation - Sticky */}
+      <nav className="sticky top-[72px] sm:top-[84px] md:top-[100px] lg:top-[116px] z-40 bg-primary text-white px-4 py-3 sm:py-4 shadow-md">
         <div className="container mx-auto">
-          <div className="hidden md:flex items-center justify-between">
-            {/* Left side */}
-            <div className="flex items-center">
-              <span className="w-2 h-2 bg-accent rounded-full mr-2"></span>
-              <span className="text-xs sm:text-sm font-medium">LOOKING FOR PROFESSIONAL CLEANING?</span>
-            </div>
-            
-            {/* Right side - Menu items with spacing */}
-            <div className="flex items-center space-x-4 lg:space-x-6 xl:space-x-8 text-xs sm:text-sm font-medium">
+          <div className="hidden md:flex items-center justify-center">
+            {/* Centered Menu items */}
+            <div className="flex items-center space-x-6 lg:space-x-8 xl:space-x-10 text-sm font-medium">
+              <Link to="/" className="hover:text-accent cursor-pointer transition-colors">
+                HOME
+              </Link>
               {/* Services Dropdown */}
               <div className="relative group">
                 <div className="flex items-center hover:text-accent cursor-pointer transition-colors">
@@ -103,27 +92,25 @@ const Navigation = () => {
                   </div>
                 </div>
               </div>
-              <Link to="/about" className="hover:text-accent cursor-pointer transition-colors">ABOUT US</Link>
-              <Link to="/blog" className="hover:text-accent cursor-pointer transition-colors">BLOG</Link>
-              <Link to="/contact" className="hover:text-accent cursor-pointer transition-colors">CONTACT US</Link>
+              <Link to="/about" className="hover:text-accent cursor-pointer transition-colors">
+                ABOUT
+              </Link>
+              <Link to="/blog" className="hover:text-accent cursor-pointer transition-colors">
+                BLOG
+              </Link>
+              <Link to="/contact" className="hover:text-accent cursor-pointer transition-colors">
+                CONTACT
+              </Link>
             </div>
           </div>
           
           {/* Mobile Navigation */}
           <div className="md:hidden text-center">
-            <div className="flex items-center justify-center mb-2">
-              <span className="w-2 h-2 bg-accent rounded-full mr-2"></span>
-              <span className="text-xs font-medium">LOOKING FOR PROFESSIONAL CLEANING?</span>
-            </div>
             <div className="flex items-center justify-center space-x-4 text-xs font-medium">
+              <Link to="/" className="hover:text-accent transition-colors">HOME</Link>
+              <Link to="/about" className="hover:text-accent transition-colors">ABOUT</Link>
+              <Link to="/blog" className="hover:text-accent transition-colors">BLOG</Link>
               <Link to="/contact" className="hover:text-accent transition-colors">CONTACT</Link>
-              <Link to="/about" className="hover:text-accent transition-colors">ABOUT US</Link>
-              <button 
-                onClick={() => setIsOpen(!isOpen)}
-                className="hover:text-accent transition-colors border border-primary px-2 py-1 rounded text-primary"
-              >
-                SERVICES ☰
-              </button>
             </div>
           </div>
         </div>
@@ -131,7 +118,7 @@ const Navigation = () => {
 
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="md:hidden bg-primary text-white border-t border-primary-light">
+        <div className="fixed md:hidden top-[72px] sm:top-[84px] md:top-[100px] lg:top-[116px] left-0 right-0 bg-primary text-white border-t border-primary-light shadow-xl z-30 max-h-[calc(100vh-72px)] sm:max-h-[calc(100vh-84px)] overflow-y-auto">
           <div className="px-4 py-4 space-y-3">
             <Link
               to="/"
@@ -162,7 +149,7 @@ const Navigation = () => {
               className="block px-3 py-3 text-white hover:bg-primary-dark rounded-lg transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              About Us
+              About
             </Link>
             
             <Link
@@ -178,11 +165,11 @@ const Navigation = () => {
               className="block px-3 py-3 text-white hover:bg-primary-dark rounded-lg transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              Contact Us
+              Contact
             </Link>
             
-            {/* Mobile CTA Buttons */}
-            <div className="space-y-3 pt-4 border-t border-primary-light">
+            {/* Mobile CTA Button */}
+            <div className="pt-4 border-t border-primary-light">
               <Link
                 to="/quote"
                 className="block px-3 py-3 text-center text-black bg-accent hover:bg-accent-dark rounded-lg font-semibold transition-colors"
@@ -190,14 +177,6 @@ const Navigation = () => {
               >
                 Get Free Quote
               </Link>
-              <a
-                href="tel:+61403971720"
-                className="block px-3 py-3 text-center border-2 border-white text-white hover:bg-white hover:text-primary bg-transparent rounded-lg transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                <Phone className="w-4 h-4 mr-2 inline" />
-                Call +61 403 971 720
-              </a>
             </div>
           </div>
         </div>

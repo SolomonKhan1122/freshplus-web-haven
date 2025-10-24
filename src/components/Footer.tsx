@@ -12,19 +12,16 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div>
-            <div className="flex items-center mb-6">
+            <div className="mb-6">
               <img 
                 src="/logo.webp" 
                 alt="Fresh Plus Professional Cleaning Services" 
                 className="h-24 w-auto"
               />
-              <span className="ml-4 text-base font-medium text-accent underline decoration-2 underline-offset-3 decoration-accent">
-                Your Home, Our Expertise
-              </span>
             </div>
             <p className="text-primary-light mb-6 leading-relaxed">
               Melbourne's premier cleaning service provider. Professional, reliable, 
-              and eco-friendly cleaning solutions for homes and businesses.
+              and eco-friendly solutions for homes and businesses across Melbourne CBD, Toorak, Richmond, and beyond.
             </p>
             <div className="flex items-center gap-2 mb-4">
               {[...Array(5)].map((_, i) => (

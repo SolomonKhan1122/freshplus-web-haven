@@ -6,10 +6,12 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import Navigation from "@/components/Navigation";
-import { FormSection } from "@/components/forms/FormSection";
-import { CalendarIcon, PaperclipIcon } from "lucide-react";
+import Footer from "@/components/Footer";
+import { SEOHead } from "@/components/SEOHead";
+import { CalendarIcon, Home, Building2, Sparkles, Droplet, Wind, Globe, Grid3x3, Key, Sun, Shield, Award } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
@@ -22,12 +24,13 @@ import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  phone1: z.string().min(10, "Phone number must be at least 10 digits"),
+  phone2: z.string().optional(),
   address: z.string().min(5, "Address must be at least 5 characters"),
   city: z.string().min(2, "City is required"),
   postcode: z.string().min(4, "Postcode is required"),
-  phone1: z.string().min(10, "Phone number must be at least 10 digits"),
-  phone2: z.string().optional(),
-  email: z.string().email("Invalid email address"),
+  propertyType: z.string().min(1, "Please select a property type"),
   services: z.array(z.string()).min(1, "Please select at least one service"),
   photos: z.any().optional(),
   preferredDate: z.date().optional(),
@@ -40,18 +43,20 @@ const formSchema = z.object({
 const Quote = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const navigate = useNavigate();
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      email: "",
+      phone1: "",
+      phone2: "",
       address: "",
       city: "",
       postcode: "",
-      phone1: "",
-      phone2: "",
-      email: "",
+      propertyType: "",
       services: [],
       photos: undefined,
       preferredDate: undefined,
@@ -60,68 +65,71 @@ const Quote = () => {
     },
   });
 
-  const availableServices = [
-    "pressure-washing",
-    "end-of-lease",
-    "carpet-dry",
-    "rug-cleaning", 
-    "upholstery",
-    "deluxe-rug",
-    "mattress",
-    "mould",
-    "tile-grout",
-    "office-cleaning",
-    "warehouse-cleaning",
-    "construction-clean",
-    "solar-panel",
-  ];
+  // Service categories with icons
+  const serviceCategories = {
+    home: {
+      title: "Home Services",
+      services: [
+        { id: "residential", name: "Residential Cleaning", icon: Home },
+        { id: "deep-cleaning", name: "Deep Cleaning", icon: Sparkles },
+        { id: "carpet-dry", name: "Carpet Cleaning", icon: Wind },
+        { id: "window", name: "Window Cleaning", icon: Globe },
+        { id: "tile-grout", name: "Tile & Grout", icon: Grid3x3 },
+      ],
+    },
+    commercial: {
+      title: "Commercial Services",
+      services: [
+        { id: "office-cleaning", name: "Office Cleaning", icon: Building2 },
+        { id: "warehouse-cleaning", name: "Warehouse", icon: Building2 },
+        { id: "construction-clean", name: "Construction Clean", icon: Building2 },
+      ],
+    },
+    specialty: {
+      title: "Specialty Services",
+      services: [
+        { id: "pressure-washing", name: "Pressure Washing", icon: Droplet },
+        { id: "end-of-lease", name: "End of Lease", icon: Key },
+        { id: "solar-panel", name: "Solar Panel", icon: Sun },
+        { id: "mould", name: "Mould Removal", icon: Shield },
+        { id: "mattress", name: "Mattress Cleaning", icon: Award },
+        { id: "upholstery", name: "Upholstery", icon: Wind },
+      ],
+    },
+  };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     
     try {
-      console.log('Form values received:', values);
-      
-      // Prepare data for Supabase
       const quoteData = {
         name: values.name,
+        email: values.email,
+        phone1: values.phone1,
+        phone2: values.phone2 || null,
         address: values.address,
         city: values.city,
         postcode: values.postcode,
-        phone1: values.phone1,
-        phone2: values.phone2 || null,
-        email: values.email,
+        property_type: values.propertyType,
         services: values.services,
         preferred_date: values.preferredDate ? values.preferredDate.toISOString().split('T')[0] : null,
         job_description: values.jobDescription || null,
         terms_accepted: values.termsAccepted,
       };
 
-      console.log('Prepared quote data for Supabase:', quoteData);
-
-      // Insert into Supabase
       const { data, error } = await supabase
         .from('quotes')
         .insert([quoteData])
         .select();
 
       if (error) {
-        console.error('Supabase error details:', {
-          message: error.message,
-          details: error.details,
-          hint: error.hint,
-          code: error.code
-        });
-        toast.error(`Failed to submit quote request: ${error.message}. Please try again.`);
+        console.error('Supabase error:', error);
+        toast.error(`Failed to submit quote: ${error.message}`);
         return;
       }
 
-      console.log("Quote submitted successfully:", data);
-      
-      // Send confirmation emails using the same professional email service as bookings
       if (data && data[0]) {
-        console.log("📧 Sending quote confirmation emails...");
-        const emailResult = await sendQuoteEmails({
+        await sendQuoteEmails({
           id: data[0].id,
           name: data[0].name,
           address: data[0].address,
@@ -134,19 +142,12 @@ const Quote = () => {
           preferred_date: data[0].preferred_date,
           job_description: data[0].job_description,
         });
-        
-        if (emailResult.success) {
-          console.log("✅ Quote confirmation emails sent successfully to customer and admin");
-        } else {
-          console.error("❌ Failed to send confirmation emails:", emailResult.error);
-        }
       }
       
-      console.log('✅ Quote submitted successfully, redirecting to thank you page');
-      
-      // Redirect to thank you page (conversion tracking happens there)
-      navigate(`/thank-you?source=main-quote&type=quote&name=${encodeURIComponent(values.name)}`);
-      form.reset();
+      setShowSuccess(true);
+      setTimeout(() => {
+        navigate(`/thank-you?source=main-quote&type=quote&name=${encodeURIComponent(values.name)}`);
+      }, 2000);
       
     } catch (error) {
       console.error('Error submitting quote:', error);
@@ -157,207 +158,237 @@ const Quote = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-light to-white">
+    <div className="min-h-screen bg-white">
+      <SEOHead
+        title="Get a Free Cleaning Quote | Fresh Plus Cleaning Melbourne"
+        description="Book professional cleaning services in Melbourne. Get a free online quote for residential, commercial, or end-of-lease cleaning today. Serving Melbourne CBD, Toorak, Richmond, and beyond."
+        canonical="https://www.freshpluscleaning.com.au/quote"
+        type="website"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": "Cleaning Services",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Fresh Plus Cleaning Melbourne",
+            "telephone": "+61 403 971 720",
+            "areaServed": "Melbourne, VIC",
+            "url": "https://freshpluscleaning.com.au"
+          }
+        }}
+      />
       <Navigation />
-      <div className="max-w-4xl mx-auto pt-24 px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 animate-fade-up">
-          <div className="bg-gradient-to-r from-primary to-primary-dark text-white py-8 px-6 rounded-t-2xl shadow-xl">
-            <h1 className="text-5xl font-extrabold mb-3 tracking-tight">
-              <span className="text-accent">FreshPlus</span> Cleaning
-            </h1>
-            <div className="w-24 h-1 bg-accent mx-auto mb-4 rounded-full"></div>
-            <h2 className="text-3xl font-bold mb-4 text-primary-light">Online Booking Form</h2>
-            <p className="text-primary-light text-lg font-medium mb-3 leading-relaxed max-w-3xl mx-auto">
-              Fill in the form with your details to book your professional cleaning service. 
-              <br />
-              <span className="font-bold text-accent">A FreshPlus representative will get in touch with you to confirm your booking within the day!</span>
-            </p>
-            <div className="bg-primary-dark/50 rounded-lg p-4 mt-6 inline-block">
-              <p className="text-primary-light font-medium">
-                <span className="font-bold text-accent">Response Times:</span> Within 1 hour (7AM-7PM) • Next business day (after 7PM)
-                <br />
-                <span className="font-bold text-accent">For urgent inquiries, call:</span> +61 403 971 720
-              </p>
-            </div>
-          </div>
+      
+      {/* Hero Section */}
+      <div className="bg-gradient-to-r from-primary-dark to-primary text-white py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Get Your Free Cleaning Quote
+          </h1>
+          <p className="text-xl text-primary-light mb-6">
+            We'll respond within 1 hour (7AM–7PM) or next business day after hours.
+          </p>
+          <a href="tel:+61403971720">
+            <Button className="bg-accent hover:bg-accent-dark text-black font-bold px-8 py-3">
+              Call +61 403 971 720
+            </Button>
+          </a>
         </div>
-        <div className="bg-white shadow-2xl rounded-b-2xl border-t-4 border-accent p-10 mb-8 animate-fade-up">
+      </div>
+
+      {/* Form Section */}
+      <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="bg-white shadow-xl rounded-2xl p-8 md:p-10">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
               
-              {/* Name Field */}
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-primary font-bold text-lg">Name*</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="Enter your full name" 
-                        className="border-2 border-primary/30 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg p-4 text-lg font-medium transition-all duration-200 hover:border-primary/50" 
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {/* Address Field */}
-              <FormField
-                control={form.control}
-                name="address"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-primary font-bold text-lg">Address*</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="Enter your street address" 
-                        className="border-2 border-primary/30 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg p-4 text-lg font-medium transition-all duration-200 hover:border-primary/50" 
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {/* City and Postcode */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
-                  name="city"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-primary font-bold text-lg">City</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Enter city" 
-                          className="border-2 border-primary/30 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg p-4 text-lg font-medium transition-all duration-200 hover:border-primary/50" 
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="postcode"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-primary font-bold text-lg">Postcode*</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Enter postcode" 
-                          className="border-2 border-primary/30 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg p-4 text-lg font-medium transition-all duration-200 hover:border-primary/50" 
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              {/* Contact Information Section */}
+              <div className="space-y-6">
+                <div className="border-b-2 border-primary pb-2">
+                  <h2 className="text-2xl font-bold text-primary">Contact Information</h2>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-primary font-semibold">Name *</FormLabel>
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-primary font-semibold">Email *</FormLabel>
+                        <FormControl>
+                          <Input type="email" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="phone1"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-primary font-semibold">Mobile *</FormLabel>
+                        <FormControl>
+                          <Input type="tel" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="phone2"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-primary font-semibold">Work (Optional)</FormLabel>
+                        <FormControl>
+                          <Input type="tel" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
               </div>
 
-              {/* Phone Numbers */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Property Details Section */}
+              <div className="space-y-6">
+                <div className="border-b-2 border-primary pb-2">
+                  <h2 className="text-2xl font-bold text-primary">Property Details</h2>
+                </div>
                 <FormField
                   control={form.control}
-                  name="phone1"
+                  name="address"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-primary font-bold text-lg">Phone 1*</FormLabel>
+                      <FormLabel className="text-primary font-semibold">Address *</FormLabel>
                       <FormControl>
-                        <Input 
-                          placeholder="Enter primary phone number" 
-                          type="tel"
-                          className="border-2 border-primary/30 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg p-4 text-lg font-medium transition-all duration-200 hover:border-primary/50" 
-                          {...field} 
-                        />
+                        <Input {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name="phone2"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-primary font-bold text-lg">Phone 2</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Enter secondary phone number" 
-                          type="tel"
-                          className="border-2 border-primary/30 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg p-4 text-lg font-medium transition-all duration-200 hover:border-primary/50" 
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="city"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-primary font-semibold">City *</FormLabel>
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="postcode"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-primary font-semibold">Postcode *</FormLabel>
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="propertyType"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-primary font-semibold">Property Type *</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="bg-white">
+                              <SelectValue placeholder="Select type" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="bg-white">
+                            <SelectItem value="house">House</SelectItem>
+                            <SelectItem value="apartment">Apartment / Unit</SelectItem>
+                            <SelectItem value="office">Office / Commercial</SelectItem>
+                            <SelectItem value="warehouse">Warehouse / Industrial</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
               </div>
 
-              {/* Email Field */}
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-primary font-bold text-lg">Email*</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="Enter your email address" 
-                        type="email"
-                        className="border-2 border-primary/30 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg p-4 text-lg font-medium transition-all duration-200 hover:border-primary/50" 
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {/* Services Section */}
-              <div className="bg-gradient-to-r from-secondary-light to-primary-light p-6 rounded-lg border-l-4 border-secondary">
-                <h3 className="text-2xl font-bold text-primary mb-6 flex items-center">
-                  <span className="bg-secondary text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">S</span>
-                  Services
-                </h3>
+              {/* Service Selection Section */}
+              <div className="space-y-6">
+                <div className="border-b-2 border-primary pb-2">
+                  <h2 className="text-2xl font-bold text-primary">Services Selection</h2>
+                </div>
                 <FormField
                   control={form.control}
                   name="services"
                   render={() => (
                     <FormItem>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {availableServices.map((service) => (
-                          <FormField
-                            key={service}
-                            control={form.control}
-                            name="services"
-                            render={({ field }) => (
-                              <FormItem className="flex flex-row items-start space-x-3 space-y-0 bg-white p-3 rounded-lg border border-primary/20 hover:border-secondary hover:shadow-md transition-all duration-200">
-                                <FormControl>
-                                  <Checkbox
-                                    checked={field.value?.includes(service)}
-                                    onCheckedChange={(checked) => {
-                                      const updatedServices = checked
-                                        ? [...(field.value || []), service]
-                                        : field.value?.filter((value) => value !== service) || [];
-                                      field.onChange(updatedServices);
-                                    }}
-                                    className="border-2 border-secondary data-[state=checked]:bg-secondary data-[state=checked]:border-secondary"
+                      <div className="space-y-6">
+                        {Object.entries(serviceCategories).map(([categoryKey, category]) => (
+                          <div key={categoryKey} className="space-y-3">
+                            <h3 className="text-lg font-semibold text-secondary">{category.title}</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                              {category.services.map((service) => {
+                                const IconComponent = service.icon;
+                                return (
+                                  <FormField
+                                    key={service.id}
+                                    control={form.control}
+                                    name="services"
+                                    render={({ field }) => (
+                                      <FormItem>
+                                        <FormControl>
+                                          <label
+                                            className={cn(
+                                              "flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all hover:shadow-md",
+                                              field.value?.includes(service.id)
+                                                ? "border-secondary bg-secondary/10"
+                                                : "border-gray-200 hover:border-secondary/50"
+                                            )}
+                                          >
+                                            <Checkbox
+                                              checked={field.value?.includes(service.id)}
+                                              onCheckedChange={(checked) => {
+                                                const updatedServices = checked
+                                                  ? [...(field.value || []), service.id]
+                                                  : field.value?.filter((value) => value !== service.id) || [];
+                                                field.onChange(updatedServices);
+                                              }}
+                                              className="border-2"
+                                            />
+                                            <IconComponent className="h-5 w-5 text-primary flex-shrink-0" />
+                                            <span className="text-sm font-medium text-primary">{service.name}</span>
+                                          </label>
+                                        </FormControl>
+                                      </FormItem>
+                                    )}
                                   />
-                                </FormControl>
-                                <FormLabel className="text-primary font-semibold cursor-pointer hover:text-secondary transition-colors">
-                                  {getServiceDisplayName(service)}
-                                </FormLabel>
-                              </FormItem>
-                            )}
-                          />
+                                );
+                              })}
+                            </div>
+                          </div>
                         ))}
                       </div>
                       <FormMessage />
@@ -366,144 +397,146 @@ const Quote = () => {
                 />
               </div>
 
-              {/* File Upload Section */}
-              <div className="bg-gradient-to-r from-accent-light to-secondary-light p-6 rounded-lg border border-accent">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="bg-accent p-2 rounded-full">
-                    <PaperclipIcon className="h-6 w-6 text-white" />
-                  </div>
-                  <label className="text-primary font-bold text-lg underline cursor-pointer hover:text-secondary transition-colors">
-                    Attach any relevant photos (Optional)
-                  </label>
+              {/* Booking Preferences Section */}
+              <div className="space-y-6">
+                <div className="border-b-2 border-primary pb-2">
+                  <h2 className="text-2xl font-bold text-primary">Booking Preferences</h2>
                 </div>
                 <FormField
                   control={form.control}
-                  name="photos"
+                  name="preferredDate"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input
-                          type="file"
-                          multiple
-                          accept="image/*"
-                          className="border-2 border-accent focus:border-accent-dark focus:ring-2 focus:ring-accent/20 rounded-lg p-4 bg-white font-medium transition-all duration-200"
-                          onChange={(e) => field.onChange(e.target.files)}
-                        />
-                      </FormControl>
+                    <FormItem className="flex flex-col">
+                      <FormLabel className="text-primary font-semibold">Preferred Date (Optional)</FormLabel>
+                      <Popover open={isDatePickerOpen} onOpenChange={setIsDatePickerOpen}>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-full md:w-64 pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0 bg-white" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={(date) => {
+                              field.onChange(date);
+                              setIsDatePickerOpen(false);
+                            }}
+                            disabled={(date) => date < new Date()}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-              </div>
-
-              {/* Preferred Booking Date */}
-              <FormField
-                control={form.control}
-                name="preferredDate"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel className="text-primary font-bold text-lg">Preferred Booking Date</FormLabel>
-                    <Popover open={isDatePickerOpen} onOpenChange={setIsDatePickerOpen}>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button
-                            variant={"outline"}
-                            className={cn(
-                              "w-full pl-3 text-left font-medium border-2 border-primary/30 hover:border-primary focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg p-4 text-lg transition-all duration-200",
-                              !field.value && "text-muted-foreground"
-                            )}
-                          >
-                            {field.value ? (
-                              format(field.value, "PPP")
-                            ) : (
-                              <span>Select a preferred date</span>
-                            )}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0 bg-white border border-gray-200 shadow-lg z-50" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={field.value}
-                          onSelect={(date) => {
-                            field.onChange(date);
-                            setIsDatePickerOpen(false); // Close popup when date is selected
-                          }}
-                          disabled={(date) =>
-                            date < new Date() || date < new Date("1900-01-01")
-                          }
-                          initialFocus
-                          className="bg-white"
-                        />
-                      </PopoverContent>
-                    </Popover>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {/* Job Description */}
-              <FormField
-                control={form.control}
-                name="jobDescription"
-                render={({ field }) => (
+                <FormField
+                  control={form.control}
+                  name="jobDescription"
+                  render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-primary font-bold text-lg">Note or Job Description</FormLabel>
+                    <FormLabel className="text-primary font-semibold">Notes or Job Description</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Please provide any additional details about your cleaning needs..."
-                        className="min-h-[120px] border-2 border-primary/30 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg p-4 text-lg font-medium transition-all duration-200 hover:border-primary/50"
+                        className="min-h-[120px] resize-none"
                         {...field}
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
-                )}
-              />
+                  )}
+                />
+              </div>
 
-              {/* Terms and Conditions */}
-              <FormField
-                control={form.control}
-                name="termsAccepted"
-                render={({ field }) => (
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                        className="border-2 border-secondary data-[state=checked]:bg-secondary data-[state=checked]:border-secondary w-5 h-5"
-                      />
-                    </FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel className="text-primary font-bold text-lg cursor-pointer">
-                        Terms *
-                      </FormLabel>
-                      <p className="text-primary/80 font-medium leading-relaxed">
-                        By ticking this box, you confirm that you have read, understood, and agree to the{" "}
-                        <span className="underline cursor-pointer hover:text-primary font-bold">terms and conditions</span> and{" "}
-                        <span className="underline cursor-pointer hover:text-primary font-bold">privacy policy</span>.
-                      </p>
+              {/* Terms & Confirmation Section */}
+              <div className="space-y-6">
+                <FormField
+                  control={form.control}
+                  name="termsAccepted"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                          className="border-2 mt-1"
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel className="text-sm font-normal">
+                          I agree to the{" "}
+                          <a 
+                            href="/terms-of-service" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-primary hover:text-primary-dark underline font-semibold"
+                          >
+                            terms and conditions
+                          </a>{" "}
+                          and{" "}
+                          <a 
+                            href="/privacy-policy" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-primary hover:text-primary-dark underline font-semibold"
+                          >
+                            privacy policy
+                          </a>
+                        </FormLabel>
+                      </div>
                       <FormMessage />
-                    </div>
                     </FormItem>
                   )}
                 />
+              </div>
 
-              <div className="pt-6">
+              {/* CTA and Reassurance */}
+              <div className="space-y-4">
                 <Button 
                   type="submit" 
-                  className="w-full bg-gradient-to-r from-accent to-accent-dark hover:from-accent-dark hover:to-accent text-black font-extrabold py-6 text-2xl rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 border-2 border-accent-dark"
-                  disabled={!form.watch("termsAccepted") || isSubmitting}
+                  disabled={isSubmitting || !form.watch("termsAccepted")}
+                  className="w-full bg-accent hover:bg-accent-dark text-black font-bold py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all"
                 >
-                  {isSubmitting ? "SUBMITTING..." : "GET QUOTE"}
+                  {isSubmitting ? "Submitting..." : "Get My Free Quote"}
                 </Button>
+                <div className="flex items-center justify-center gap-6 text-sm text-primary/70">
+                  <div className="flex items-center gap-2">
+                    <Shield className="h-4 w-4" />
+                    <span>Fully Insured</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Award className="h-4 w-4" />
+                    <span>Eco-Friendly</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>5000+ Clients</span>
+                  </div>
+                </div>
               </div>
+
+              {/* Success Message */}
+              {showSuccess && (
+                <div className="bg-green-50 border-2 border-green-500 rounded-lg p-6 text-center">
+                  <h3 className="text-xl font-bold text-green-700 mb-2">Thank You!</h3>
+                  <p className="text-green-600">We'll contact you shortly with your quote.</p>
+                </div>
+              )}
             </form>
           </Form>
         </div>
       </div>
 
+      <Footer />
     </div>
   );
 };

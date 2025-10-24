@@ -38,8 +38,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <SEOHead
-        title="Professional Cleaning Services Melbourne | Fresh Plus Cleaning"
-        description="Melbourne's premier cleaning service with 12+ years experience. End of lease, carpet, tile & grout, house & office cleaning. Licensed, insured & eco-friendly. Call 0403 971 720 for free quote!"
+        title="Fresh Plus Cleaning Melbourne | Residential & Commercial Cleaners"
+        description="Professional cleaning services for homes and offices across Melbourne. Serving Melbourne CBD, Toorak, Richmond, South Yarra, and Hawthorn. Fully insured, eco-friendly, and trusted by 5000+ clients."
         canonical="https://www.freshpluscleaning.com.au/"
         type="website"
         breadcrumbs={[
