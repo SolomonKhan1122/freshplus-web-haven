@@ -1,421 +1,297 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { 
   Phone, 
-  MessageSquare, 
   CheckCircle, 
   Clock, 
   Shield, 
   Sparkles,
-  Home,
   Star,
   Award,
-  Heart,
-  Zap,
-  Sun,
-  DollarSign,
-  TrendingUp,
+  Calendar,
   Leaf,
-  Droplets
+  Zap
 } from "lucide-react";
 
 const SolarPanelCleaning = () => {
-  const services = [
-    {
-      name: "Residential Solar Panel Cleaning",
-      description: "Professional cleaning for home solar panel systems",
-      icon: <Home className="w-6 h-6 text-accent" />
-    },
-    {
-      name: "Commercial Solar Cleaning",
-      description: "Large-scale solar farm and commercial building panel cleaning",
-      icon: <Sparkles className="w-6 h-6 text-accent" />
-    },
+  const cleaningServices = [
     {
       name: "Efficiency Restoration",
-      description: "Remove dirt, dust, and grime to restore maximum energy output",
-      icon: <TrendingUp className="w-6 h-6 text-accent" />
+      description: "Remove dirt and debris to maximize solar panel energy output and ROI",
+      icon: Zap
     },
     {
-      name: "Bird Dropping Removal",
-      description: "Specialized cleaning for stubborn bird droppings and organic matter",
-      icon: <Droplets className="w-6 h-6 text-accent" />
+      name: "Longevity Protection",
+      description: "Gentle cleaning that protects panel surfaces and extends system lifespan",
+      icon: Shield
     },
     {
-      name: "Regular Maintenance Programs",
-      description: "Scheduled cleaning to maintain optimal solar panel performance",
-      icon: <Clock className="w-6 h-6 text-accent" />
-    },
-    {
-      name: "Eco-Friendly Methods",
-      description: "Environmentally safe cleaning solutions and pure water systems",
-      icon: <Leaf className="w-6 h-6 text-accent" />
+      name: "Regular Maintenance",
+      description: "Scheduled cleaning services to keep panels performing at peak efficiency",
+      icon: Clock
     }
   ];
 
-  const benefits = [
-    "Increase energy output by up to 25%",
-    "Extend solar panel lifespan",
-    "Maintain warranty requirements",
-    "Improve return on investment",
-    "Professional equipment and expertise",
-    "Fully insured and licensed service"
-  ];
-
-  const pricing = [
+  const whyChooseUs = [
     {
-      category: "Residential (up to 20 panels)",
-      price: "$150 - $200",
-      description: "Standard home solar system cleaning"
+      title: "Specialized Equipment",
+      description: "Soft-brush systems safe for panels",
+      icon: Shield
     },
     {
-      category: "Medium System (21-40 panels)",
-      price: "$200 - $300",
-      description: "Larger residential or small commercial systems"
+      title: "Water-Fed Poles",
+      description: "Pure water cleaning technology",
+      icon: Leaf
     },
     {
-      category: "Large System (40+ panels)",
-      price: "$300 - $500+",
-      description: "Commercial systems, quote on inspection"
+      title: "Experienced Team",
+      description: "Trained in solar panel care",
+      icon: Clock
     },
     {
-      category: "Regular Maintenance",
-      price: "15% Discount",
-      description: "Quarterly or bi-annual cleaning programs"
+      title: "Maximize ROI",
+      description: "Restore full energy efficiency",
+      icon: Award
     }
   ];
 
-  const testimonials = [
+  const pricingPlans = [
     {
-      name: "David Chen",
-      location: "Glen Waverley",
-      rating: 5,
-      text: "Our solar panel efficiency improved dramatically after Fresh Plus cleaned them. Highly professional service and great value!"
+      title: "Residential",
+      description: "Perfect for home solar systems",
+      features: ["Up to 20 panels", "Soft-brush cleaning", "Pure water rinse", "Efficiency check", "1-2 hour service"],
+      cta: "Get Quote"
     },
     {
-      name: "Sarah Williams", 
-      location: "Doncaster",
-      rating: 5,
-      text: "The team was punctual, careful, and thorough. Our panels look brand new and our energy bills have dropped significantly."
+      title: "Standard System",
+      description: "Most popular for medium installations",
+      features: ["20-40 panels", "Complete cleaning", "Performance assessment", "Debris removal", "2-3 hour service"],
+      cta: "Get Quote",
+      popular: true
     },
     {
-      name: "Mike Thompson",
-      location: "Ringwood",
-      rating: 5,
-      text: "Excellent service! They cleaned our 30-panel system efficiently and safely. Will definitely book them again next quarter."
+      title: "Commercial",
+      description: "Large-scale solar installations",
+      features: ["40+ panels", "Scheduled maintenance", "Performance reports", "Priority service", "Custom quote"],
+      cta: "Get Quote"
     }
+  ];
+
+  const serviceAreas = [
+    "Melbourne CBD", "South Yarra", "Richmond", "Collingwood", "Fitzroy",
+    "Carlton", "St Kilda", "Prahran", "Toorak", "Hawthorn",
+    "Camberwell", "Kew", "Northcote", "Thornbury", "Preston"
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-light to-white">
+    <div className="min-h-screen bg-white">
+      <SEOHead
+        title="Solar Panel Cleaning Melbourne | Fresh Plus Cleaning"
+        description="Professional solar panel cleaning services across Melbourne. Maximize energy efficiency and protect your investment. Safe, eco-friendly cleaning specialists."
+        canonical="https://www.freshpluscleaning.com.au/services/solar-panel-cleaning"
+        type="service"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": "Solar Panel Cleaning",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Fresh Plus Cleaning Melbourne",
+            "telephone": "+61 403 971 720",
+            "areaServed": "Melbourne, VIC",
+            "url": "https://freshpluscleaning.com.au"
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "Melbourne",
+            "addressRegion": "VIC",
+            "addressCountry": "AU"
+          }
+        }}
+      />
+      
       <Navigation />
       
       {/* Hero Section */}
-      <div className="pt-24 pb-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="mb-6">
-                <span className="inline-block bg-accent/10 text-accent font-semibold px-4 py-2 rounded-full text-sm uppercase tracking-wide mb-4">
-                  Maximize Solar Efficiency
-                </span>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 leading-tight">
-                  Professional <span className="bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent">Solar Panel</span> Cleaning
-                </h1>
-                <p className="text-xl text-primary/80 mb-8 leading-relaxed">
-                  Maximize your solar panel efficiency with Melbourne's trusted solar cleaning specialists. 
-                  Professional cleaning can increase your energy output by up to 25%.
-                </p>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/quote">
-                  <Button className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-4 text-lg w-full sm:w-auto">
-                    Get Free Quote
-                  </Button>
-                </Link>
-                <a href="tel:+61403971720">
-                  <Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary-light px-8 py-4 text-lg w-full sm:w-auto">
-                    <Phone className="w-5 h-5 mr-2" />
-                    Call Now
-                  </Button>
-                </a>
-              </div>
-            </div>
-            
-            <div className="relative">
-              <img 
-                src="/solar panel cleaning.webp" 
-                alt="Professional Solar Panel Cleaning Service" 
-                className="rounded-2xl shadow-2xl w-full h-auto"
-              />
-              <div className="absolute -bottom-6 -right-6 bg-accent text-black px-6 py-4 rounded-xl shadow-lg">
-                <div className="flex items-center gap-2">
-                  <Sun className="w-6 h-6" />
-                  <div>
-                    <div className="font-bold text-lg">Up to 25%</div>
-                    <div className="text-sm">Efficiency Increase</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Services Section */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-              Complete Solar Panel Cleaning Solutions
-            </h2>
-            <p className="text-xl text-primary/70 max-w-3xl mx-auto">
-              From residential rooftops to commercial solar farms, we provide comprehensive 
-              cleaning services to maximize your solar investment.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div key={index} className="bg-gradient-to-br from-primary-light to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-primary/10">
-                <div className="bg-white p-3 rounded-xl mb-6 w-fit">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-bold text-primary mb-4">{service.name}</h3>
-                <p className="text-primary/70 leading-relaxed">{service.description}</p>
-              </div>
-            ))}
+      <section className="bg-white py-16 md:py-20 text-center px-4">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6">
+            Solar Panel Cleaning Melbourne
+          </h1>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Keep your investment performing at peak. Professional solar panel cleaning that maximizes energy efficiency and extends system life.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+            <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
+              <Link to="/quote">Get Free Quote</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-6 text-lg">
+              <a href="tel:+61403971720">
+                <Phone className="mr-2 h-5 w-5" />
+                Call 0403 971 720
+              </a>
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-16 px-4 bg-gradient-to-r from-primary-dark to-primary text-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-8">
-                Why Regular Solar Panel Cleaning is Essential
-              </h2>
-              <div className="grid gap-4">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                    <span className="text-lg">{benefit}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-8 p-6 bg-accent/10 rounded-xl border border-accent/20">
-                <div className="flex items-center gap-3 mb-3">
-                  <Zap className="w-6 h-6 text-accent" />
-                  <span className="text-accent font-semibold text-lg">Did You Know?</span>
-                </div>
-                <p className="text-primary-light">
-                  Dirty solar panels can lose 15-25% of their efficiency. In Melbourne's climate, 
-                  panels should be cleaned every 3-6 months for optimal performance.
-                </p>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center">
-                <TrendingUp className="w-12 h-12 text-accent mx-auto mb-4" />
-                <div className="text-3xl font-bold text-accent mb-2">25%</div>
-                <div className="text-primary-light">Efficiency Increase</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center">
-                <DollarSign className="w-12 h-12 text-accent mx-auto mb-4" />
-                <div className="text-3xl font-bold text-accent mb-2">$500+</div>
-                <div className="text-primary-light">Annual Savings</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center">
-                <Shield className="w-12 h-12 text-accent mx-auto mb-4" />
-                <div className="text-3xl font-bold text-accent mb-2">100%</div>
-                <div className="text-primary-light">Insured Service</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center">
-                <Award className="w-12 h-12 text-accent mx-auto mb-4" />
-                <div className="text-3xl font-bold text-accent mb-2">12+</div>
-                <div className="text-primary-light">Years Experience</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-              Transparent Pricing
-            </h2>
-            <p className="text-xl text-primary/70 max-w-3xl mx-auto">
-              Competitive rates for professional solar panel cleaning in Melbourne. 
-              All prices include equipment, cleaning solutions, and comprehensive service.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {pricing.map((tier, index) => (
-              <div key={index} className="bg-gradient-to-br from-primary-light to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-primary/10 text-center">
-                <h3 className="text-xl font-bold text-primary mb-4">{tier.category}</h3>
-                <div className="text-3xl font-bold text-accent mb-4">{tier.price}</div>
-                <p className="text-primary/70 mb-6">{tier.description}</p>
-                <Link to="/quote">
-                  <Button className="bg-primary hover:bg-primary-dark text-white w-full">
-                    Get Quote
-                  </Button>
-                </Link>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-12 bg-gradient-to-r from-accent/10 to-secondary/10 p-8 rounded-2xl border border-accent/20">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold text-primary mb-4">Need a Custom Quote?</h3>
-              <p className="text-primary/70 mb-6">
-                Large commercial installations, difficult access, or special requirements? 
-                Contact us for a personalized assessment and competitive pricing.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/quote">
-                  <Button className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-3">
-                    Request Custom Quote
-                  </Button>
-                </Link>
-                <a href="tel:+61403971720">
-                  <Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary-light px-8 py-3">
-                    <Phone className="w-5 h-5 mr-2" />
-                    Discuss Your Needs
-                  </Button>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-16 px-4 bg-gradient-to-b from-primary-light to-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-              Our Solar Panel Cleaning Process
-            </h2>
-            <p className="text-xl text-primary/70 max-w-3xl mx-auto">
-              Professional, safe, and effective cleaning methods that protect your investment 
-              while maximizing energy output.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {/* Trust Bar */}
+      <section className="py-8 bg-gray-100">
+        <div className="max-w-screen-xl mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 text-center gap-6">
             {[
-              {
-                step: "1",
-                title: "Safety Assessment",
-                description: "Comprehensive safety check and equipment setup"
-              },
-              {
-                step: "2", 
-                title: "Pre-Cleaning Inspection",
-                description: "Document current condition and identify problem areas"
-              },
-              {
-                step: "3",
-                title: "Professional Cleaning",
-                description: "Use specialized equipment and eco-friendly solutions"
-              },
-              {
-                step: "4",
-                title: "Quality Check",
-                description: "Final inspection and efficiency testing"
-              }
-            ].map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-accent text-black text-2xl font-bold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                  {step.step}
+              { icon: Calendar, text: "12+ Years Experience" },
+              { icon: Shield, text: "Licensed & Insured" },
+              { icon: Star, text: "4.9★ Google Rating" },
+              { icon: Zap, text: "Maximize Energy Efficiency" }
+            ].map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <div key={index} className="flex flex-col items-center gap-2">
+                  <IconComponent className="w-8 h-8 text-primary" />
+                  <p className="font-medium text-gray-700">{item.text}</p>
                 </div>
-                <h3 className="text-xl font-bold text-primary mb-4">{step.title}</h3>
-                <p className="text-primary/70">{step.description}</p>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Service Overview */}
+      <section className="py-14 px-4">
+        <div className="max-w-screen-lg mx-auto text-center">
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+            Dirty solar panels can lose up to 25% efficiency. Our professional cleaning service uses specialized equipment and pure water technology to safely restore your panels to peak performance without causing damage.
+          </p>
+        </div>
+      </section>
+
+      {/* Cleaning Services Grid */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-screen-xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
+            Solar Panel Services
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {cleaningServices.map((service, index) => {
+              const IconComponent = service.icon;
+              return (
+                <div key={index} className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                  <IconComponent className="w-10 h-10 text-accent mb-4" />
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.name}</h3>
+                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-screen-xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
+            Why Choose Fresh Plus
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {whyChooseUs.map((feature, index) => {
+              const IconComponent = feature.icon;
+              return (
+                <div key={index} className="text-center">
+                  <div className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <IconComponent className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Packages */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-screen-xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
+            Solar Panel Cleaning Packages
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Choose the right package for your solar system
+          </p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {pricingPlans.map((plan, index) => (
+              <div key={index} className={`bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow relative ${plan.popular ? 'ring-2 ring-accent' : ''}`}>
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-accent text-black px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                  </div>
+                )}
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{plan.title}</h3>
+                <p className="text-gray-600 mb-6">{plan.description}</p>
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-2 text-gray-700">
+                      <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button asChild className={`w-full ${plan.popular ? 'bg-accent hover:bg-accent-dark text-black' : 'bg-primary hover:bg-primary-dark text-white'} font-semibold`}>
+                  <Link to="/quote">{plan.cta}</Link>
+                </Button>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Service Areas */}
       <section className="py-16 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-              What Our Customers Say
-            </h2>
-            <p className="text-xl text-primary/70">
-              Trusted by hundreds of Melbourne solar panel owners
+        <div className="max-w-screen-xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
+            Solar Panel Cleaning Across Melbourne
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Professional solar panel maintenance throughout Melbourne
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {serviceAreas.map((suburb, index) => (
+              <div key={index} className="bg-gray-50 p-4 rounded-lg text-center hover:bg-gray-100 transition-colors">
+                <span className="text-gray-900 font-medium">{suburb}</span>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <p className="text-gray-600">
+              Don't see your suburb? <a href="tel:+61403971720" className="text-accent font-semibold hover:underline">Call us</a> - we likely service your area too
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-gradient-to-br from-primary-light to-white p-8 rounded-2xl shadow-lg">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-accent fill-current" />
-                  ))}
-                </div>
-                <p className="text-primary/80 mb-6 italic">"{testimonial.text}"</p>
-                <div>
-                  <div className="font-semibold text-primary">{testimonial.name}</div>
-                  <div className="text-primary/60">{testimonial.location}</div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 px-4 bg-gradient-to-r from-primary-dark to-primary text-white">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* Final CTA */}
+      <section className="py-16 px-4 bg-gradient-to-r from-primary to-primary-dark text-white">
+        <div className="max-w-screen-xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Maximize Your Solar Efficiency?
           </h2>
-          <p className="text-xl text-primary-light mb-8">
-            Get a free quote for professional solar panel cleaning and start saving on your energy bills today.
+          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            Restore full energy output and protect your solar investment. Get your free quote today
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Link to="/quote">
-              <Button className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-4 text-lg">
-                <MessageSquare className="w-5 h-5 mr-2" />
-                Get Free Quote
-              </Button>
-            </Link>
-            <a href="tel:+61403971720">
-              <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg bg-transparent">
-                <Phone className="w-5 h-5 mr-2" />
-                Call +61 403 971 720
-              </Button>
-            </a>
-          </div>
-          
-          <div className="mt-8 flex flex-wrap justify-center items-center gap-8 text-primary-light">
-            <div className="flex items-center gap-2">
-              <Shield className="w-5 h-5 text-accent" />
-              <span>Fully Insured</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Award className="w-5 h-5 text-accent" />
-              <span>Licensed Professionals</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Heart className="w-5 h-5 text-accent" />
-              <span>100% Satisfaction Guarantee</span>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
+              <Link to="/quote">Get Your Free Quote</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg">
+              <a href="tel:+61403971720">
+                <Phone className="mr-2 h-5 w-5" />
+                Call 0403 971 720
+              </a>
+            </Button>
           </div>
         </div>
       </section>
