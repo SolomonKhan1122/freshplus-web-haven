@@ -9,7 +9,7 @@ import { SEOHead } from "../components/SEOHead";
 const StatsSection = () => {
   const stats = [
     { number: "12+", label: "Years of Experience" },
-    { number: "5000+", label: "Happy Customers" },
+    { number: "1500+", label: "Happy Customers" },
     { number: "100%", label: "Satisfaction Rate" },
     { number: "24/7", label: "Customer Support" }
   ];
@@ -39,7 +39,7 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       <SEOHead
         title="Fresh Plus Cleaning Melbourne | Residential & Commercial Cleaners"
-        description="Professional cleaning services for homes and offices across Melbourne. Serving Melbourne CBD, Toorak, Richmond, South Yarra, and Hawthorn. Fully insured, eco-friendly, and trusted by 5000+ clients."
+        description="Professional cleaning services for homes and offices across Melbourne. Serving Melbourne CBD, Toorak, Richmond, South Yarra, and Hawthorn. Fully insured, eco-friendly, and trusted by 1500+ clients."
         canonical="https://www.freshpluscleaning.com.au/"
         type="website"
         breadcrumbs={[
