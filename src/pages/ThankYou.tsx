@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Home, Phone, Mail } from "lucide-react";
-import logoImage from "/logo.webp";
+import { CheckCircle, Home, Phone } from "lucide-react";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 
 const ThankYou = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [countdown, setCountdown] = useState(10);
 
   // Get parameters from URL
   const source = searchParams.get('source') || 'website';
@@ -31,12 +31,12 @@ const ThankYou = () => {
         }
       });
       
-      // Google Ads conversion event (this is what triggers conversion tracking)
+      // Google Ads conversion event
       gtag('event', 'conversion', {
         send_to: 'AW-17525851975/avIKCMDsq5MbEMeO_aRB'
       });
       
-      // Page view tracking for thank you page
+      // Page view tracking
       gtag('config', 'G-VY43MPH5J3', {
         page_title: `Thank You - ${getSourceDisplay(source)}`,
         page_location: window.location.href
@@ -46,20 +46,6 @@ const ThankYou = () => {
     } else {
       console.warn('⚠️ gtag not available - conversion tracking may not work');
     }
-
-    // Auto-redirect countdown (optional - can be removed if not wanted)
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          // Auto-redirect to home after countdown (optional)
-          // navigate('/');
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
   }, [source, type, navigate]);
 
   const getSourceDisplay = (source: string) => {
@@ -74,155 +60,88 @@ const ThankYou = () => {
     return sourceMap[source] || source;
   };
 
+  // Capitalize first letter of name
+  const displayName = name.charAt(0).toUpperCase() + name.slice(1);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-light to-white">
+    <div className="min-h-screen bg-white flex flex-col">
       <SEOHead 
-        title="Thank You - Fresh Plus Cleaning Services"
-        description="Thank you for your submission. We'll contact you soon with your personalized quote."
+        title="Thank You - Fresh Plus Cleaning Services Melbourne"
+        description="Thank you for your submission. We'll contact you soon with your personalized quote for professional cleaning services in Melbourne."
+        noindex={true}
       />
 
-      {/* Simple Header with Logo */}
-      <header className="bg-white px-4 py-3 shadow-sm">
-        <div className="max-w-7xl mx-auto flex items-center justify-center">
-          <Link to="/" className="flex items-center">
-            <img 
-              src={logoImage} 
-              alt="Fresh Plus Professional Cleaning Services" 
-              className="h-16 sm:h-20 w-auto"
-            />
-            <span className="ml-3 text-sm sm:text-base font-medium text-primary bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent hidden sm:block">
-              Your Home, Our Expertise
-            </span>
-          </Link>
-        </div>
-      </header>
+      <Navigation />
 
-      {/* Thank You Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div className="text-center">
+      {/* Main Content */}
+      <main className="flex-grow flex items-center justify-center bg-gray-50 px-4 py-16">
+        <section className="bg-white shadow-lg rounded-2xl p-8 max-w-xl w-full text-center">
           {/* Success Icon */}
-          <div className="mx-auto flex items-center justify-center w-24 h-24 bg-secondary rounded-full mb-8">
-            <CheckCircle className="w-12 h-12 text-white" />
+          <div className="mx-auto flex items-center justify-center w-20 h-20 bg-secondary rounded-full mb-6">
+            <CheckCircle className="w-10 h-10 text-white" />
           </div>
 
-          {/* Main Thank You Message */}
-          <h1 className="text-4xl sm:text-5xl font-bold text-primary mb-6">
-            Thank You, {name}! 🎉
+          {/* Thank You Message */}
+          <h1 className="text-3xl font-semibold text-gray-800 mb-4">
+            Thank You, {displayName}
           </h1>
           
-          <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 max-w-2xl mx-auto">
-            <h2 className="text-2xl font-bold text-secondary mb-4">
-              Your {type === 'booking' ? 'Booking' : 'Quote Request'} Has Been Received!
-            </h2>
-            
-            <div className="space-y-4 text-gray-700">
-              <p className="text-lg">
-                ✅ We've received your <strong>{type === 'booking' ? 'booking' : 'quote'} request</strong>
-              </p>
-              <p className="text-lg">
-                📧 Confirmation email has been sent to your inbox
-              </p>
-              <p className="text-lg">
-                ⏱️ Our team will contact you within <strong>1 hour</strong> from 7:00 AM to 7:00 PM
-              </p>
-              <p className="text-sm text-gray-600 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-                📅 <strong>Note:</strong> Requests submitted after 7:00 PM will be handled next business day
-              </p>
-            </div>
+          <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+            Your {type === 'booking' ? 'booking' : 'quote'} request has been received. Our Melbourne team will contact you within 1 hour between 7:00 AM and 7:00 PM.
+          </p>
 
-            {/* What Happens Next */}
-            <div className="mt-8 p-6 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-xl">
-              <h3 className="text-xl font-bold text-primary mb-4">🚀 What Happens Next?</h3>
-              <div className="space-y-2 text-left">
-                <p className="flex items-center text-gray-700">
-                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3">1</span>
-                  Our team reviews your requirements
-                </p>
-                <p className="flex items-center text-gray-700">
-                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3">2</span>
-                  We contact you with {type === 'booking' ? 'confirmation details' : 'a personalized quote'}
-                </p>
-                <p className="flex items-center text-gray-700">
-                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3">3</span>
-                  {type === 'booking' ? 'Our cleaners arrive on time' : 'We schedule your service at your convenience'}
-                </p>
-              </div>
-            </div>
-
-            {/* Contact Information */}
-            <div className="mt-8 p-6 bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-xl">
-              <h3 className="text-lg font-bold text-red-700 mb-4">🚨 Urgent Inquiries?</h3>
-              <p className="text-sm text-red-600 mb-4">
-                For immediate assistance or urgent cleaning needs, please call us directly:
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
-                  href="tel:+61403971720"
-                  className="flex items-center justify-center bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors font-bold"
-                >
-                  <Phone className="h-4 w-4 mr-2" />
-                  Call Now: 0403 971 720
-                </a>
-                <a 
-                  href="mailto:infofreshplusclean@gmail.com"
-                  className="flex items-center justify-center bg-secondary text-white px-6 py-3 rounded-lg hover:bg-secondary-dark transition-colors"
-                >
-                  <Mail className="h-4 w-4 mr-2" />
-                  Email Us
-                </a>
-              </div>
-              <p className="text-xs text-gray-600 mt-3 text-center">
-                Available 7:00 AM - 7:00 PM daily
-              </p>
-            </div>
+          {/* What Happens Next */}
+          <div className="space-y-4 text-left text-gray-700 mb-8">
+            <h2 className="font-semibold text-lg text-gray-800 mb-4">What Happens Next</h2>
+            <ul className="space-y-3">
+              <li className="flex items-start">
+                <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">1</span>
+                <span>We review your cleaning requirements</span>
+              </li>
+              <li className="flex items-start">
+                <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">2</span>
+                <span>We send you a personalized quote</span>
+              </li>
+              <li className="flex items-start">
+                <span className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">3</span>
+                <span>We schedule your service at your convenience</span>
+              </li>
+            </ul>
           </div>
 
-          {/* Return to Home Button */}
+          {/* Urgent Contact */}
+          <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 mb-8">
+            <h3 className="font-semibold text-gray-800 mb-4">Need Urgent Assistance?</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              For immediate assistance or urgent cleaning needs:
+            </p>
+            <a 
+              href="tel:+61403971720" 
+              className="inline-flex items-center justify-center bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold w-full sm:w-auto"
+            >
+              <Phone className="h-4 w-4 mr-2" />
+              Call 0403 971 720
+            </a>
+          </div>
+
+          {/* CTA Buttons */}
           <div className="space-y-4">
-            <Link to="/">
-              <Button className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+            <Link to="/" className="block">
+              <Button className="w-full bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 rounded-xl text-lg shadow-md hover:shadow-lg transition-all">
                 <Home className="h-5 w-5 mr-2" />
                 Return to Home
               </Button>
             </Link>
-
-            {/* Optional: Auto-redirect notice */}
-            {/* <p className="text-sm text-gray-500">
-              Automatically redirecting to home page in {countdown} seconds...
-            </p> */}
           </div>
 
           {/* Trust Badges */}
-          <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm">
-            <div className="flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow">
-              <CheckCircle className="h-5 w-5 text-secondary" />
-              <span className="text-gray-700">Licensed & Insured</span>
-            </div>
-            <div className="flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow">
-              <CheckCircle className="h-5 w-5 text-accent" />
-              <span className="text-gray-700">5-Star Rated</span>
-            </div>
-            <div className="flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow">
-              <CheckCircle className="h-5 w-5 text-primary" />
-              <span className="text-gray-700">Satisfaction Guaranteed</span>
-            </div>
-          </div>
-        </div>
-      </div>
+          <p className="text-xs text-gray-500 mt-8 pt-6 border-t border-gray-200">
+            Licensed & Insured • 5-Star Rated • Satisfaction Guaranteed
+          </p>
+        </section>
+      </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mb-4">
-            <h3 className="font-bold text-lg mb-2">Fresh Plus Professional Cleaning Services</h3>
-            <p className="text-gray-300">Melbourne's Most Trusted Cleaning Service</p>
-          </div>
-          
-          <div className="border-t border-gray-700 pt-4">
-            <p className="text-gray-400">&copy; 2024 Fresh Plus Professional Cleaning Services. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
