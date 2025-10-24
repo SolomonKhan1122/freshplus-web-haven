@@ -275,7 +275,7 @@ const DeepCleaning = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 px-4 bg-gradient-to-r from-primary to-primary-dark text-white">
+      <section className="py-16 px-4 bg-primary text-white">
         <div className="max-w-screen-xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready for a Complete Deep Clean?
