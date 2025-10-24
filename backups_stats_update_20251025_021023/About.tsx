@@ -18,8 +18,8 @@ import {
 const About = () => {
   const stats = [
     { number: "12+", label: "Years Experience", icon: Clock },
-    { number: "1000+", label: "Happy Clients", icon: Users },
-    { number: "5000+", label: "Jobs Completed", icon: Star },
+    { number: "5,000+", label: "Happy Clients", icon: Users },
+    { number: "50,000+", label: "Homes Cleaned", icon: Star },
     { number: "4.9★", label: "Google Rating", icon: Award }
   ];
 
@@ -77,11 +77,11 @@ const About = () => {
           </div>
           <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6">
             About Fresh Plus Cleaning
-            </h1>
+          </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Melbourne's most trusted cleaning service provider since 2012, delivering excellence one home at a time
-            </p>
-          </div>
+            Melbourne's most trusted cleaning service provider since 2012, delivering excellence one home at a time
+          </p>
+        </div>
       </section>
 
       {/* Stats Section */}
@@ -112,8 +112,8 @@ const About = () => {
             <p className="text-gray-600 max-w-2xl mx-auto">
               From humble beginnings to Melbourne's trusted cleaning service
             </p>
-      </div>
-
+          </div>
+          
           <div className="bg-gradient-to-r from-primary to-primary-dark text-white rounded-2xl p-8 md:p-12 mb-12">
             <div className="max-w-3xl mx-auto text-center">
               <Heart className="w-12 h-12 text-accent mx-auto mb-6" />
@@ -121,11 +121,11 @@ const About = () => {
                 What started as a small family business in 2012 has grown into Melbourne's most reliable cleaning service. Our story began with a simple belief: every home deserves to be a sanctuary of cleanliness and comfort.
               </p>
               <p className="text-lg italic opacity-90">
-                    "We don't just clean homes, we create spaces where families can thrive and memories can be made."
-                  </p>
+                "We don't just clean homes, we create spaces where families can thrive and memories can be made."
+              </p>
               <p className="text-accent font-semibold mt-4">- The Fresh Plus Family</p>
             </div>
-                        </div>
+          </div>
 
           <div className="prose prose-lg max-w-3xl mx-auto text-gray-700">
             <p className="mb-6">
@@ -137,8 +137,8 @@ const About = () => {
             <p>
               Today, we're proud to serve all Melbourne suburbs with the same passion and attention to detail that defined our first day in business. Our success isn't measured just in the number of homes we've cleaned, but in the relationships we've built and the trust our customers place in us.
             </p>
-                      </div>
-                    </div>
+          </div>
+        </div>
       </section>
 
       {/* Our Values */}
@@ -150,9 +150,9 @@ const About = () => {
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               The principles that guide everything we do
-                    </p>
-                  </div>
-
+            </p>
+          </div>
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => {
               const IconComponent = value.icon;
@@ -166,17 +166,17 @@ const About = () => {
                 </div>
               );
             })}
-              </div>
-            </div>
+          </div>
+        </div>
       </section>
 
-            {/* Why Choose Us */}
+      {/* Why Choose Us */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-screen-lg mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Why Melbourne Chooses Fresh Plus
-                </h2>
+            </h2>
           </div>
           
           <div className="grid md:grid-cols-2 gap-6">
@@ -195,10 +195,10 @@ const About = () => {
               <div key={index} className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-secondary flex-shrink-0 mt-1" />
                 <span className="text-gray-700">{item}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Final CTA */}
@@ -209,12 +209,12 @@ const About = () => {
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
             Join thousands of satisfied Melbourne customers who trust Fresh Plus for all their cleaning needs
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
               <Link to="/quote">Get Your Free Quote</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-2 border-accent text-accent hover:bg-accent hover:text-primary px-8 py-6 text-lg group font-semibold">
+            <Button asChild variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg group">
               <a href="tel:+61403971720" className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 group-hover:text-primary transition-colors" />
                 Call 0403 971 720
@@ -223,7 +223,7 @@ const About = () => {
           </div>
         </div>
       </section>
-      
+
       <Footer />
     </div>
   );

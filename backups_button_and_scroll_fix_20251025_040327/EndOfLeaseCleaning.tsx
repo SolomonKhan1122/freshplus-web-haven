@@ -13,70 +13,69 @@ import {
   Award,
   Calendar,
   Leaf,
-  Droplets,
-  Wind
+  Home
 } from "lucide-react";
 
-const CarpetCleaning = () => {
+const EndOfLeaseCleaning = () => {
   const cleaningServices = [
     {
-      name: "Steam Cleaning",
-      description: "Deep hot water extraction removes embedded dirt and allergens from carpet fibers",
-      icon: Droplets
+      name: "Studio & 1BR",
+      description: "Complete end of lease clean for apartments and small units",
+      icon: Home
     },
     {
-      name: "Dry Cleaning",
-      description: "Low-moisture cleaning method perfect for delicate carpets and quick turnaround",
-      icon: Wind
-    },
-    {
-      name: "Stain Removal",
-      description: "Expert treatment for wine, coffee, pet stains and other stubborn marks",
+      name: "2-3 Bedroom",
+      description: "Thorough bond cleaning for family homes and townhouses",
       icon: Sparkles
+    },
+    {
+      name: "3BR+ & Houses",
+      description: "Comprehensive cleaning for large properties and multi-level homes",
+      icon: Shield
     }
   ];
 
   const whyChooseUs = [
     {
-      title: "Professional Equipment",
-      description: "Truck-mounted systems for deep extraction",
+      title: "100% Bond Guarantee",
+      description: "Full bond back or we re-clean free",
       icon: Shield
     },
     {
-      title: "Eco-Friendly Products",
-      description: "Safe for children, pets, and environment",
+      title: "Expert Checklist",
+      description: "Covers all real estate requirements",
       icon: Leaf
     },
     {
-      title: "Quick Drying",
-      description: "Advanced technology for faster drying",
+      title: "Same-Day Available",
+      description: "Flexible scheduling for urgent moves",
       icon: Clock
     },
     {
-      title: "100% Satisfaction",
-      description: "Perfect results or we'll make it right",
+      title: "Experienced Team",
+      description: "Specialists in bond cleaning",
       icon: Award
     }
   ];
 
   const pricingPlans = [
     {
-      title: "Single Room",
-      description: "Perfect for refreshing one area",
-      features: ["Deep steam cleaning", "Stain treatment", "Deodorizing", "Quick-dry service", "1-2 hour service"],
+      title: "Studio/1BR",
+      description: "Perfect for apartments and studios",
+      features: ["Kitchen deep clean", "Bathroom sanitization", "Living areas", "Window cleaning", "4-6 hour service"],
       cta: "Get Quote"
     },
     {
-      title: "Whole Home",
-      description: "Complete carpet cleaning solution",
-      features: ["All carpeted areas", "Pre-treatment included", "Odor elimination", "Furniture moving", "3-5 hour service"],
+      title: "2-3 Bedroom",
+      description: "Most popular for family homes",
+      features: ["All rooms deep cleaned", "Multiple bathrooms", "Carpet steam clean", "Oven & appliances", "6-8 hour service"],
       cta: "Get Quote",
       popular: true
     },
     {
-      title: "Commercial",
-      description: "Business and office carpet cleaning",
-      features: ["After-hours available", "High-traffic treatment", "Quick-dry technology", "Minimal disruption", "Custom scheduling"],
+      title: "3BR+ House",
+      description: "Complete solution for large homes",
+      features: ["Whole house cleaning", "Garage & laundry", "Outdoor areas", "Window cleaning", "8-10 hour service"],
       cta: "Get Quote"
     }
   ];
@@ -90,14 +89,14 @@ const CarpetCleaning = () => {
   return (
     <div className="min-h-screen bg-white">
       <SEOHead
-        title="Carpet Steam Cleaning Melbourne | Fresh Plus Cleaning"
-        description="Professional carpet steam cleaning services across Melbourne. Expert stain removal, allergen elimination, and eco-friendly solutions. Same-day service available."
-        canonical="https://www.freshpluscleaning.com.au/services/carpet-cleaning"
+        title="End of Lease Cleaning Melbourne | 100% Bond Back Guarantee"
+        description="Professional end of lease cleaning across Melbourne. 100% bond back guarantee. Expert cleaners covering all requirements. Same-day service available."
+        canonical="https://www.freshpluscleaning.com.au/services/end-of-lease-cleaning"
         type="service"
         schema={{
           "@context": "https://schema.org",
           "@type": "Service",
-          "serviceType": "Carpet Cleaning",
+          "serviceType": "End of Lease Cleaning",
           "provider": {
             "@type": "LocalBusiness",
             "name": "Fresh Plus Cleaning Melbourne",
@@ -120,10 +119,10 @@ const CarpetCleaning = () => {
       <section className="bg-white py-16 md:py-20 text-center px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6">
-            Carpet Steam Cleaning Melbourne
+            End of Lease Cleaning Melbourne
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Refresh your carpets, revive your home. Professional steam cleaning that removes deep-seated dirt, allergens, and stubborn stains.
+            Get your full bond back, stress-free. Professional end of lease cleaning with 100% bond back guarantee covering all real estate requirements.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
@@ -145,9 +144,9 @@ const CarpetCleaning = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 text-center gap-6">
             {[
               { icon: Calendar, text: "12+ Years Experience" },
-              { icon: Shield, text: "Licensed & Insured" },
+              { icon: Shield, text: "100% Bond Back Guarantee" },
               { icon: Star, text: "4.9★ Google Rating" },
-              { icon: Leaf, text: "Eco-Friendly Products" }
+              { icon: Clock, text: "Same-Day Available" }
             ].map((item, index) => {
               const IconComponent = item.icon;
               return (
@@ -165,7 +164,7 @@ const CarpetCleaning = () => {
       <section className="py-14 px-4">
         <div className="max-w-screen-lg mx-auto text-center">
           <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            Our professional carpet cleaning service uses state-of-the-art equipment and eco-friendly solutions to restore your carpets to like-new condition. From stubborn stains to embedded allergens, we've got you covered.
+            Our professional end of lease cleaning covers every detail required by real estate agents and property managers. With our 100% bond back guarantee, you can move out stress-free knowing your property will pass inspection.
           </p>
         </div>
       </section>
@@ -174,7 +173,7 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
-            Our Carpet Cleaning Services
+            End of Lease Packages
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {cleaningServices.map((service, index) => {
@@ -218,10 +217,10 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
-            Carpet Cleaning Packages
+            Bond Cleaning Packages
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Choose the perfect package for your needs
+            Choose the perfect package for your property size
           </p>
           <div className="grid md:grid-cols-3 gap-8">
             {pricingPlans.map((plan, index) => (
@@ -254,10 +253,10 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
-            Carpet Cleaning Across Melbourne
+            End of Lease Cleaning Across Melbourne
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Professional carpet cleaning services throughout Melbourne and surrounding suburbs
+            Professional bond cleaning throughout Melbourne
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {serviceAreas.map((suburb, index) => (
@@ -278,16 +277,16 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-primary text-white">
         <div className="max-w-screen-xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Refresh Your Carpets?
+            Ready to Get Your Bond Back?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Transform tired, dirty carpets into fresh, vibrant floor coverings. Get your free quote today
+            Move out stress-free with our 100% bond back guarantee. Get your free quote today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
               <Link to="/quote">Get Your Free Quote</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-2 border-accent text-accent hover:bg-accent hover:text-primary px-8 py-6 text-lg group font-semibold">
+            <Button asChild variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg group">
               <a href="tel:+61403971720" className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 group-hover:text-primary transition-colors" />
                 Call 0403 971 720
@@ -302,4 +301,4 @@ const CarpetCleaning = () => {
   );
 };
 
-export default CarpetCleaning;
+export default EndOfLeaseCleaning;

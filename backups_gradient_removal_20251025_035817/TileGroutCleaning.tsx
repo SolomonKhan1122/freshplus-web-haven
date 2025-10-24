@@ -13,70 +13,69 @@ import {
   Award,
   Calendar,
   Leaf,
-  Droplets,
-  Wind
+  Home
 } from "lucide-react";
 
-const CarpetCleaning = () => {
+const TileGroutCleaning = () => {
   const cleaningServices = [
     {
-      name: "Steam Cleaning",
-      description: "Deep hot water extraction removes embedded dirt and allergens from carpet fibers",
-      icon: Droplets
-    },
-    {
-      name: "Dry Cleaning",
-      description: "Low-moisture cleaning method perfect for delicate carpets and quick turnaround",
-      icon: Wind
-    },
-    {
-      name: "Stain Removal",
-      description: "Expert treatment for wine, coffee, pet stains and other stubborn marks",
+      name: "Kitchen Tiles",
+      description: "Remove grease, grime, and stains from kitchen backsplashes and floor tiles",
       icon: Sparkles
+    },
+    {
+      name: "Bathroom Tiles",
+      description: "Eliminate soap scum, mold, and mildew from bathroom walls and floors",
+      icon: Shield
+    },
+    {
+      name: "Outdoor Tiles",
+      description: "Restore patio, balcony, and outdoor tile surfaces to pristine condition",
+      icon: Home
     }
   ];
 
   const whyChooseUs = [
     {
       title: "Professional Equipment",
-      description: "Truck-mounted systems for deep extraction",
+      description: "High-pressure steam cleaning systems",
       icon: Shield
     },
     {
-      title: "Eco-Friendly Products",
-      description: "Safe for children, pets, and environment",
+      title: "Eco-Friendly Solutions",
+      description: "Safe for family and environment",
       icon: Leaf
     },
     {
-      title: "Quick Drying",
-      description: "Advanced technology for faster drying",
+      title: "Expert Technicians",
+      description: "Trained in tile and grout restoration",
       icon: Clock
     },
     {
-      title: "100% Satisfaction",
-      description: "Perfect results or we'll make it right",
+      title: "Guaranteed Results",
+      description: "Satisfaction or we'll make it right",
       icon: Award
     }
   ];
 
   const pricingPlans = [
     {
-      title: "Single Room",
-      description: "Perfect for refreshing one area",
-      features: ["Deep steam cleaning", "Stain treatment", "Deodorizing", "Quick-dry service", "1-2 hour service"],
+      title: "Bathroom Clean",
+      description: "Perfect for single bathroom refresh",
+      features: ["Tile cleaning", "Grout deep clean", "Mold removal", "Sanitization", "1-2 hour service"],
       cta: "Get Quote"
     },
     {
-      title: "Whole Home",
-      description: "Complete carpet cleaning solution",
-      features: ["All carpeted areas", "Pre-treatment included", "Odor elimination", "Furniture moving", "3-5 hour service"],
+      title: "Kitchen & Bath",
+      description: "Complete kitchen and bathroom solution",
+      features: ["All bathroom services", "Kitchen backsplash", "Floor tiles", "Grout sealing", "2-4 hour service"],
       cta: "Get Quote",
       popular: true
     },
     {
-      title: "Commercial",
-      description: "Business and office carpet cleaning",
-      features: ["After-hours available", "High-traffic treatment", "Quick-dry technology", "Minimal disruption", "Custom scheduling"],
+      title: "Whole Home",
+      description: "Comprehensive tile cleaning package",
+      features: ["All tiled areas", "Multiple bathrooms", "Kitchen tiles", "Outdoor tiles", "4-6 hour service"],
       cta: "Get Quote"
     }
   ];
@@ -90,14 +89,14 @@ const CarpetCleaning = () => {
   return (
     <div className="min-h-screen bg-white">
       <SEOHead
-        title="Carpet Steam Cleaning Melbourne | Fresh Plus Cleaning"
-        description="Professional carpet steam cleaning services across Melbourne. Expert stain removal, allergen elimination, and eco-friendly solutions. Same-day service available."
-        canonical="https://www.freshpluscleaning.com.au/services/carpet-cleaning"
+        title="Tile & Grout Cleaning Melbourne | Fresh Plus Cleaning"
+        description="Professional tile and grout cleaning services across Melbourne. Remove stains, mold, and restore shine. Kitchen, bathroom, and outdoor tile specialists."
+        canonical="https://www.freshpluscleaning.com.au/services/tile-grout-cleaning"
         type="service"
         schema={{
           "@context": "https://schema.org",
           "@type": "Service",
-          "serviceType": "Carpet Cleaning",
+          "serviceType": "Tile and Grout Cleaning",
           "provider": {
             "@type": "LocalBusiness",
             "name": "Fresh Plus Cleaning Melbourne",
@@ -120,10 +119,10 @@ const CarpetCleaning = () => {
       <section className="bg-white py-16 md:py-20 text-center px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6">
-            Carpet Steam Cleaning Melbourne
+            Tile & Grout Cleaning Melbourne
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Refresh your carpets, revive your home. Professional steam cleaning that removes deep-seated dirt, allergens, and stubborn stains.
+            Restore the shine your tiles deserve. Professional cleaning that removes embedded dirt, stains, and mold from tiles and grout.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
@@ -165,7 +164,7 @@ const CarpetCleaning = () => {
       <section className="py-14 px-4">
         <div className="max-w-screen-lg mx-auto text-center">
           <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            Our professional carpet cleaning service uses state-of-the-art equipment and eco-friendly solutions to restore your carpets to like-new condition. From stubborn stains to embedded allergens, we've got you covered.
+            Our professional tile and grout cleaning service uses advanced steam cleaning technology to deep clean, sanitize, and restore your tiles. From stubborn stains to embedded mold, we make your tiles look brand new.
           </p>
         </div>
       </section>
@@ -174,7 +173,7 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
-            Our Carpet Cleaning Services
+            Tile & Grout Services
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {cleaningServices.map((service, index) => {
@@ -218,10 +217,10 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
-            Carpet Cleaning Packages
+            Tile Cleaning Packages
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Choose the perfect package for your needs
+            Choose the perfect package for your tile cleaning needs
           </p>
           <div className="grid md:grid-cols-3 gap-8">
             {pricingPlans.map((plan, index) => (
@@ -254,10 +253,10 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
-            Carpet Cleaning Across Melbourne
+            Tile Cleaning Across Melbourne
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Professional carpet cleaning services throughout Melbourne and surrounding suburbs
+            Professional tile and grout cleaning throughout Melbourne
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {serviceAreas.map((suburb, index) => (
@@ -275,19 +274,19 @@ const CarpetCleaning = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 px-4 bg-primary text-white">
+      <section className="py-16 px-4 bg-gradient-to-r from-primary to-primary-dark text-white">
         <div className="max-w-screen-xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Refresh Your Carpets?
+            Ready to Restore Your Tiles?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Transform tired, dirty carpets into fresh, vibrant floor coverings. Get your free quote today
+            Transform dirty, stained tiles into sparkling clean surfaces. Get your free quote today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
               <Link to="/quote">Get Your Free Quote</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-2 border-accent text-accent hover:bg-accent hover:text-primary px-8 py-6 text-lg group font-semibold">
+            <Button asChild variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg group">
               <a href="tel:+61403971720" className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 group-hover:text-primary transition-colors" />
                 Call 0403 971 720
@@ -302,4 +301,4 @@ const CarpetCleaning = () => {
   );
 };
 
-export default CarpetCleaning;
+export default TileGroutCleaning;

@@ -13,33 +13,33 @@ import {
   Award,
   Calendar,
   Leaf,
-  Droplets,
-  Wind
+  Zap,
+  Home
 } from "lucide-react";
 
-const CarpetCleaning = () => {
+const DeepCleaning = () => {
   const cleaningServices = [
     {
-      name: "Steam Cleaning",
-      description: "Deep hot water extraction removes embedded dirt and allergens from carpet fibers",
-      icon: Droplets
+      name: "Pre-Move Deep Clean",
+      description: "Complete deep clean before moving in or out to ensure every surface is spotless",
+      icon: Home
     },
     {
-      name: "Dry Cleaning",
-      description: "Low-moisture cleaning method perfect for delicate carpets and quick turnaround",
-      icon: Wind
-    },
-    {
-      name: "Stain Removal",
-      description: "Expert treatment for wine, coffee, pet stains and other stubborn marks",
+      name: "Spring Cleaning",
+      description: "Seasonal refresh to eliminate accumulated dirt and restore your home's freshness",
       icon: Sparkles
+    },
+    {
+      name: "Post-Renovation Clean",
+      description: "Remove construction dust and debris to make your renovated space shine",
+      icon: Zap
     }
   ];
 
   const whyChooseUs = [
     {
       title: "Professional Equipment",
-      description: "Truck-mounted systems for deep extraction",
+      description: "Commercial-grade tools for deep cleaning",
       icon: Shield
     },
     {
@@ -48,8 +48,8 @@ const CarpetCleaning = () => {
       icon: Leaf
     },
     {
-      title: "Quick Drying",
-      description: "Advanced technology for faster drying",
+      title: "Flexible Scheduling",
+      description: "Book at your convenience",
       icon: Clock
     },
     {
@@ -61,22 +61,22 @@ const CarpetCleaning = () => {
 
   const pricingPlans = [
     {
-      title: "Single Room",
-      description: "Perfect for refreshing one area",
-      features: ["Deep steam cleaning", "Stain treatment", "Deodorizing", "Quick-dry service", "1-2 hour service"],
+      title: "Apartment/Unit",
+      description: "Perfect for 1-2 bedroom apartments",
+      features: ["All rooms deep cleaned", "Kitchen appliances", "Bathroom intensive", "Windows included", "4-6 hours service"],
       cta: "Get Quote"
     },
     {
-      title: "Whole Home",
-      description: "Complete carpet cleaning solution",
-      features: ["All carpeted areas", "Pre-treatment included", "Odor elimination", "Furniture moving", "3-5 hour service"],
+      title: "Family Home",
+      description: "Comprehensive clean for 3-4 bedroom homes",
+      features: ["Whole house deep clean", "Multiple bathrooms", "Living areas detailed", "Garage/laundry included", "6-8 hours service"],
       cta: "Get Quote",
       popular: true
     },
     {
-      title: "Commercial",
-      description: "Business and office carpet cleaning",
-      features: ["After-hours available", "High-traffic treatment", "Quick-dry technology", "Minimal disruption", "Custom scheduling"],
+      title: "Large Property",
+      description: "Extensive cleaning for large homes",
+      features: ["5+ bedrooms covered", "Multiple living areas", "Outdoor area cleaning", "Pool area included", "8+ hours service"],
       cta: "Get Quote"
     }
   ];
@@ -90,14 +90,14 @@ const CarpetCleaning = () => {
   return (
     <div className="min-h-screen bg-white">
       <SEOHead
-        title="Carpet Steam Cleaning Melbourne | Fresh Plus Cleaning"
-        description="Professional carpet steam cleaning services across Melbourne. Expert stain removal, allergen elimination, and eco-friendly solutions. Same-day service available."
-        canonical="https://www.freshpluscleaning.com.au/services/carpet-cleaning"
+        title="Deep Cleaning Melbourne | Fresh Plus Cleaning"
+        description="Professional deep cleaning services across Melbourne. Spring cleaning, pre-move, and post-renovation deep cleans. Eco-friendly, insured, and satisfaction guaranteed."
+        canonical="https://www.freshpluscleaning.com.au/services/deep-cleaning"
         type="service"
         schema={{
           "@context": "https://schema.org",
           "@type": "Service",
-          "serviceType": "Carpet Cleaning",
+          "serviceType": "Deep Cleaning",
           "provider": {
             "@type": "LocalBusiness",
             "name": "Fresh Plus Cleaning Melbourne",
@@ -120,10 +120,10 @@ const CarpetCleaning = () => {
       <section className="bg-white py-16 md:py-20 text-center px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6">
-            Carpet Steam Cleaning Melbourne
+            Deep Cleaning Melbourne
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Refresh your carpets, revive your home. Professional steam cleaning that removes deep-seated dirt, allergens, and stubborn stains.
+            Transform your home with intensive cleaning that goes beyond the surface. Every corner, every detail, professionally deep cleaned.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
@@ -165,7 +165,7 @@ const CarpetCleaning = () => {
       <section className="py-14 px-4">
         <div className="max-w-screen-lg mx-auto text-center">
           <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            Our professional carpet cleaning service uses state-of-the-art equipment and eco-friendly solutions to restore your carpets to like-new condition. From stubborn stains to embedded allergens, we've got you covered.
+            Our deep cleaning service tackles everything your regular clean misses. From inside appliances to behind furniture, we leave no corner untouched for a truly spotless home.
           </p>
         </div>
       </section>
@@ -174,7 +174,7 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
-            Our Carpet Cleaning Services
+            Deep Cleaning Services
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {cleaningServices.map((service, index) => {
@@ -218,10 +218,10 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
-            Carpet Cleaning Packages
+            Deep Cleaning Packages
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Choose the perfect package for your needs
+            Choose the perfect package for your property size
           </p>
           <div className="grid md:grid-cols-3 gap-8">
             {pricingPlans.map((plan, index) => (
@@ -254,10 +254,10 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
-            Carpet Cleaning Across Melbourne
+            Deep Cleaning Across Melbourne
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Professional carpet cleaning services throughout Melbourne and surrounding suburbs
+            Professional deep cleaning services throughout Melbourne and surrounding suburbs
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {serviceAreas.map((suburb, index) => (
@@ -278,16 +278,16 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-primary text-white">
         <div className="max-w-screen-xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Refresh Your Carpets?
+            Ready for a Complete Deep Clean?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Transform tired, dirty carpets into fresh, vibrant floor coverings. Get your free quote today
+            Experience the difference professional deep cleaning makes. Get your free quote today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
               <Link to="/quote">Get Your Free Quote</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-2 border-accent text-accent hover:bg-accent hover:text-primary px-8 py-6 text-lg group font-semibold">
+            <Button asChild variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg group">
               <a href="tel:+61403971720" className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 group-hover:text-primary transition-colors" />
                 Call 0403 971 720
@@ -302,4 +302,4 @@ const CarpetCleaning = () => {
   );
 };
 
-export default CarpetCleaning;
+export default DeepCleaning;

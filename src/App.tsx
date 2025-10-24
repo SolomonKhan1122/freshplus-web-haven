@@ -36,6 +36,7 @@ import TileGroutLanding from "./pages/TileGroutLanding";
 import EndOfLeaseLanding from "./pages/EndOfLeaseLanding";
 import ThankYou from "./pages/ThankYou";
 import GoogleAnalyticsTracker from "./components/GoogleAnalyticsTracker";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const queryClient = new QueryClient();
@@ -47,6 +48,7 @@ function App() {
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <GoogleAnalyticsTracker />
           <Routes>
             {/* Public Routes */}

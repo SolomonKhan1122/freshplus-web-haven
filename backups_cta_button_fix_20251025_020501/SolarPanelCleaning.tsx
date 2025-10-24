@@ -13,70 +13,69 @@ import {
   Award,
   Calendar,
   Leaf,
-  Droplets,
-  Wind
+  Zap
 } from "lucide-react";
 
-const CarpetCleaning = () => {
+const SolarPanelCleaning = () => {
   const cleaningServices = [
     {
-      name: "Steam Cleaning",
-      description: "Deep hot water extraction removes embedded dirt and allergens from carpet fibers",
-      icon: Droplets
+      name: "Efficiency Restoration",
+      description: "Remove dirt and debris to maximize solar panel energy output and ROI",
+      icon: Zap
     },
     {
-      name: "Dry Cleaning",
-      description: "Low-moisture cleaning method perfect for delicate carpets and quick turnaround",
-      icon: Wind
+      name: "Longevity Protection",
+      description: "Gentle cleaning that protects panel surfaces and extends system lifespan",
+      icon: Shield
     },
     {
-      name: "Stain Removal",
-      description: "Expert treatment for wine, coffee, pet stains and other stubborn marks",
-      icon: Sparkles
+      name: "Regular Maintenance",
+      description: "Scheduled cleaning services to keep panels performing at peak efficiency",
+      icon: Clock
     }
   ];
 
   const whyChooseUs = [
     {
-      title: "Professional Equipment",
-      description: "Truck-mounted systems for deep extraction",
+      title: "Specialized Equipment",
+      description: "Soft-brush systems safe for panels",
       icon: Shield
     },
     {
-      title: "Eco-Friendly Products",
-      description: "Safe for children, pets, and environment",
+      title: "Water-Fed Poles",
+      description: "Pure water cleaning technology",
       icon: Leaf
     },
     {
-      title: "Quick Drying",
-      description: "Advanced technology for faster drying",
+      title: "Experienced Team",
+      description: "Trained in solar panel care",
       icon: Clock
     },
     {
-      title: "100% Satisfaction",
-      description: "Perfect results or we'll make it right",
+      title: "Maximize ROI",
+      description: "Restore full energy efficiency",
       icon: Award
     }
   ];
 
   const pricingPlans = [
     {
-      title: "Single Room",
-      description: "Perfect for refreshing one area",
-      features: ["Deep steam cleaning", "Stain treatment", "Deodorizing", "Quick-dry service", "1-2 hour service"],
+      title: "Residential",
+      description: "Perfect for home solar systems",
+      features: ["Up to 20 panels", "Soft-brush cleaning", "Pure water rinse", "Efficiency check", "1-2 hour service"],
       cta: "Get Quote"
     },
     {
-      title: "Whole Home",
-      description: "Complete carpet cleaning solution",
-      features: ["All carpeted areas", "Pre-treatment included", "Odor elimination", "Furniture moving", "3-5 hour service"],
+      title: "Standard System",
+      description: "Most popular for medium installations",
+      features: ["20-40 panels", "Complete cleaning", "Performance assessment", "Debris removal", "2-3 hour service"],
       cta: "Get Quote",
       popular: true
     },
     {
       title: "Commercial",
-      description: "Business and office carpet cleaning",
-      features: ["After-hours available", "High-traffic treatment", "Quick-dry technology", "Minimal disruption", "Custom scheduling"],
+      description: "Large-scale solar installations",
+      features: ["40+ panels", "Scheduled maintenance", "Performance reports", "Priority service", "Custom quote"],
       cta: "Get Quote"
     }
   ];
@@ -90,14 +89,14 @@ const CarpetCleaning = () => {
   return (
     <div className="min-h-screen bg-white">
       <SEOHead
-        title="Carpet Steam Cleaning Melbourne | Fresh Plus Cleaning"
-        description="Professional carpet steam cleaning services across Melbourne. Expert stain removal, allergen elimination, and eco-friendly solutions. Same-day service available."
-        canonical="https://www.freshpluscleaning.com.au/services/carpet-cleaning"
+        title="Solar Panel Cleaning Melbourne | Fresh Plus Cleaning"
+        description="Professional solar panel cleaning services across Melbourne. Maximize energy efficiency and protect your investment. Safe, eco-friendly cleaning specialists."
+        canonical="https://www.freshpluscleaning.com.au/services/solar-panel-cleaning"
         type="service"
         schema={{
           "@context": "https://schema.org",
           "@type": "Service",
-          "serviceType": "Carpet Cleaning",
+          "serviceType": "Solar Panel Cleaning",
           "provider": {
             "@type": "LocalBusiness",
             "name": "Fresh Plus Cleaning Melbourne",
@@ -120,10 +119,10 @@ const CarpetCleaning = () => {
       <section className="bg-white py-16 md:py-20 text-center px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6">
-            Carpet Steam Cleaning Melbourne
+            Solar Panel Cleaning Melbourne
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Refresh your carpets, revive your home. Professional steam cleaning that removes deep-seated dirt, allergens, and stubborn stains.
+            Keep your investment performing at peak. Professional solar panel cleaning that maximizes energy efficiency and extends system life.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
@@ -147,7 +146,7 @@ const CarpetCleaning = () => {
               { icon: Calendar, text: "12+ Years Experience" },
               { icon: Shield, text: "Licensed & Insured" },
               { icon: Star, text: "4.9★ Google Rating" },
-              { icon: Leaf, text: "Eco-Friendly Products" }
+              { icon: Zap, text: "Maximize Energy Efficiency" }
             ].map((item, index) => {
               const IconComponent = item.icon;
               return (
@@ -165,7 +164,7 @@ const CarpetCleaning = () => {
       <section className="py-14 px-4">
         <div className="max-w-screen-lg mx-auto text-center">
           <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            Our professional carpet cleaning service uses state-of-the-art equipment and eco-friendly solutions to restore your carpets to like-new condition. From stubborn stains to embedded allergens, we've got you covered.
+            Dirty solar panels can lose up to 25% efficiency. Our professional cleaning service uses specialized equipment and pure water technology to safely restore your panels to peak performance without causing damage.
           </p>
         </div>
       </section>
@@ -174,7 +173,7 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
-            Our Carpet Cleaning Services
+            Solar Panel Services
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {cleaningServices.map((service, index) => {
@@ -218,10 +217,10 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
-            Carpet Cleaning Packages
+            Solar Panel Cleaning Packages
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Choose the perfect package for your needs
+            Choose the right package for your solar system
           </p>
           <div className="grid md:grid-cols-3 gap-8">
             {pricingPlans.map((plan, index) => (
@@ -254,10 +253,10 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
-            Carpet Cleaning Across Melbourne
+            Solar Panel Cleaning Across Melbourne
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Professional carpet cleaning services throughout Melbourne and surrounding suburbs
+            Professional solar panel maintenance throughout Melbourne
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {serviceAreas.map((suburb, index) => (
@@ -275,21 +274,21 @@ const CarpetCleaning = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 px-4 bg-primary text-white">
+      <section className="py-16 px-4 bg-gradient-to-r from-primary to-primary-dark text-white">
         <div className="max-w-screen-xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Refresh Your Carpets?
+            Ready to Maximize Your Solar Efficiency?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Transform tired, dirty carpets into fresh, vibrant floor coverings. Get your free quote today
+            Restore full energy output and protect your solar investment. Get your free quote today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
               <Link to="/quote">Get Your Free Quote</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-2 border-accent text-accent hover:bg-accent hover:text-primary px-8 py-6 text-lg group font-semibold">
-              <a href="tel:+61403971720" className="flex items-center">
-                <Phone className="mr-2 h-5 w-5 group-hover:text-primary transition-colors" />
+            <Button asChild variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg">
+              <a href="tel:+61403971720">
+                <Phone className="mr-2 h-5 w-5" />
                 Call 0403 971 720
               </a>
             </Button>
@@ -302,4 +301,4 @@ const CarpetCleaning = () => {
   );
 };
 
-export default CarpetCleaning;
+export default SolarPanelCleaning;

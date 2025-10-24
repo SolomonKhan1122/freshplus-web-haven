@@ -275,7 +275,7 @@ const CarpetCleaning = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 px-4 bg-primary text-white">
+      <section className="py-16 px-4 bg-gradient-to-r from-primary to-primary-dark text-white">
         <div className="max-w-screen-xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Refresh Your Carpets?
@@ -287,7 +287,7 @@ const CarpetCleaning = () => {
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
               <Link to="/quote">Get Your Free Quote</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-2 border-accent text-accent hover:bg-accent hover:text-primary px-8 py-6 text-lg group font-semibold">
+            <Button asChild variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg group">
               <a href="tel:+61403971720" className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 group-hover:text-primary transition-colors" />
                 Call 0403 971 720

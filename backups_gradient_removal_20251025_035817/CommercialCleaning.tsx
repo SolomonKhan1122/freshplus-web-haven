@@ -13,70 +13,70 @@ import {
   Award,
   Calendar,
   Leaf,
-  Droplets,
-  Wind
+  Building,
+  Briefcase
 } from "lucide-react";
 
-const CarpetCleaning = () => {
+const CommercialCleaning = () => {
   const cleaningServices = [
     {
-      name: "Steam Cleaning",
-      description: "Deep hot water extraction removes embedded dirt and allergens from carpet fibers",
-      icon: Droplets
+      name: "Office Cleaning",
+      description: "Professional daily or weekly cleaning for offices, corporate buildings, and business centers",
+      icon: Building
     },
     {
-      name: "Dry Cleaning",
-      description: "Low-moisture cleaning method perfect for delicate carpets and quick turnaround",
-      icon: Wind
-    },
-    {
-      name: "Stain Removal",
-      description: "Expert treatment for wine, coffee, pet stains and other stubborn marks",
+      name: "Retail Cleaning",
+      description: "Maintain pristine shopping environments that enhance customer experience and sales",
       icon: Sparkles
+    },
+    {
+      name: "Warehouse Cleaning",
+      description: "Industrial-grade cleaning for warehouses, storage facilities, and distribution centers",
+      icon: Briefcase
     }
   ];
 
   const whyChooseUs = [
     {
-      title: "Professional Equipment",
-      description: "Truck-mounted systems for deep extraction",
-      icon: Shield
+      title: "500+ Businesses Served",
+      description: "Trusted by Melbourne businesses since 2012",
+      icon: Award
     },
     {
-      title: "Eco-Friendly Products",
-      description: "Safe for children, pets, and environment",
+      title: "Eco-Friendly Solutions",
+      description: "Safe for employees and environment",
       icon: Leaf
     },
     {
-      title: "Quick Drying",
-      description: "Advanced technology for faster drying",
+      title: "Flexible Scheduling",
+      description: "After-hours and weekend services available",
       icon: Clock
     },
     {
-      title: "100% Satisfaction",
-      description: "Perfect results or we'll make it right",
-      icon: Award
+      title: "Quality Guaranteed",
+      description: "Consistent results, every time",
+      icon: Shield
     }
   ];
 
   const pricingPlans = [
     {
-      title: "Single Room",
-      description: "Perfect for refreshing one area",
-      features: ["Deep steam cleaning", "Stain treatment", "Deodorizing", "Quick-dry service", "1-2 hour service"],
+      title: "Daily Service",
+      description: "Perfect for high-traffic businesses",
+      features: ["Daily trash removal", "Restroom cleaning", "Surface wiping", "Vacuum common areas", "Quality assurance"],
       cta: "Get Quote"
     },
     {
-      title: "Whole Home",
-      description: "Complete carpet cleaning solution",
-      features: ["All carpeted areas", "Pre-treatment included", "Odor elimination", "Furniture moving", "3-5 hour service"],
+      title: "Weekly Contract",
+      description: "Comprehensive cleaning solution",
+      features: ["All daily services", "Deep cleaning weekly", "Window cleaning", "Kitchen areas", "Flexible scheduling"],
       cta: "Get Quote",
       popular: true
     },
     {
-      title: "Commercial",
-      description: "Business and office carpet cleaning",
-      features: ["After-hours available", "High-traffic treatment", "Quick-dry technology", "Minimal disruption", "Custom scheduling"],
+      title: "Monthly Plan",
+      description: "Cost-effective periodic cleaning",
+      features: ["Deep clean monthly", "Carpet cleaning", "Pressure washing", "Specialized equipment", "Emergency response"],
       cta: "Get Quote"
     }
   ];
@@ -90,14 +90,14 @@ const CarpetCleaning = () => {
   return (
     <div className="min-h-screen bg-white">
       <SEOHead
-        title="Carpet Steam Cleaning Melbourne | Fresh Plus Cleaning"
-        description="Professional carpet steam cleaning services across Melbourne. Expert stain removal, allergen elimination, and eco-friendly solutions. Same-day service available."
-        canonical="https://www.freshpluscleaning.com.au/services/carpet-cleaning"
+        title="Commercial Cleaning Melbourne | Fresh Plus Cleaning"
+        description="Professional commercial cleaning services across Melbourne. Office cleaning, retail, warehouse cleaning. Eco-friendly, insured, and trusted by 500+ businesses."
+        canonical="https://www.freshpluscleaning.com.au/services/commercial-cleaning"
         type="service"
         schema={{
           "@context": "https://schema.org",
           "@type": "Service",
-          "serviceType": "Carpet Cleaning",
+          "serviceType": "Commercial Cleaning",
           "provider": {
             "@type": "LocalBusiness",
             "name": "Fresh Plus Cleaning Melbourne",
@@ -120,10 +120,10 @@ const CarpetCleaning = () => {
       <section className="bg-white py-16 md:py-20 text-center px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6">
-            Carpet Steam Cleaning Melbourne
+            Commercial Cleaning Melbourne
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Refresh your carpets, revive your home. Professional steam cleaning that removes deep-seated dirt, allergens, and stubborn stains.
+            Focus on your business while we handle the clean. Professional commercial cleaning trusted by Melbourne businesses for over 12 years.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
@@ -147,7 +147,7 @@ const CarpetCleaning = () => {
               { icon: Calendar, text: "12+ Years Experience" },
               { icon: Shield, text: "Licensed & Insured" },
               { icon: Star, text: "4.9★ Google Rating" },
-              { icon: Leaf, text: "Eco-Friendly Products" }
+              { icon: Building, text: "500+ Businesses Served" }
             ].map((item, index) => {
               const IconComponent = item.icon;
               return (
@@ -165,7 +165,7 @@ const CarpetCleaning = () => {
       <section className="py-14 px-4">
         <div className="max-w-screen-lg mx-auto text-center">
           <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            Our professional carpet cleaning service uses state-of-the-art equipment and eco-friendly solutions to restore your carpets to like-new condition. From stubborn stains to embedded allergens, we've got you covered.
+            We provide reliable, professional cleaning services for businesses across Melbourne. From small offices to large warehouses, our experienced team maintains your workspace to the highest standards.
           </p>
         </div>
       </section>
@@ -174,7 +174,7 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
-            Our Carpet Cleaning Services
+            Business Cleaning Services
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {cleaningServices.map((service, index) => {
@@ -195,7 +195,7 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
-            Why Choose Fresh Plus
+            Why Businesses Choose Fresh Plus
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {whyChooseUs.map((feature, index) => {
@@ -218,10 +218,10 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
-            Carpet Cleaning Packages
+            Commercial Cleaning Plans
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Choose the perfect package for your needs
+            Flexible cleaning contracts tailored to your business needs
           </p>
           <div className="grid md:grid-cols-3 gap-8">
             {pricingPlans.map((plan, index) => (
@@ -254,10 +254,10 @@ const CarpetCleaning = () => {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
-            Carpet Cleaning Across Melbourne
+            Serving Melbourne Businesses
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Professional carpet cleaning services throughout Melbourne and surrounding suburbs
+            Professional commercial cleaning across Melbourne business districts
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {serviceAreas.map((suburb, index) => (
@@ -268,26 +268,26 @@ const CarpetCleaning = () => {
           </div>
           <div className="text-center mt-8">
             <p className="text-gray-600">
-              Don't see your suburb? <a href="tel:+61403971720" className="text-accent font-semibold hover:underline">Call us</a> - we likely service your area too
+              Don't see your area? <a href="tel:+61403971720" className="text-accent font-semibold hover:underline">Call us</a> - we service businesses across Melbourne
             </p>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 px-4 bg-primary text-white">
+      <section className="py-16 px-4 bg-gradient-to-r from-primary to-primary-dark text-white">
         <div className="max-w-screen-xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Refresh Your Carpets?
+            Ready to Elevate Your Business?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Transform tired, dirty carpets into fresh, vibrant floor coverings. Get your free quote today
+            Join 500+ Melbourne businesses who trust Fresh Plus for professional cleaning. Get your free quote today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
               <Link to="/quote">Get Your Free Quote</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-2 border-accent text-accent hover:bg-accent hover:text-primary px-8 py-6 text-lg group font-semibold">
+            <Button asChild variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg group">
               <a href="tel:+61403971720" className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 group-hover:text-primary transition-colors" />
                 Call 0403 971 720
@@ -302,4 +302,4 @@ const CarpetCleaning = () => {
   );
 };
 
-export default CarpetCleaning;
+export default CommercialCleaning;

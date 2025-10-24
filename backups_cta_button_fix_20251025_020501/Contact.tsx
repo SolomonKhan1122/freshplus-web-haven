@@ -174,9 +174,9 @@ const Contact = () => {
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
               <Link to="/quote">Get Your Free Quote</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-2 border-accent text-accent hover:bg-accent hover:text-primary px-8 py-6 text-lg group font-semibold">
-              <a href="tel:+61403971720" className="flex items-center">
-                <Phone className="mr-2 h-5 w-5 group-hover:text-primary transition-colors" />
+            <Button asChild variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg">
+              <a href="tel:+61403971720">
+                <Phone className="mr-2 h-5 w-5" />
                 Call 0403 971 720
               </a>
             </Button>
