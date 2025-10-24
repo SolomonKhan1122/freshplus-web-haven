@@ -95,8 +95,8 @@ const Services = () => {
     }
   ];
 
-  return (
-    <div className="min-h-screen bg-white">
+    return (
+      <div className="min-h-screen bg-white">
       <SEOHead
         title="Professional Cleaning Services Melbourne | Fresh Plus Cleaning"
         description="Complete cleaning services across Melbourne. Residential, commercial, deep cleaning, carpet, tile & grout, pressure washing, and more. Licensed, insured, eco-friendly."
@@ -120,14 +120,14 @@ const Services = () => {
         }}
       />
       
-      <Navigation />
+        <Navigation />
       
       {/* Hero Section */}
       <section className="bg-white py-16 md:py-20 text-center px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6">
             Professional Cleaning Services Melbourne
-          </h1>
+                </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
             From residential homes to commercial spaces, we provide comprehensive cleaning solutions trusted by Melbourne for over 12 years.
           </p>
@@ -139,7 +139,7 @@ const Services = () => {
               <a href="tel:+61403971720">Call 0403 971 720</a>
             </Button>
           </div>
-        </div>
+                  </div>
       </section>
 
       {/* Trust Bar */}
@@ -157,7 +157,7 @@ const Services = () => {
               );
             })}
           </div>
-        </div>
+                  </div>
       </section>
 
       {/* Services Grid */}
@@ -171,7 +171,7 @@ const Services = () => {
               Professional cleaning solutions for every need. Choose the service that's right for you.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => {
               const IconComponent = service.icon;
@@ -199,7 +199,7 @@ const Services = () => {
                     Learn more
                     <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </div>
-                </Link>
+              </Link>
               );
             })}
           </div>
@@ -217,7 +217,7 @@ const Services = () => {
               Melbourne's trusted cleaning professionals delivering excellence since 2012
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
@@ -272,8 +272,11 @@ const Services = () => {
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
               <Link to="/quote">Get Your Free Quote</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg">
-              <a href="tel:+61403971720">Call 0403 971 720</a>
+            <Button asChild variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg group">
+              <a href="tel:+61403971720" className="flex items-center">
+                <Phone className="mr-2 h-5 w-5 group-hover:text-primary transition-colors" />
+                Call 0403 971 720
+              </a>
             </Button>
           </div>
         </div>
