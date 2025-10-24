@@ -1,10 +1,10 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { 
   Phone, 
-  MessageSquare, 
   CheckCircle, 
   Clock, 
   Shield, 
@@ -12,10 +12,7 @@ import {
   Home,
   Star,
   Award,
-  Heart,
-  Users,
   Calendar,
-  Zap,
   Leaf
 } from "lucide-react";
 
@@ -23,62 +20,41 @@ const ResidentialCleaning = () => {
   const cleaningServices = [
     {
       name: "Regular House Cleaning",
-      description: "Weekly, fortnightly, or monthly scheduled cleaning to keep your home consistently spotless",
-      icon: <Calendar className="w-6 h-6 text-accent" />
+      description: "Weekly or fortnightly scheduled cleaning to keep your home consistently spotless",
+      icon: Calendar
     },
     {
       name: "Deep Cleaning Service",
-      description: "Comprehensive top-to-bottom cleaning for move-ins, special occasions, or seasonal refreshes",
-      icon: <Sparkles className="w-6 h-6 text-accent" />
+      description: "Comprehensive top-to-bottom cleaning for special occasions or seasonal refreshes",
+      icon: Sparkles
     },
     {
-      name: "Kitchen Deep Clean",
-      description: "Inside appliances, cabinets, backsplash, and all surfaces thoroughly cleaned and sanitized",
-      icon: <Zap className="w-6 h-6 text-accent" />
-    },
-    {
-      name: "Bathroom Sanitization",
-      description: "Complete bathroom cleaning with hospital-grade products, eliminating germs and grime",
-      icon: <Shield className="w-6 h-6 text-accent" />
-    },
-    {
-      name: "Bedroom & Living Areas",
-      description: "Dusting, vacuuming, mopping, and organizing all living spaces to perfection",
-      icon: <Home className="w-6 h-6 text-accent" />
-    },
-    {
-      name: "Internal Window Cleaning",
-      description: "Crystal-clear windows and glass surfaces for maximum natural light",
-      icon: <Star className="w-6 h-6 text-accent" />
+      name: "Kitchen & Bathroom",
+      description: "Thorough cleaning and sanitization of high-use areas with premium products",
+      icon: Shield
     }
-  ];
-
-  const cleaningAreas = [
-    "Living rooms and family areas", "All bedrooms and guest rooms", "Kitchen and dining areas", 
-    "Bathrooms and powder rooms", "Hallways and staircases", "Home offices and studies",
-    "Laundry rooms and mudrooms", "Internal windows and mirrors"
   ];
 
   const whyChooseUs = [
     {
       title: "Trusted Professionals",
-      description: "Fully trained, background-checked, and insured cleaning specialists",
-      icon: <Shield className="w-8 h-8 text-accent" />
+      description: "Trained and insured cleaning specialists",
+      icon: Shield
     },
     {
       title: "Eco-Friendly Products",
-      description: "Safe for children, pets, and the environment - premium green cleaning solutions",
-      icon: <Leaf className="w-8 h-8 text-accent" />
+      description: "Safe for children, pets, and environment",
+      icon: Leaf
     },
     {
       title: "Flexible Scheduling",
-      description: "Book around your busy lifestyle with same-day service available",
-      icon: <Clock className="w-8 h-8 text-accent" />
+      description: "Book around your busy lifestyle",
+      icon: Clock
     },
     {
       title: "100% Satisfaction",
-      description: "We guarantee perfect results or we'll return to make it right",
-      icon: <Award className="w-8 h-8 text-accent" />
+      description: "Perfect results or we'll make it right",
+      icon: Award
     }
   ];
 
@@ -93,192 +69,179 @@ const ResidentialCleaning = () => {
       title: "Regular Weekly",
       description: "The ultimate convenience - your home always guest-ready",
       features: ["Weekly scheduled visits", "Consistent cleaning team", "Priority booking", "15% discount"],
-      cta: "Book Weekly",
+      cta: "Get Quote",
       popular: true
     },
     {
       title: "Fortnightly Service",
       description: "Perfect balance of cleanliness and affordability",
       features: ["Every two weeks", "Deep clean focus", "Flexible rescheduling", "10% discount"],
-      cta: "Book Fortnightly"
+      cta: "Get Quote"
     }
   ];
 
+  const serviceAreas = [
+    "Melbourne CBD", "South Yarra", "Richmond", "Collingwood", "Fitzroy",
+    "Carlton", "St Kilda", "Prahran", "Toorak", "Hawthorn",
+    "Camberwell", "Kew", "Northcote", "Thornbury", "Preston"
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary-light to-white">
+    <div className="min-h-screen bg-white">
+      <SEOHead
+        title="Residential Cleaning Melbourne | Fresh Plus Cleaning"
+        description="Professional residential cleaning across Melbourne. Eco-friendly, insured, and trusted by hundreds of families. Get your free quote today for house cleaning services."
+        canonical="https://www.freshpluscleaning.com.au/services/residential"
+        type="service"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": "Residential Cleaning",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Fresh Plus Cleaning Melbourne",
+            "telephone": "+61 403 971 720",
+            "areaServed": "Melbourne, VIC",
+            "url": "https://freshpluscleaning.com.au"
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "Melbourne",
+            "addressRegion": "VIC",
+            "addressCountry": "AU"
+          }
+        }}
+      />
+      
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10"></div>
-        <div className="container mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 leading-tight">
-                Professional <span className="text-accent">Residential Cleaning</span> Melbourne
-              </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Transform your home into a spotless sanctuary with Melbourne's most trusted residential cleaning service. 
-                Enjoy more free time while we take care of every detail, from deep cleaning to regular maintenance.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white px-8 py-3">
-                  <Link to="/quote">
-                    <MessageSquare className="mr-2 h-5 w-5" />
-                    Get Free Quote
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3">
-                  <Phone className="mr-2 h-5 w-5" />
-                  Call Now: +61 403 971 720
-                </Button>
-              </div>
-              <div className="flex items-center gap-4 text-sm text-gray-600">
-                <div className="flex items-center gap-1">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>12+ years experience</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>Licensed & insured</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>Eco-friendly products</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="/House Cleaning.webp" 
-                  alt="Professional house cleaning service in Melbourne - FreshPlus residential cleaning team"
-                  className="w-full h-[500px] object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = '/Home_Hero.webp';
-                    e.currentTarget.className = 'w-full h-[500px] object-cover';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4">
-                    <p className="text-primary font-semibold text-lg">Professional Home Care</p>
-                    <p className="text-gray-700">Trusted by Melbourne families for over 12 years</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <section className="bg-white py-16 md:py-20 text-center px-4">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6">
+            Residential Cleaning Melbourne
+          </h1>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Come home to freshness. Let our professional cleaners handle every detail while you enjoy more time for what matters.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+            <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
+              <Link to="/quote">Get Free Quote</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-6 text-lg">
+              <a href="tel:+61403971720">
+                <Phone className="mr-2 h-5 w-5" />
+                Call 0403 971 720
+              </a>
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Our Residential Cleaning Services */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Complete Home Cleaning Solutions
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From regular maintenance to deep cleaning, we provide comprehensive residential cleaning services 
-              tailored to your home and lifestyle needs.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {cleaningServices.map((service, index) => (
-              <div key={index} className="bg-gradient-to-br from-primary-light to-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-                <div className="flex items-center mb-4">
-                  {service.icon}
-                  <h3 className="text-xl font-semibold text-primary ml-3">{service.name}</h3>
+      {/* Trust Bar */}
+      <section className="py-8 bg-gray-100">
+        <div className="max-w-screen-xl mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 text-center gap-6">
+            {[
+              { icon: Calendar, text: "12+ Years Experience" },
+              { icon: Shield, text: "Licensed & Insured" },
+              { icon: Star, text: "4.9★ Google Rating" },
+              { icon: Leaf, text: "Eco-Friendly Products" }
+            ].map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <div key={index} className="flex flex-col items-center gap-2">
+                  <IconComponent className="w-8 h-8 text-primary" />
+                  <p className="font-medium text-gray-700">{item.text}</p>
                 </div>
-                <p className="text-gray-600 leading-relaxed">{service.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* What We Clean */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-light to-white">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Every Room, Every Surface
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We clean every area of your home with meticulous attention to detail, ensuring no corner is overlooked.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {cleaningAreas.map((area, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-md text-center border border-gray-100 hover:shadow-lg transition-shadow">
-                <Home className="w-8 h-8 text-accent mx-auto mb-3" />
-                <span className="font-medium text-primary">{area}</span>
-              </div>
-            ))}
+      {/* Service Overview */}
+      <section className="py-14 px-4">
+        <div className="max-w-screen-lg mx-auto text-center">
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+            We deliver complete residential cleaning for homes across Melbourne. Whether you need a regular weekly clean or a one-time deep clean, our team treats your home like their own.
+          </p>
+        </div>
+      </section>
+
+      {/* Cleaning Services Grid */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-screen-xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
+            Our Cleaning Services
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {cleaningServices.map((service, index) => {
+              const IconComponent = service.icon;
+              return (
+                <div key={index} className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                  <IconComponent className="w-10 h-10 text-accent mb-4" />
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.name}</h3>
+                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Why Melbourne Families Choose FreshPlus
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience the difference that comes from working with Melbourne's most trusted residential cleaning professionals.
-            </p>
-          </div>
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-screen-xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
+            Why Choose Fresh Plus
+          </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {whyChooseUs.map((feature, index) => (
-              <div key={index} className="text-center group hover:scale-105 transition-transform">
-                <div className="bg-gradient-to-br from-primary-light to-accent/10 p-6 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:shadow-lg transition-shadow">
-                  {feature.icon}
+            {whyChooseUs.map((feature, index) => {
+              const IconComponent = feature.icon;
+              return (
+                <div key={index} className="text-center">
+                  <div className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <IconComponent className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                  <p className="text-gray-600 text-sm">{feature.description}</p>
                 </div>
-                <h3 className="text-xl font-semibold text-primary mb-3">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Pricing Plans */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-light to-white">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Flexible Cleaning Plans
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose the perfect cleaning schedule that fits your lifestyle and budget. All plans include our satisfaction guarantee.
-            </p>
-          </div>
+      {/* Packages */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-screen-xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
+            Flexible Cleaning Plans
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Choose the perfect cleaning schedule that fits your lifestyle and budget
+          </p>
           <div className="grid md:grid-cols-3 gap-8">
             {pricingPlans.map((plan, index) => (
-              <div key={index} className={`bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border ${plan.popular ? 'border-accent ring-2 ring-accent/20' : 'border-gray-100'} relative`}>
+              <div key={index} className={`bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow relative ${plan.popular ? 'ring-2 ring-accent' : ''}`}>
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-accent text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                    <span className="bg-accent text-black px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
                   </div>
                 )}
-                <h3 className="text-2xl font-bold text-primary mb-3">{plan.title}</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{plan.title}</h3>
                 <p className="text-gray-600 mb-6">{plan.description}</p>
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
+                    <li key={i} className="flex items-center gap-2 text-gray-700">
+                      <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0" />
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
-                <Button asChild className={`w-full ${plan.popular ? 'bg-accent hover:bg-accent/90' : 'bg-primary hover:bg-primary/90'} text-white`}>
-                  <Link to="/quote">
-                    {plan.cta}
-                  </Link>
+                <Button asChild className={`w-full ${plan.popular ? 'bg-accent hover:bg-accent-dark text-black' : 'bg-primary hover:bg-primary-dark text-white'} font-semibold`}>
+                  <Link to="/quote">{plan.cta}</Link>
                 </Button>
               </div>
             ))}
@@ -287,60 +250,48 @@ const ResidentialCleaning = () => {
       </section>
 
       {/* Service Areas */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Serving Melbourne Homes
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Professional residential cleaning services available throughout Melbourne and surrounding suburbs.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
-            {[
-              "Melbourne CBD", "South Yarra", "Richmond", "Collingwood", "Fitzroy",
-              "Carlton", "St Kilda", "Prahran", "Toorak", "Hawthorn",
-              "Camberwell", "Kew", "Northcote", "Thornbury", "Preston",
-              "Coburg", "Brunswick", "Footscray", "Williamstown", "Altona"
-            ].map((suburb, index) => (
-              <div key={index} className="bg-gradient-to-br from-primary-light to-white p-3 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <span className="text-primary font-medium">{suburb}</span>
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-screen-xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
+            Serving Melbourne Homes
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Professional residential cleaning services throughout Melbourne and surrounding suburbs
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {serviceAreas.map((suburb, index) => (
+              <div key={index} className="bg-gray-50 p-4 rounded-lg text-center hover:bg-gray-100 transition-colors">
+                <span className="text-gray-900 font-medium">{suburb}</span>
               </div>
             ))}
           </div>
           <div className="text-center mt-8">
             <p className="text-gray-600">
-              Don't see your suburb? <span className="text-accent font-semibold">Call us</span> - we likely service your area too!
+              Don't see your suburb? <a href="tel:+61403971720" className="text-accent font-semibold hover:underline">Call us</a> - we likely service your area too
             </p>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary to-primary-dark text-white">
-        <div className="container mx-auto text-center">
+      {/* Final CTA */}
+      <section className="py-16 px-4 bg-gradient-to-r from-primary to-primary-dark text-white">
+        <div className="max-w-screen-xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready for a Spotless Home?
           </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-            Join thousands of satisfied Melbourne families who trust FreshPlus for their home cleaning needs. 
-            Get your free quote today and discover the difference professional cleaning makes.
+          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            Join hundreds of satisfied Melbourne families who trust Fresh Plus for their home cleaning needs
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white px-8 py-4 text-lg">
-              <Link to="/quote">
-                <MessageSquare className="mr-2 h-6 w-6" />
-                Get Your Free Quote
-              </Link>
+            <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
+              <Link to="/quote">Get Your Free Quote</Link>
             </Button>
-            <Button variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg">
-              <Phone className="mr-2 h-6 w-6" />
-              Call: +61 403 971 720
+            <Button asChild variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg">
+              <a href="tel:+61403971720">
+                <Phone className="mr-2 h-5 w-5" />
+                Call 0403 971 720
+              </a>
             </Button>
-          </div>
-          <div className="mt-8 text-sm opacity-75">
-            <p>📍 Serving all Melbourne suburbs | ⏰ Flexible scheduling available | 🛡️ Fully insured & licensed</p>
           </div>
         </div>
       </section>
