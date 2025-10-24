@@ -22,6 +22,12 @@ const ServicesSection = () => {
       path: "/services/deep-cleaning",
     },
     {
+      title: "Pressure Washing",
+      description: "High-pressure cleaning for driveways, decks, and exterior surfaces",
+      icon: "💧",
+      path: "/services/pressure-washing",
+    },
+    {
       title: "Carpet Cleaning",
       description: "Expert carpet cleaning for fresher, cleaner carpets",
       icon: "🧽",

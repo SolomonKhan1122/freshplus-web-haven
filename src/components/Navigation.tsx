@@ -11,6 +11,7 @@ const Navigation = () => {
     { name: "Residential Cleaning", path: "/services/residential" },
     { name: "Commercial Cleaning", path: "/services/commercial" },
     { name: "Deep Cleaning", path: "/services/deep-cleaning" },
+    { name: "Pressure Washing", path: "/services/pressure-washing" },
     { name: "Window Cleaning", path: "/services/window" },
     { name: "Carpet Cleaning", path: "/services/carpet" },
     { name: "Tile & Grout Cleaning", path: "/services/tile-grout" },

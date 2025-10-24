@@ -20,6 +20,7 @@ import ResidentialCleaning from "./pages/ResidentialCleaning";
 import CommercialCleaning from "./pages/CommercialCleaning";
 import DeepCleaning from "./pages/DeepCleaning";
 import SolarPanelCleaning from "./pages/SolarPanelCleaning";
+import PressureWashing from "./pages/PressureWashing";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import QuotesList from "./pages/QuotesList";
@@ -58,6 +59,7 @@ function App() {
             <Route path="/services/commercial" element={<CommercialCleaning />} />
             <Route path="/services/deep-cleaning" element={<DeepCleaning />} />
             <Route path="/services/solar-panel" element={<SolarPanelCleaning />} />
+            <Route path="/services/pressure-washing" element={<PressureWashing />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/quote" element={<Quote />} />
