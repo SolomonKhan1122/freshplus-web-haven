@@ -21,6 +21,7 @@ import { sendQuoteEmails } from "@/lib/emailService";
 import { getServiceDisplayName } from "@/lib/serviceMapping";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AddressAutocomplete } from "@/components/forms/AddressAutocomplete";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -268,46 +269,16 @@ const Quote = () => {
                 <div className="border-b-2 border-primary pb-2">
                   <h2 className="text-2xl font-bold text-primary">Property Details</h2>
                 </div>
-                <FormField
+                
+                {/* Google Maps Address Autocomplete */}
+                <AddressAutocomplete 
                   control={form.control}
-                  name="address"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-primary font-semibold">Address *</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  addressFieldName="address"
+                  cityFieldName="city"
+                  postcodeFieldName="postcode"
                 />
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="city"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-primary font-semibold">City *</FormLabel>
-                        <FormControl>
-                          <Input {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="postcode"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-primary font-semibold">Postcode *</FormLabel>
-                        <FormControl>
-                          <Input {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
                     name="propertyType"

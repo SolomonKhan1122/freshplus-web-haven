@@ -18,6 +18,7 @@ import { sendQuoteEmails } from "@/lib/emailService";
 import { getServiceDisplayName } from "@/lib/serviceMapping";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AddressAutocomplete } from "@/components/forms/AddressAutocomplete";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -203,49 +204,13 @@ const LandingPageForm = ({ serviceType, availableServices }: LandingPageFormProp
 
           {/* Property Details */}
           <FormSection title="Property Details">
-            <FormField
+            {/* Google Maps Address Autocomplete */}
+            <AddressAutocomplete 
               control={form.control}
-              name="address"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Street Address *</FormLabel>
-                  <FormControl>
-                    <Input placeholder="123 Collins Street" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              addressFieldName="address"
+              cityFieldName="city"
+              postcodeFieldName="postcode"
             />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="city"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>City *</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Melbourne" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="postcode"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Postcode *</FormLabel>
-                    <FormControl>
-                      <Input placeholder="3000" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
           </FormSection>
 
           {/* Service Selection */}
