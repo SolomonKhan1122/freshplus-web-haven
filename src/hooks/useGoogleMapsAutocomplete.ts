@@ -103,7 +103,7 @@ export const useGoogleMapsAutocomplete = ({
 
         // Validate that the address is in Victoria (VIC)
         if (addressComponents.state !== 'VIC') {
-          onError?.('Sorry, Fresh Plus Cleaning only services addresses in Victoria, Australia. Please enter a Victorian address.');
+          onError?.('Thank you for your interest! Unfortunately, we currently only service properties within Victoria. Please select an address in Victoria to continue.');
           if (inputRef.current) {
             inputRef.current.value = '';
           }

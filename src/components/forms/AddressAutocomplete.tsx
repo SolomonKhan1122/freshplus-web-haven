@@ -72,34 +72,28 @@ export const AddressAutocomplete = ({
               Street Address *
             </FormLabel>
             <FormControl>
-              <div className="relative">
-                <Input
-                  {...field}
-                  ref={(e) => {
-                    field.ref(e);
-                    if (e) {
-                      (inputRef as any).current = e;
-                    }
-                  }}
-                  placeholder="Start typing your address..."
-                  className="pr-10"
-                  autoComplete="off"
-                />
-                {isLoaded && (
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
-                    <img 
-                      src="https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3.png" 
-                      alt="Powered by Google"
-                      className="h-4"
-                    />
-                  </div>
-                )}
-              </div>
+              <Input
+                {...field}
+                ref={(e) => {
+                  field.ref(e);
+                  if (e) {
+                    (inputRef as any).current = e;
+                  }
+                }}
+                placeholder="Start typing your address..."
+                autoComplete="off"
+              />
             </FormControl>
-            <p className="text-xs text-muted-foreground">
-              Start typing and select your address from the dropdown (Victoria only)
-            </p>
             <FormMessage />
+            {isLoaded && (
+              <div className="flex justify-end mt-1">
+                <img 
+                  src="https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3.png" 
+                  alt="Powered by Google"
+                  className="h-3 opacity-60"
+                />
+              </div>
+            )}
           </FormItem>
         )}
       />
