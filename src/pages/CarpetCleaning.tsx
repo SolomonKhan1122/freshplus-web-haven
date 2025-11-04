@@ -125,6 +125,14 @@ const CarpetCleaning = () => {
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
             Refresh your carpets, revive your home. Professional steam cleaning that removes deep-seated dirt, allergens, and stubborn stains.
           </p>
+          <div className="mb-8 max-w-3xl mx-auto">
+            <img 
+              src="/Carpet_cleaning.webp" 
+              alt="Professional Carpet Steam Cleaning Service in Melbourne" 
+              className="w-full h-auto rounded-xl shadow-lg object-cover"
+              loading="eager"
+            />
+          </div>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
               <Link to="/quote">Get Free Quote</Link>

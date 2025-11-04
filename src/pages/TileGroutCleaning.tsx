@@ -124,6 +124,14 @@ const TileGroutCleaning = () => {
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
             Restore the shine your tiles deserve. Professional cleaning that removes embedded dirt, stains, and mold from tiles and grout.
           </p>
+          <div className="mb-8 max-w-3xl mx-auto">
+            <img 
+              src="/TileGrout_cleaning.webp" 
+              alt="Professional Tile and Grout Cleaning Service in Melbourne" 
+              className="w-full h-auto rounded-xl shadow-lg object-cover"
+              loading="eager"
+            />
+          </div>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
               <Link to="/quote">Get Free Quote</Link>

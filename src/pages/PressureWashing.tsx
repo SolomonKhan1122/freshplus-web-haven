@@ -125,6 +125,14 @@ const PressureWashing = () => {
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
             Transform your exterior surfaces with professional high-pressure cleaning. Remove stubborn dirt, grime, and stains from driveways, decks, and walls.
           </p>
+          <div className="mb-8 max-w-3xl mx-auto">
+            <img 
+              src="/Pressure_washing.webp" 
+              alt="Professional Pressure Washing Service in Melbourne" 
+              className="w-full h-auto rounded-xl shadow-lg object-cover"
+              loading="eager"
+            />
+          </div>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-dark text-black font-semibold px-8 py-6 text-lg">
               <Link to="/quote">Get Free Quote</Link>
