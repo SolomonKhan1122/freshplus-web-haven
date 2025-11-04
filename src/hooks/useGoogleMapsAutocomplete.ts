@@ -48,6 +48,19 @@ export const useGoogleMapsAutocomplete = ({
     if (!isLoaded || !inputRef.current) return;
 
     try {
+      // Prevent form submission on Enter key in autocomplete
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Enter') {
+          // Check if dropdown is visible
+          const pacContainer = document.querySelector('.pac-container');
+          if (pacContainer && pacContainer.children.length > 0) {
+            e.preventDefault();
+          }
+        }
+      };
+
+      inputRef.current.addEventListener('keydown', handleKeyDown);
+
       // Initialize autocomplete with Victoria-only restrictions
       const autocomplete = new google.maps.places.Autocomplete(inputRef.current, {
         componentRestrictions: { country: 'au' }, // Restrict to Australia
@@ -58,6 +71,11 @@ export const useGoogleMapsAutocomplete = ({
       });
 
       autocompleteRef.current = autocomplete;
+
+      // Disable browser autocomplete
+      if (inputRef.current) {
+        inputRef.current.setAttribute('autocomplete', 'new-password');
+      }
 
       // Listen for place selection
       const listener = autocomplete.addListener('place_changed', () => {
@@ -124,6 +142,9 @@ export const useGoogleMapsAutocomplete = ({
       return () => {
         if (listener) {
           google.maps.event.removeListener(listener);
+        }
+        if (inputRef.current) {
+          inputRef.current.removeEventListener('keydown', handleKeyDown);
         }
       };
     } catch (error) {

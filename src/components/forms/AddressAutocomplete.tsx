@@ -73,7 +73,10 @@ export const AddressAutocomplete = ({
             </FormLabel>
             <FormControl>
               <Input
-                {...field}
+                name={field.name}
+                value={field.value}
+                onChange={field.onChange}
+                onBlur={field.onBlur}
                 ref={(e) => {
                   field.ref(e);
                   if (e) {
@@ -82,6 +85,8 @@ export const AddressAutocomplete = ({
                 }}
                 placeholder="Start typing your address..."
                 autoComplete="off"
+                autoCorrect="off"
+                spellCheck="false"
               />
             </FormControl>
             <FormMessage />
