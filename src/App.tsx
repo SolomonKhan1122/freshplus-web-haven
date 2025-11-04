@@ -32,8 +32,8 @@ import AdminQuotes from "./pages/admin/AdminQuotes";
 import AdminContacts from "./pages/admin/AdminContacts";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PressureWashingLanding from "./pages/PressureWashingLanding";
-import TileGroutLanding from "./pages/TileGroutLanding";
-import EndOfLeaseLanding from "./pages/EndOfLeaseLanding";
+import TileGroutCleaningLanding from "./pages/TileGroutCleaningLanding";
+import EndOfLeaseCleaningLanding from "./pages/EndOfLeaseCleaningLanding";
 import ThankYou from "./pages/ThankYou";
 import GoogleAnalyticsTracker from "./components/GoogleAnalyticsTracker";
 import ScrollToTop from "./components/ScrollToTop";
@@ -76,8 +76,10 @@ function App() {
             
             {/* Landing Pages for Google Ads */}
             <Route path="/pressure-washing" element={<PressureWashingLanding />} />
-            <Route path="/tile-grout-cleaning" element={<TileGroutLanding />} />
-            <Route path="/end-of-lease-cleaning" element={<EndOfLeaseLanding />} />
+            <Route path="/tile-grout" element={<TileGroutCleaningLanding />} />
+            <Route path="/tile-grout-cleaning" element={<TileGroutCleaningLanding />} />
+            <Route path="/end-of-lease" element={<EndOfLeaseCleaningLanding />} />
+            <Route path="/end-of-lease-cleaning" element={<EndOfLeaseCleaningLanding />} />
             
             {/* Thank You Page for Conversion Tracking */}
             <Route path="/thank-you" element={<ThankYou />} />

@@ -10,88 +10,91 @@ import {
   Clock,
   Home,
   Building,
-  Leaf,
-  Droplets,
-  Zap,
+  Key,
+  FileCheck,
   ThumbsUp
 } from "lucide-react";
 import logoImage from "/logo.webp";
 import LandingPageForm from "@/components/forms/LandingPageForm";
 import { SEOHead } from "@/components/SEOHead";
 
-const PressureWashingLanding = () => {
-  const availableServices = ["pressure-washing", "tile-grout", "end-of-lease"];
+const EndOfLeaseCleaningLanding = () => {
+  const availableServices = ["end-of-lease", "pressure-washing", "tile-grout"];
 
   const whyChooseUs = [
     {
-      title: "Commercial-Grade Equipment",
-      description: "High-powered pressure washers that deliver professional results every time",
-      icon: Zap
+      title: "100% Bond Back Guarantee",
+      description: "We guarantee your full bond return or we'll re-clean for free. That's our promise.",
+      icon: Shield
     },
     {
-      title: "Eco-Friendly Solutions",
-      description: "Safe, biodegradable cleaning agents that protect your property and environment",
-      icon: Leaf
+      title: "Real Estate Approved",
+      description: "Our checklist meets all real estate requirements. We know exactly what inspectors look for.",
+      icon: FileCheck
     },
     {
-      title: "Experienced Technicians",
-      description: "Trained professionals who understand different surfaces and cleaning requirements",
+      title: "Same-Day Service",
+      description: "Urgent move? We offer same-day and next-day cleaning for last-minute situations.",
+      icon: Clock
+    },
+    {
+      title: "12+ Years Experience",
+      description: "Over 5,000 successful bond cleans across Melbourne with 98% bond recovery rate.",
       icon: Award
-    },
-    {
-      title: "Satisfaction Guaranteed",
-      description: "100% satisfaction or we'll make it right at no extra cost",
-      icon: ThumbsUp
     }
   ];
 
   const services = [
     {
-      title: "Driveway & Pathways",
-      description: "Remove oil stains, tire marks, and years of built-up grime from concrete and paved surfaces",
-      features: ["Oil stain removal", "Tire mark elimination", "Algae & moss treatment", "Surface sealing"],
+      title: "Studio & 1 Bedroom",
+      description: "Complete end of lease clean for apartments, studios, and small units",
+      features: ["Kitchen deep clean", "Bathroom sanitization", "Window cleaning", "Carpet steam clean", "4-6 hour service"],
       icon: Home
     },
     {
-      title: "Deck & Patio Cleaning",
-      description: "Restore wooden decks and outdoor patios to their original beauty and color",
-      features: ["Wood restoration", "Composite deck cleaning", "Tile patio refresh", "Protective coating"],
-      icon: Sparkles
+      title: "2-3 Bedroom Homes",
+      description: "Thorough bond cleaning for family homes, townhouses, and medium properties",
+      features: ["All rooms deep cleaned", "Multiple bathrooms", "Oven & appliances", "Walls & skirting", "6-8 hour service"],
+      icon: Building
     },
     {
-      title: "Building Exteriors",
-      description: "Clean walls, facades, and external surfaces for homes and commercial properties",
-      features: ["Brick cleaning", "Render washing", "Window frames", "Weatherboard restoration"],
-      icon: Building
+      title: "3BR+ Large Houses",
+      description: "Comprehensive cleaning for large properties, multi-level homes, and estates",
+      features: ["Whole house cleaning", "Garage & laundry", "Outdoor areas", "Detailed inspection prep", "8-10+ hour service"],
+      icon: Key
     }
   ];
 
   const faqs = [
     {
-      question: "Will pressure washing damage my surfaces?",
-      answer: "No! Our experienced team uses the correct pressure settings and techniques for each surface type. We've been pressure washing Melbourne properties for over 12 years without damage."
+      question: "What's included in your end of lease clean?",
+      answer: "Everything! Kitchen (oven, stovetop, rangehood, cupboards), bathrooms (tiles, shower, toilet), all rooms (walls, skirting, wardrobes), windows, doors, light fittings, carpet steam cleaning, and more. We follow a comprehensive real estate checklist."
     },
     {
-      question: "How long does a pressure washing job take?",
-      answer: "Most residential driveways take 1-2 hours. Complete home exterior cleaning typically takes 3-5 hours. We'll provide an accurate time estimate in your quote."
+      question: "Do you really guarantee my bond back?",
+      answer: "Yes! If the real estate requests a re-clean due to our cleaning, we'll return and fix it for free. We've maintained a 98% bond recovery rate for over 12 years because we know exactly what inspectors look for."
     },
     {
-      question: "Do I need to be home during the service?",
-      answer: "Not necessarily. As long as we have access to water and the areas to be cleaned, we can complete the work while you're away."
+      question: "Can you clean on short notice?",
+      answer: "Yes! We offer same-day and next-day service for urgent move-outs. Call us on 0403 971 720 to check availability for your date."
     },
     {
-      question: "What areas do you service?",
-      answer: "We service all of Melbourne CBD and surrounding suburbs including South Yarra, Richmond, Toorak, Hawthorn, Carlton, and more. Call us to confirm your area!"
+      question: "Do I need to be present during the clean?",
+      answer: "No, you don't need to be home. Just ensure we have access to the property and all keys. We'll lock up and return keys as arranged."
+    },
+    {
+      question: "Is carpet cleaning included?",
+      answer: "Carpet steam cleaning is included in all our end of lease packages. We use professional equipment for best results and faster drying times."
     }
   ];
 
   return (
     <div className="min-h-screen bg-white">
       <SEOHead 
-        title="Professional Pressure Washing Melbourne | Fresh Plus Cleaning"
-        description="Melbourne's #1 pressure washing service. Driveways, decks, patios & building exteriors. Eco-friendly, commercial-grade equipment. 100% satisfaction guaranteed. Book today!"
-        keywords="pressure washing melbourne, driveway cleaning, deck cleaning, patio cleaning, building exterior cleaning, commercial pressure washing"
-        canonical="https://www.freshpluscleaning.com.au/pressure-washing"
+        title="End of Lease Cleaning Melbourne | 100% Bond Back Guarantee"
+        description="Melbourne's #1 end of lease cleaning service. 100% bond back guarantee. Real estate approved. Same-day available. Expert cleaners. 12+ years experience. Book today!"
+        keywords="end of lease cleaning melbourne, bond cleaning, exit cleaning, vacate cleaning, bond back guarantee, real estate cleaning"
+        canonical="https://www.freshpluscleaning.com.au/end-of-lease"
       />
 
       {/* Hero Section - Full Width Background */}
@@ -99,7 +102,7 @@ const PressureWashingLanding = () => {
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/Pressure_washing.webp')" }}
+          style={{ backgroundImage: "url('/End_lease.webp')" }}
         >
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary-dark/80"></div>
@@ -120,15 +123,15 @@ const PressureWashingLanding = () => {
 
           {/* Main Headline */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-            Professional Pressure Washing
+            Get Your Bond Back
             <span className="block mt-2 bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent">
-              Melbourne's Trusted Experts
+              100% Guaranteed
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-xl sm:text-2xl md:text-3xl text-white/90 font-medium mb-10 max-w-4xl mx-auto">
-            Transform driveways, decks & exteriors with commercial-grade pressure washing. Eco-friendly. Fast. Guaranteed.
+            Professional end of lease cleaning in Melbourne. Real estate approved checklist. Same-day service available.
           </p>
 
           {/* CTA Buttons */}
@@ -156,12 +159,12 @@ const PressureWashingLanding = () => {
           {/* Trust Badges */}
           <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-white">
             <div className="flex items-center gap-2">
-              <Star className="h-6 w-6 text-accent fill-accent" />
-              <span className="font-semibold">5-Star Service</span>
+              <Shield className="h-6 w-6 text-accent fill-accent" />
+              <span className="font-semibold">100% Bond Back</span>
             </div>
             <div className="flex items-center gap-2">
-              <Shield className="h-6 w-6 text-accent" />
-              <span className="font-semibold">Licensed & Insured</span>
+              <Star className="h-6 w-6 text-accent fill-accent" />
+              <span className="font-semibold">5-Star Service</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="h-6 w-6 text-accent" />
@@ -172,7 +175,7 @@ const PressureWashingLanding = () => {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <Phone className="h-8 w-8 text-white/60" />
+          <Key className="h-8 w-8 text-white/60" />
         </div>
       </section>
 
@@ -181,10 +184,10 @@ const PressureWashingLanding = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-primary mb-4">
-              Why Choose Fresh Plus for Pressure Washing?
+              Why Choose Fresh Plus for End of Lease Cleaning?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience the difference with Melbourne's premier pressure washing service
+              Melbourne's most trusted bond cleaning specialists
             </p>
           </div>
 
@@ -210,10 +213,10 @@ const PressureWashingLanding = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-primary mb-4">
-              Our Pressure Washing Services
+              Bond Cleaning Packages
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Professional cleaning solutions for every surface
+              Professional cleaning packages for every property size
             </p>
           </div>
 
@@ -256,7 +259,7 @@ const PressureWashingLanding = () => {
 
           <div className="bg-white p-8 sm:p-12 rounded-3xl shadow-2xl border border-primary/10">
             <LandingPageForm 
-              serviceType="pressure-washing" 
+              serviceType="end-of-lease" 
               availableServices={availableServices} 
             />
           </div>
@@ -287,10 +290,10 @@ const PressureWashingLanding = () => {
       <section className="py-20 bg-gradient-to-r from-primary-dark to-primary text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            Ready to Transform Your Property?
+            Ready to Get Your Full Bond Back?
           </h2>
           <p className="text-xl mb-10 text-white/90">
-            Book your pressure washing service today and see the Fresh Plus difference!
+            Book your end of lease clean today with Melbourne's most trusted bond cleaning specialists!
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="#quote-form">
@@ -331,4 +334,5 @@ const PressureWashingLanding = () => {
   );
 };
 
-export default PressureWashingLanding;
+export default EndOfLeaseCleaningLanding;
+

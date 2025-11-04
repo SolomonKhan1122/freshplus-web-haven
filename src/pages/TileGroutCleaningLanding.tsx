@@ -9,9 +9,8 @@ import {
   Sparkles, 
   Clock,
   Home,
-  Building,
-  Leaf,
   Droplets,
+  Leaf,
   Zap,
   ThumbsUp
 } from "lucide-react";
@@ -19,79 +18,79 @@ import logoImage from "/logo.webp";
 import LandingPageForm from "@/components/forms/LandingPageForm";
 import { SEOHead } from "@/components/SEOHead";
 
-const PressureWashingLanding = () => {
-  const availableServices = ["pressure-washing", "tile-grout", "end-of-lease"];
+const TileGroutCleaningLanding = () => {
+  const availableServices = ["tile-grout", "pressure-washing", "end-of-lease"];
 
   const whyChooseUs = [
     {
-      title: "Commercial-Grade Equipment",
-      description: "High-powered pressure washers that deliver professional results every time",
-      icon: Zap
+      title: "Professional Steam Cleaning",
+      description: "High-pressure steam technology that deep cleans tiles and grout without harsh chemicals",
+      icon: Droplets
     },
     {
-      title: "Eco-Friendly Solutions",
-      description: "Safe, biodegradable cleaning agents that protect your property and environment",
+      title: "Grout Sealing Included",
+      description: "Protect your investment with professional grout sealing to prevent future staining",
+      icon: Shield
+    },
+    {
+      title: "Safe for All Tiles",
+      description: "Gentle yet effective cleaning safe for ceramic, porcelain, natural stone, and more",
       icon: Leaf
     },
     {
-      title: "Experienced Technicians",
-      description: "Trained professionals who understand different surfaces and cleaning requirements",
-      icon: Award
-    },
-    {
-      title: "Satisfaction Guaranteed",
-      description: "100% satisfaction or we'll make it right at no extra cost",
+      title: "Guaranteed Results",
+      description: "Restore your tiles to like-new condition or we'll make it right at no extra cost",
       icon: ThumbsUp
     }
   ];
 
   const services = [
     {
-      title: "Driveway & Pathways",
-      description: "Remove oil stains, tire marks, and years of built-up grime from concrete and paved surfaces",
-      features: ["Oil stain removal", "Tire mark elimination", "Algae & moss treatment", "Surface sealing"],
-      icon: Home
+      title: "Bathroom Tile Cleaning",
+      description: "Remove soap scum, mold, mildew, and hard water stains from bathroom tiles and grout",
+      features: ["Shower tile restoration", "Floor tile cleaning", "Mold & mildew removal", "Grout whitening"],
+      icon: Droplets
     },
     {
-      title: "Deck & Patio Cleaning",
-      description: "Restore wooden decks and outdoor patios to their original beauty and color",
-      features: ["Wood restoration", "Composite deck cleaning", "Tile patio refresh", "Protective coating"],
+      title: "Kitchen Tile Cleaning",
+      description: "Eliminate grease, food stains, and discoloration from kitchen backsplashes and floors",
+      features: ["Backsplash cleaning", "Floor tile refresh", "Grease removal", "Stain treatment"],
       icon: Sparkles
     },
     {
-      title: "Building Exteriors",
-      description: "Clean walls, facades, and external surfaces for homes and commercial properties",
-      features: ["Brick cleaning", "Render washing", "Window frames", "Weatherboard restoration"],
-      icon: Building
+      title: "Commercial Tile Cleaning",
+      description: "Professional tile and grout cleaning for restaurants, offices, and commercial spaces",
+      features: ["Large area cleaning", "After-hours service", "High-traffic areas", "Scheduled maintenance"],
+      icon: Home
     }
   ];
 
   const faqs = [
     {
-      question: "Will pressure washing damage my surfaces?",
-      answer: "No! Our experienced team uses the correct pressure settings and techniques for each surface type. We've been pressure washing Melbourne properties for over 12 years without damage."
+      question: "How long does tile and grout cleaning take?",
+      answer: "Most bathrooms take 2-3 hours, kitchens 3-4 hours. We'll provide an accurate time estimate based on your space during the quote."
     },
     {
-      question: "How long does a pressure washing job take?",
-      answer: "Most residential driveways take 1-2 hours. Complete home exterior cleaning typically takes 3-5 hours. We'll provide an accurate time estimate in your quote."
+      question: "Can you remove all grout stains?",
+      answer: "We can remove 95%+ of stains using professional steam cleaning and specialized treatments. Heavily stained grout may require re-coloring or replacement, which we can also provide."
     },
     {
-      question: "Do I need to be home during the service?",
-      answer: "Not necessarily. As long as we have access to water and the areas to be cleaned, we can complete the work while you're away."
+      question: "Is grout sealing really necessary?",
+      answer: "Yes! Grout is porous and absorbs dirt, moisture, and stains. Professional sealing creates a protective barrier that keeps your grout cleaner longer and makes future cleaning much easier."
     },
     {
-      question: "What areas do you service?",
-      answer: "We service all of Melbourne CBD and surrounding suburbs including South Yarra, Richmond, Toorak, Hawthorn, Carlton, and more. Call us to confirm your area!"
+      question: "How often should I have my tiles professionally cleaned?",
+      answer: "We recommend professional cleaning every 12-18 months for residential properties, and every 6-12 months for high-traffic commercial areas."
     }
   ];
 
   return (
     <div className="min-h-screen bg-white">
       <SEOHead 
-        title="Professional Pressure Washing Melbourne | Fresh Plus Cleaning"
-        description="Melbourne's #1 pressure washing service. Driveways, decks, patios & building exteriors. Eco-friendly, commercial-grade equipment. 100% satisfaction guaranteed. Book today!"
-        keywords="pressure washing melbourne, driveway cleaning, deck cleaning, patio cleaning, building exterior cleaning, commercial pressure washing"
-        canonical="https://www.freshpluscleaning.com.au/pressure-washing"
+        title="Professional Tile & Grout Cleaning Melbourne | Fresh Plus"
+        description="Melbourne's #1 tile and grout cleaning service. Remove stains, mold & discoloration. Steam cleaning + grout sealing. 100% satisfaction guaranteed. Book today!"
+        keywords="tile grout cleaning melbourne, tile restoration, bathroom tile cleaning, kitchen tile cleaning, grout sealing, tile steam cleaning"
+        canonical="https://www.freshpluscleaning.com.au/tile-grout"
       />
 
       {/* Hero Section - Full Width Background */}
@@ -99,7 +98,7 @@ const PressureWashingLanding = () => {
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/Pressure_washing.webp')" }}
+          style={{ backgroundImage: "url('/Tile_grout.webp')" }}
         >
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary-dark/80"></div>
@@ -120,15 +119,15 @@ const PressureWashingLanding = () => {
 
           {/* Main Headline */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-            Professional Pressure Washing
+            Restore Your Tiles to
             <span className="block mt-2 bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent">
-              Melbourne's Trusted Experts
+              Like-New Condition
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-xl sm:text-2xl md:text-3xl text-white/90 font-medium mb-10 max-w-4xl mx-auto">
-            Transform driveways, decks & exteriors with commercial-grade pressure washing. Eco-friendly. Fast. Guaranteed.
+            Expert tile & grout cleaning in Melbourne. Remove stains, mold & discoloration with professional steam cleaning.
           </p>
 
           {/* CTA Buttons */}
@@ -172,7 +171,7 @@ const PressureWashingLanding = () => {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <Phone className="h-8 w-8 text-white/60" />
+          <Droplets className="h-8 w-8 text-white/60" />
         </div>
       </section>
 
@@ -181,10 +180,10 @@ const PressureWashingLanding = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-primary mb-4">
-              Why Choose Fresh Plus for Pressure Washing?
+              Why Choose Fresh Plus for Tile & Grout Cleaning?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience the difference with Melbourne's premier pressure washing service
+              Experience the difference with Melbourne's premier tile restoration specialists
             </p>
           </div>
 
@@ -210,10 +209,10 @@ const PressureWashingLanding = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-primary mb-4">
-              Our Pressure Washing Services
+              Our Tile & Grout Services
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Professional cleaning solutions for every surface
+              Professional cleaning solutions for every tile surface
             </p>
           </div>
 
@@ -256,7 +255,7 @@ const PressureWashingLanding = () => {
 
           <div className="bg-white p-8 sm:p-12 rounded-3xl shadow-2xl border border-primary/10">
             <LandingPageForm 
-              serviceType="pressure-washing" 
+              serviceType="tile-grout" 
               availableServices={availableServices} 
             />
           </div>
@@ -287,10 +286,10 @@ const PressureWashingLanding = () => {
       <section className="py-20 bg-gradient-to-r from-primary-dark to-primary text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            Ready to Transform Your Property?
+            Ready to Restore Your Tiles?
           </h2>
           <p className="text-xl mb-10 text-white/90">
-            Book your pressure washing service today and see the Fresh Plus difference!
+            Book your tile & grout cleaning today and see the Fresh Plus difference!
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="#quote-form">
@@ -331,4 +330,5 @@ const PressureWashingLanding = () => {
   );
 };
 
-export default PressureWashingLanding;
+export default TileGroutCleaningLanding;
+
