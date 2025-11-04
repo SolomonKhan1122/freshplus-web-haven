@@ -19,6 +19,7 @@ import { getServiceDisplayName } from "@/lib/serviceMapping";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AddressAutocomplete } from "@/components/forms/AddressAutocomplete";
+import { useRecaptcha } from "@/hooks/useRecaptcha";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -46,6 +47,7 @@ const LandingPageForm = ({ serviceType, availableServices }: LandingPageFormProp
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const navigate = useNavigate();
+  const { getRecaptchaToken } = useRecaptcha();
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -69,7 +71,33 @@ const LandingPageForm = ({ serviceType, availableServices }: LandingPageFormProp
     setIsSubmitting(true);
     
     try {
-      // Prepare data for Supabase
+      // Step 1: Get reCAPTCHA token (invisible to user)
+      const recaptchaToken = await getRecaptchaToken(`${serviceType}_submission`);
+      
+      if (!recaptchaToken) {
+        toast.error('Security verification failed. Please try again.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Step 2: Verify reCAPTCHA token with backend
+      const verificationResponse = await fetch('/api/verify-recaptcha', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: recaptchaToken }),
+      });
+
+      const verificationResult = await verificationResponse.json();
+
+      if (!verificationResult.success) {
+        toast.error(verificationResult.error || 'Security verification failed. Please contact us directly at +61 403 971 720');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Step 3: User verified as human, proceed with form submission
       const quoteData = {
         name: values.name,
         address: values.address,
