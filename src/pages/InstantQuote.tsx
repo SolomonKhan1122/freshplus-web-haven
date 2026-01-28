@@ -59,13 +59,6 @@ const InstantQuote = () => {
     };
 
     try {
-      // #region agent log - Debug instrumentation
-      console.log("🔍 DEBUG: Starting booking submission...");
-      console.log("🔍 DEBUG: Supabase URL:", import.meta.env.VITE_SUPABASE_URL || "using-fallback");
-      console.log("🔍 DEBUG: Anon Key present:", !!(import.meta.env.VITE_SUPABASE_ANON_KEY) ? "from-env" : "using-fallback");
-      console.log("🔍 DEBUG: Booking data:", JSON.stringify(bookingData, null, 2));
-      // #endregion
-
       // Insert into database
       const { data, error } = await supabase
         .from("instant_bookings")
@@ -73,16 +66,8 @@ const InstantQuote = () => {
         .select("id")
         .single();
 
-      // #region agent log - Debug instrumentation
-      console.log("🔍 DEBUG: Insert response - data:", data);
-      console.log("🔍 DEBUG: Insert response - error:", error);
-      // #endregion
-
       if (error) {
         console.error("Database error:", error);
-        // #region agent log - Debug instrumentation
-        console.error("🔍 DEBUG: Full error object:", JSON.stringify(error, null, 2));
-        // #endregion
         toast.error("Something went wrong. Please try again.");
         throw error;
       }
