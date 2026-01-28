@@ -1,0 +1,16 @@
+{
+  "name": "Fresh Plus Cleaning",
+  "short_name": "FreshPlus",
+  "description": "Professional cleaning services for homes and businesses in Melbourne",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2D5A87",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
